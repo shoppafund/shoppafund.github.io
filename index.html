@@ -24,6 +24,13 @@
     font-weight:700;letter-spacing:.04em}
   .new{background:var(--accent);color:#0b0e13}
   .live{background:#1f6f43;color:#d8ffe9}
+  .regime{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .regime .lead{margin:0 0 10px;color:var(--mut);font-size:12.5px;line-height:1.5}
+  .regime .pages{display:flex;flex-wrap:wrap;gap:8px}
+  .regime .pages a{display:inline-block;background:var(--bg);border:1px solid #30363d;border-radius:8px;
+    padding:6px 11px;font-size:12.5px;color:var(--accent);text-decoration:none}
+  .regime .pages a:hover{border-color:var(--accent)}
+  .regime .pages a.main{background:#13202f;color:#e6e6e6;font-weight:600}
   footer{color:var(--mut);font-size:11px;text-align:center;padding:24px;border-top:1px solid var(--line)}
 </style>
 <header>
@@ -55,6 +62,23 @@
     </a>
   </div>
 
+  <h2>Market Regime <span style="text-transform:none;color:#3fb950;font-weight:400">&middot; live &middot; 8 modules</span></h2>
+  <div class=regime>
+    <p class=lead>Multi-page market-regime suite (8503): breadth, liquidity, credit, internals, sectors,
+       flows, technical setups, topping signals, risk. Open the full dashboard or jump to a module:</p>
+    <div class=pages>
+      <a class=main target=_blank rel=noopener href="http://164.92.102.141:8503/">Overview / Bond Indicator</a>
+      <a target=_blank rel=noopener href="http://164.92.102.141:8503/Fed_Liquidity">Fed Liquidity</a>
+      <a target=_blank rel=noopener href="http://164.92.102.141:8503/Credit_Spreads">Credit Spreads</a>
+      <a target=_blank rel=noopener href="http://164.92.102.141:8503/Market_Internals">Market Internals</a>
+      <a target=_blank rel=noopener href="http://164.92.102.141:8503/Sectors">Sectors</a>
+      <a target=_blank rel=noopener href="http://164.92.102.141:8503/ETF_Flows">ETF Flows</a>
+      <a target=_blank rel=noopener href="http://164.92.102.141:8503/Technical_Setups">Technical Setups</a>
+      <a target=_blank rel=noopener href="http://164.92.102.141:8503/Topping_Signals">Topping Signals</a>
+      <a target=_blank rel=noopener href="http://164.92.102.141:8503/Risk_Scorecard">Risk Scorecard</a>
+    </div>
+  </div>
+
   <h2>Live apps</h2>
   <div class=grid>
     <a class=card target=_blank rel=noopener href="http://164.92.102.141:8501/">
@@ -66,11 +90,6 @@
       <span class="pill live">LIVE</span>
       <h3>Options Intel Lab</h3>
       <p>Options trade builder — IV term structure, strike engine, directional trades with delta + convexity.</p>
-    </a>
-    <a class=card target=_blank rel=noopener href="http://164.92.102.141:8503/">
-      <span class="pill live">LIVE</span>
-      <h3>Bond Indicator</h3>
-      <p>Credit/bond market breadth dashboard — risk-on/risk-off signal.</p>
     </a>
     <a class=card target=_blank rel=noopener href="http://164.92.102.141:8506/">
       <span class="pill live">LIVE</span>
