@@ -1,0 +1,101 @@
+<!doctype html><meta charset=utf-8>
+<title>Commodities: Decoupling from the Market & Institutional Dark-Pool Flow</title>
+<style>
+body{font-family:Georgia,'Times New Roman',serif;max-width:860px;margin:40px auto;
+padding:0 24px;color:#1a1a1a;line-height:1.55}
+h1{font-size:26px;margin-bottom:4px} h2{font-size:19px;margin-top:32px;
+border-bottom:2px solid #ddd;padding-bottom:4px} h3{font-size:15px;margin-top:20px}
+.meta{color:#666;font-size:13px;margin-bottom:8px}
+table{border-collapse:collapse;width:100%;font-family:Arial,sans-serif;font-size:12.5px;margin:10px 0}
+th,td{padding:6px 9px;text-align:right;border-bottom:1px solid #e3e3e3}
+th:first-child,td:first-child{text-align:left} th{background:#f5f5f5}
+.grn{color:#157f3b} .red{color:#b3261e}
+.defs td{text-align:left;vertical-align:top} .defs td:first-child{font-weight:bold;width:120px}
+.cav{background:#fff8e1;border-left:4px solid #e0a800;padding:10px 14px;font-size:13.5px;margin:12px 0}
+.tag{font-family:Arial;font-size:13px;color:#444} code{background:#f0f0f0;padding:1px 4px;border-radius:3px}
+</style>
+
+<h1>Commodities: Decoupling from the Market &amp; Institutional Dark-Pool Flow</h1>
+<div class=meta>SHOPPA research note &middot; data as of 2026-06-12 &middot; universe: 44 commodity-related tickers</div>
+
+<h2>What this is</h2>
+<p>A data view of the commodity complex answering two questions: (1) which commodities
+are <b>decoupling</b> from the broad stock market (S&amp;P 500 / SPY) — the kind of
+break that defined the 1970s commodity era — and (2) where <b>institutional money</b>
+is quietly accumulating or distributing through <b>dark pools</b>. It is a
+<b>regime / context</b> view, not a price forecast.</p>
+
+<h2>Data source</h2>
+<p>All figures are computed from <b>Massive.com</b> (formerly Polygon.io) market data,
+Developer tier (15-minute delayed; the delay does not affect daily figures):</p>
+<ul>
+<li><b>Regime metrics</b> (Beta, Corr, Corr&Delta;, RS): from <b>daily closing prices</b>,
+roughly the trailing 13 months, for each ticker and for SPY.</li>
+<li><b>Dark-pool flow</b>: from the <b>individual trade tape</b> over the last 5 sessions,
+keeping only off-exchange (dark-pool / FINRA TRF) prints.</li>
+</ul>
+
+<h2>How each metric is defined</h2>
+<table class=defs>
+<tr><td>Beta</td><td>Sensitivity to the S&amp;P 500 — covariance of the ticker's daily
+returns with SPY's, divided by SPY's variance (~13 months). 2.0 means it tends to move
+about twice as much as SPY; a <b>negative</b> beta means it tends to move opposite the market.</td></tr>
+<tr><td>Corr</td><td>How tightly it currently tracks SPY — the correlation of daily returns
+over the last 30 days, from &minus;1 (opposite) through 0 (independent) to +1 (lockstep).</td></tr>
+<tr><td>Corr&Delta;<br>(decoupling)</td><td>The change in that 30-day correlation versus
+~60&ndash;90 days earlier. <b>Negative = decoupling</b> (the link to the market is weakening);
+positive = re-coupling.</td></tr>
+<tr><td>RS 60d<br>(relative strength)</td><td>The ticker's total return over the last 60
+trading days <b>minus</b> SPY's over the same period. Positive = outperforming the market.</td></tr>
+<tr><td>Dark net<br>(5 sessions)</td><td>Net institutional dark-pool flow: the sum of
+(direction &times; dollar size) across off-exchange prints of at least $50,000, excluding
+mechanical hedge / contingent / average-price prints. <b>Positive = net accumulation</b>
+(buying); negative = distribution. <b>$0</b> means no qualifying prints were found
+(sparse data, not an absence of activity).</td></tr>
+<tr><td>Flag</td><td>A combined read. The headline pattern is
+<b>DECOUPLE + LEAD + ACCUM</b> — a commodity simultaneously breaking from the market,
+outperforming it, and being accumulated. That is the bullish "1970s-style" combination.</td></tr>
+</table>
+
+<h2>Current findings</h2>
+<h3>The energy complex is the group genuinely decoupling</h3>
+<p>Energy names show low-to-negative beta and falling correlation to SPY — they are
+breaking away from the broad market: <span class=tag>XLE, XOP, XOM, CVX, AR, KMI, DVN, PBR, OXY, RRC, EQT, HAL</span>.
+However, most are decoupling <i>downward</i> (negative relative strength) — independence,
+not yet leadership.</p>
+
+<h3>Materials &amp; miners are high-beta amplifiers, still coupled</h3>
+<p>Steel, copper and diversified miners carry high beta (≈1.3&ndash;2.6) with
+correlation to SPY that is high and rising, while strongly outperforming:
+<span class=tag>CLF, MT, FSLR, TECK, ENPH, FCX</span>. These move <i>with</i> the market, amplified —
+which also means they would amplify a market decline.</p>
+
+<h3>Where institutions are accumulating (dark pools, last 5 sessions)</h3>
+<p>Largest net dark-pool accumulation: <span class=tag>COPX, TAN, XLE, ALB, DVN, BHP, NUE, AR, PSLV, PBR</span>.</p>
+
+<h3>The bullish "1970s" combination</h3>
+<p>Names currently <b>decoupling AND leading AND being accumulated</b>:
+<b>(none)</b>. This pattern is not present in the universe right now — energy is breaking away but falling, while the leaders remain tied to the market.</p>
+
+<h2>Full data</h2>
+<table>
+<tr><th>Ticker</th><th>Beta</th><th>Corr</th><th>Corr&Delta;</th><th>RS 60d</th><th>Dark net (5d)</th><th>Flag</th></tr>
+<tr><td><b>NUE</b></td><td>1.09</td><td>0.74</td><td class=''>+0.19</td><td class='grn'>+53.1%</td><td class='grn'>$13.7M</td><td>accumulating</td></tr><tr><td><b>BHP</b></td><td>1.42</td><td>0.81</td><td class=''>+0.10</td><td class='grn'>+20.8%</td><td class='grn'>$13.8M</td><td>accumulating</td></tr><tr><td><b>FCX</b></td><td>1.99</td><td>0.79</td><td class=''>+0.05</td><td class='grn'>+11.2%</td><td class='grn'>$3.5M</td><td>accumulating</td></tr><tr><td><b>COPX</b></td><td>2.00</td><td>0.87</td><td class=''>+0.15</td><td class='grn'>+2.6%</td><td class='grn'>$72.1M</td><td>accumulating</td></tr><tr><td><b>TAN</b></td><td>1.66</td><td>0.79</td><td class=''>+0.20</td><td class='red'>-0.7%</td><td class='grn'>$62.2M</td><td>accumulating</td></tr><tr><td><b>ALB</b></td><td>1.67</td><td>0.58</td><td class=''>-0.09</td><td class='red'>-9.4%</td><td class='grn'>$34.7M</td><td>accumulating</td></tr><tr><td><b>RUN</b></td><td>2.93</td><td>0.61</td><td class=''>+0.25</td><td class='red'>-11.4%</td><td class='grn'>$5.9M</td><td>accumulating</td></tr><tr><td><b>XLE</b></td><td>-0.03</td><td>-0.31</td><td class='red'>-0.52</td><td class='red'>-13.6%</td><td class='grn'>$56.9M</td><td>decoupling · accumulating</td></tr><tr><td><b>KMI</b></td><td>0.01</td><td>-0.32</td><td class='red'>-0.38</td><td class='red'>-14.2%</td><td class='grn'>$3.1M</td><td>decoupling · accumulating</td></tr><tr><td><b>DVN</b></td><td>-0.14</td><td>-0.35</td><td class='red'>-0.37</td><td class='red'>-18.1%</td><td class='grn'>$27.0M</td><td>decoupling · accumulating</td></tr><tr><td><b>PBR</b></td><td>0.05</td><td>-0.12</td><td class='red'>-0.35</td><td class='red'>-19.2%</td><td class='grn'>$6.0M</td><td>decoupling · accumulating</td></tr><tr><td><b>UNG</b></td><td>-0.79</td><td>-0.13</td><td class=''>+0.32</td><td class='red'>-22.6%</td><td class='grn'>$2.5M</td><td>accumulating</td></tr><tr><td><b>PSLV</b></td><td>1.38</td><td>0.73</td><td class=''>+0.23</td><td class='red'>-24.1%</td><td class='grn'>$6.1M</td><td>accumulating</td></tr><tr><td><b>AR</b></td><td>0.08</td><td>-0.26</td><td class='red'>-0.39</td><td class='red'>-28.2%</td><td class='grn'>$9.6M</td><td>decoupling · accumulating</td></tr><tr><td><b>AEM</b></td><td>0.89</td><td>0.81</td><td class=''>+0.30</td><td class='red'>-29.2%</td><td class='grn'>$2.5M</td><td>accumulating</td></tr><tr><td><b>CLF</b></td><td>2.58</td><td>0.68</td><td class=''>+0.28</td><td class='grn'>+56.3%</td><td class='red'>-$4.5M</td><td></td></tr><tr><td><b>STLD</b></td><td>1.35</td><td>0.63</td><td class=''>+0.06</td><td class='grn'>+55.4%</td><td class='red'>-$6.3M</td><td></td></tr><tr><td><b>MT</b></td><td>1.95</td><td>0.86</td><td class=''>+0.23</td><td class='grn'>+25.6%</td><td class='red'>-$2.7M</td><td></td></tr><tr><td><b>FSLR</b></td><td>1.65</td><td>0.68</td><td class=''>+0.64</td><td class='grn'>+23.0%</td><td class='red'>-$7.3M</td><td></td></tr><tr><td><b>TECK</b></td><td>1.94</td><td>0.85</td><td class=''>+0.17</td><td class='grn'>+20.5%</td><td class='red'>-$3.9M</td><td></td></tr><tr><td><b>ENPH</b></td><td>2.09</td><td>0.57</td><td class=''>+0.33</td><td class='grn'>+14.0%</td><td class='red'>-$712K</td><td></td></tr><tr><td><b>SLX</b></td><td>1.32</td><td>0.90</td><td class=''>+0.14</td><td class='grn'>+13.0%</td><td class='red'>-$24.7M</td><td></td></tr><tr><td><b>SLB</b></td><td>0.84</td><td>0.43</td><td class=''>-0.10</td><td class='grn'>+11.8%</td><td class='red'>-$5.8M</td><td></td></tr><tr><td><b>RIO</b></td><td>1.16</td><td>0.78</td><td class=''>+0.07</td><td class='grn'>+8.0%</td><td class='red'>-$1.2M</td><td></td></tr><tr><td><b>LIT</b></td><td>1.38</td><td>0.80</td><td class=''>+0.02</td><td class='grn'>+6.5%</td><td class='red'>-$2.3M</td><td></td></tr><tr><td><b>SCCO</b></td><td>2.08</td><td>0.84</td><td class=''>+0.15</td><td class='grn'>+2.8%</td><td class='red'>-$31.5M</td><td></td></tr><tr><td><b>HAL</b></td><td>0.45</td><td>0.09</td><td class='red'>-0.31</td><td class='red'>-2.8%</td><td class='red'>-$21.0M</td><td>decoupling</td></tr><tr><td><b>LIN</b></td><td>0.24</td><td>0.22</td><td class=''>+0.16</td><td class='red'>-5.0%</td><td class='red'>-$47.5M</td><td></td></tr><tr><td><b>AA</b></td><td>1.91</td><td>0.61</td><td class=''>+0.02</td><td class='red'>-5.1%</td><td class='red'>-$10.1M</td><td></td></tr><tr><td><b>VALE</b></td><td>1.16</td><td>0.65</td><td class=''>+0.06</td><td class='red'>-5.2%</td><td class='red'>-$878K</td><td></td></tr><tr><td><b>OXY</b></td><td>-0.29</td><td>-0.32</td><td class='red'>-0.35</td><td class='red'>-15.3%</td><td class='red'>-$58.5M</td><td>decoupling</td></tr><tr><td><b>XOP</b></td><td>0.02</td><td>-0.32</td><td class='red'>-0.51</td><td class='red'>-16.8%</td><td class='red'>-$77.6M</td><td>decoupling</td></tr><tr><td><b>CVX</b></td><td>-0.18</td><td>-0.44</td><td class='red'>-0.42</td><td class='red'>-17.9%</td><td class='red'>-$35.2M</td><td>decoupling</td></tr><tr><td><b>NEM</b></td><td>1.10</td><td>0.85</td><td class=''>+0.30</td><td class='red'>-18.1%</td><td class='red'>-$66.6M</td><td></td></tr><tr><td><b>XOM</b></td><td>-0.26</td><td>-0.38</td><td class='red'>-0.50</td><td class='red'>-18.9%</td><td class='red'>-$16.8M</td><td>decoupling</td></tr><tr><td><b>SILJ</b></td><td>1.75</td><td>0.83</td><td class=''>+0.17</td><td class='red'>-19.3%</td><td class='red'>-$2.0M</td><td></td></tr><tr><td><b>URA</b></td><td>2.08</td><td>0.78</td><td class=''>+0.05</td><td class='red'>-19.4%</td><td class='red'>-$3.0M</td><td></td></tr><tr><td><b>CCJ</b></td><td>1.92</td><td>0.74</td><td class=''>+0.13</td><td class='red'>-19.9%</td><td class='red'>-$22.7M</td><td></td></tr><tr><td><b>GDXJ</b></td><td>1.40</td><td>0.85</td><td class=''>+0.25</td><td class='red'>-22.5%</td><td class='red'>-$9.2M</td><td></td></tr><tr><td><b>RRC</b></td><td>0.10</td><td>-0.23</td><td class='red'>-0.34</td><td class='red'>-23.4%</td><td class='red'>-$5.3M</td><td>decoupling</td></tr><tr><td><b>URNM</b></td><td>1.73</td><td>0.70</td><td class=''>+0.03</td><td class='red'>-24.9%</td><td class='red'>-$1.1M</td><td></td></tr><tr><td><b>NTR</b></td><td>-0.01</td><td>0.16</td><td class=''>+0.21</td><td class='red'>-25.3%</td><td class='red'>-$22.1M</td><td></td></tr><tr><td><b>EQT</b></td><td>0.15</td><td>-0.11</td><td class='red'>-0.33</td><td class='red'>-30.4%</td><td class='red'>-$25.3M</td><td>decoupling</td></tr><tr><td><b>MOS</b></td><td>0.66</td><td>0.55</td><td class=''>+0.50</td><td class='red'>-30.5%</td><td class='red'>-$1.4M</td><td></td></tr>
+</table>
+
+<h2>Methodology &amp; honest caveats</h2>
+<div class=cav>
+<b>Dark-pool direction is an estimate.</b> Dark prints hit the tape without a buyer/seller
+flag, so buy-vs-sell is inferred with the <b>tick rule</b> (uptick = buy, downtick = sell) —
+noisy for midpoint prints. A pending upgrade to real-time <b>quote</b> data would replace this
+with proper (Lee-Ready) classification. Until then, treat accumulation/distribution as a
+directional <i>hint</i>.
+</div>
+<div class=cav>
+<b>These metrics are descriptive, not predictive.</b> Beta, correlation and relative strength
+measure what <i>has</i> happened over a finite window and they shift over time. Separate
+rigorous testing found that dark-pool flow did <b>not</b> predict future price in a way that
+survives trading costs — so this is a tool for <b>informing discretionary decisions and
+identifying regime</b>, not an automated trading signal.
+</div>
+<p class=meta>Generated by the SHOPPA Liquidity Print Map toolkit. Figures recomputed on each run.</p>

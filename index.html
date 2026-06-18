@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang=en>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width, initial-scale=1">
+<title>SHOPPA Fund — Research & Dashboards</title>
+<style>
+  :root{--bg:#0b0e13;--card:#161b22;--line:#222a33;--ink:#e6e6e6;--mut:#8b949e;--accent:#58a6ff}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,Segoe UI,Arial,sans-serif}
+  header{padding:42px 24px 26px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(900px 200px at 50% -40px,#13202f,transparent)}
+  .brand{font-size:30px;font-weight:800;letter-spacing:.12em}
+  .brand span{color:var(--accent)}
+  .tag{color:var(--mut);font-size:13px;margin-top:6px}
+  main{max-width:1000px;margin:0 auto;padding:28px 22px 60px}
+  h2{font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;margin:26px 0 12px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+  a.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:18px 18px 16px;text-decoration:none;color:inherit;transition:.15s}
+  a.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .card h3{margin:0 0 6px;font-size:16px}
+  .card p{margin:0;color:var(--mut);font-size:12.5px;line-height:1.5}
+  .pill{display:inline-block;font-size:10px;color:#0b0e13;background:var(--accent);
+    border-radius:10px;padding:1px 8px;margin-bottom:8px;font-weight:700;letter-spacing:.04em}
+  .soon{opacity:.5;pointer-events:none}
+  footer{color:var(--mut);font-size:11px;text-align:center;padding:24px;border-top:1px solid var(--line)}
+</style>
+<header>
+  <div class=brand>SHOPPA<span> FUND</span></div>
+  <div class=tag>Market research, flow analytics &amp; trading dashboards</div>
+</header>
+<main>
+  <h2>Live dashboards</h2>
+  <div class=grid>
+    <a class=card href="./cockpit/">
+      <div class=pill>NEW</div>
+      <h3>Commodity Cockpit</h3>
+      <p>Sub-sector relative strength, trend, volatility, risk-parity weights, a
+         correlation map, and a position-size calculator across the commodity complex.</p>
+    </a>
+    <a class=card href="./vix/">
+      <h3>VIX Term Structure</h3>
+      <p>VIX futures term-structure dashboard — contango/backwardation and roll dynamics.</p>
+    </a>
+    <a class=card href="./flow/">
+      <h3>Smart-Money Flow</h3>
+      <p>Price with institutional dark-pool prints marked, and cumulative
+         accumulation/distribution flow underneath.</p>
+    </a>
+  </div>
+
+  <h2>Research notes</h2>
+  <div class=grid>
+    <a class=card href="./report/">
+      <h3>Commodities &amp; Decoupling</h3>
+      <p>How commodities are decoupling from the broad market, where institutions are
+         positioning, and the methodology behind the analytics.</p>
+    </a>
+    <a class="card soon">
+      <h3>More coming</h3>
+      <p>Additional SHOPPA tools will appear here as they ship.</p>
+    </a>
+  </div>
+</main>
+<footer>SHOPPA Fund &middot; shoppafund.github.io &middot; analytics are descriptive/regime tools, not investment advice</footer>
+</html>
