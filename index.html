@@ -2,50 +2,95 @@
 <html lang=en>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width, initial-scale=1">
-<title>SHOPPA Fund — Research & Dashboards</title>
+<title>SHOPPA Fund — Apps & Dashboards</title>
 <style>
   :root{--bg:#0b0e13;--card:#161b22;--line:#222a33;--ink:#e6e6e6;--mut:#8b949e;--accent:#58a6ff}
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,Segoe UI,Arial,sans-serif}
   header{padding:42px 24px 26px;text-align:center;border-bottom:1px solid var(--line);
-    background:radial-gradient(900px 200px at 50% -40px,#13202f,transparent)}
+    background:radial-gradient(900px 220px at 50% -40px,#13202f,transparent)}
   .brand{font-size:30px;font-weight:800;letter-spacing:.12em}
   .brand span{color:var(--accent)}
   .tag{color:var(--mut);font-size:13px;margin-top:6px}
-  main{max-width:1000px;margin:0 auto;padding:28px 22px 60px}
-  h2{font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;margin:26px 0 12px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+  main{max-width:1040px;margin:0 auto;padding:26px 22px 60px}
+  h2{font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;margin:28px 0 12px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
   a.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;
-    padding:18px 18px 16px;text-decoration:none;color:inherit;transition:.15s}
+    padding:16px 18px;text-decoration:none;color:inherit;transition:.15s;position:relative}
   a.card:hover{border-color:var(--accent);transform:translateY(-2px)}
-  .card h3{margin:0 0 6px;font-size:16px}
+  .card h3{margin:0 0 6px;font-size:15.5px}
   .card p{margin:0;color:var(--mut);font-size:12.5px;line-height:1.5}
-  .pill{display:inline-block;font-size:10px;color:#0b0e13;background:var(--accent);
-    border-radius:10px;padding:1px 8px;margin-bottom:8px;font-weight:700;letter-spacing:.04em}
-  .soon{opacity:.5;pointer-events:none}
+  .pill{position:absolute;top:14px;right:14px;font-size:9.5px;border-radius:10px;padding:1px 7px;
+    font-weight:700;letter-spacing:.04em}
+  .new{background:var(--accent);color:#0b0e13}
+  .live{background:#1f6f43;color:#d8ffe9}
   footer{color:var(--mut);font-size:11px;text-align:center;padding:24px;border-top:1px solid var(--line)}
 </style>
 <header>
   <div class=brand>SHOPPA<span> FUND</span></div>
-  <div class=tag>Market research, flow analytics &amp; trading dashboards</div>
+  <div class=tag>Market research, volatility, credit, flow &amp; trading dashboards</div>
 </header>
 <main>
-  <h2>Live dashboards</h2>
+  <h2>Dashboards</h2>
   <div class=grid>
     <a class=card href="./cockpit/">
-      <div class=pill>NEW</div>
+      <span class="pill new">NEW</span>
       <h3>Commodity Cockpit</h3>
-      <p>Sub-sector relative strength, trend, volatility, risk-parity weights, a
-         correlation map, and a position-size calculator across the commodity complex.</p>
+      <p>Sub-sector relative strength, trend, volatility, risk-parity weights, correlation map,
+         and a position-size calculator across the commodity complex.</p>
     </a>
-    <a class=card href="./vix/">
-      <h3>VIX Term Structure</h3>
-      <p>VIX futures term-structure dashboard — contango/backwardation and roll dynamics.</p>
+    <a class=card href="https://shoppafund.github.io/vix-tracker/vix-tracker.html">
+      <h3>VIX Term Structure Tracker</h3>
+      <p>Live VIX futures curve (contango/backwardation) with historical snapshots.</p>
+    </a>
+    <a class=card href="https://shoppafund.github.io/natgas-tracker/natgas-term-structure.html">
+      <h3>NatGas Term Structure Tracker</h3>
+      <p>Natural gas futures curve tracker.</p>
     </a>
     <a class=card href="./flow/">
+      <span class="pill new">NEW</span>
       <h3>Smart-Money Flow</h3>
       <p>Price with institutional dark-pool prints marked, and cumulative
          accumulation/distribution flow underneath.</p>
+    </a>
+  </div>
+
+  <h2>Live apps</h2>
+  <div class=grid>
+    <a class=card target=_blank rel=noopener href="http://164.92.102.141:8501/">
+      <span class="pill live">LIVE</span>
+      <h3>Volatility AI Lab</h3>
+      <p>Options scanner — broken-wing / ratio put fly setups, composite volatility/structure score.</p>
+    </a>
+    <a class=card target=_blank rel=noopener href="http://164.92.102.141:8502/">
+      <span class="pill live">LIVE</span>
+      <h3>Options Intel Lab</h3>
+      <p>Options trade builder — IV term structure, strike engine, directional trades with delta + convexity.</p>
+    </a>
+    <a class=card target=_blank rel=noopener href="http://164.92.102.141:8503/">
+      <span class="pill live">LIVE</span>
+      <h3>Bond Indicator</h3>
+      <p>Credit/bond market breadth dashboard — risk-on/risk-off signal.</p>
+    </a>
+    <a class=card target=_blank rel=noopener href="http://164.92.102.141:8505/">
+      <span class="pill live">LIVE</span>
+      <h3>Credit Regime</h3>
+      <p>5-pillar credit stress monitor — HY OAS, IG OAS, yield curve, SOFR, ETF divergence.</p>
+    </a>
+    <a class=card target=_blank rel=noopener href="http://164.92.102.141:8506/">
+      <span class="pill live">LIVE</span>
+      <h3>MarketPhase AI</h3>
+      <p>Multi-indicator market phase scoring dashboard.</p>
+    </a>
+    <a class=card target=_blank rel=noopener href="http://164.92.102.141:8507/">
+      <span class="pill live">LIVE</span>
+      <h3>Weinstein Stage Analysis (v1 — legacy)</h3>
+      <p>Original Weinstein stage scorer and tier ranker.</p>
+    </a>
+    <a class=card target=_blank rel=noopener href="http://164.92.102.141:8508/">
+      <span class="pill live">LIVE</span>
+      <h3>Weinstein Stage Analysis v2</h3>
+      <p>Rebuilt decision engine — Scan + Deep Dive, Plotly chart, full intel panel with book-cited dropdowns.</p>
     </a>
   </div>
 
@@ -53,12 +98,8 @@
   <div class=grid>
     <a class=card href="./report/">
       <h3>Commodities &amp; Decoupling</h3>
-      <p>How commodities are decoupling from the broad market, where institutions are
-         positioning, and the methodology behind the analytics.</p>
-    </a>
-    <a class="card soon">
-      <h3>More coming</h3>
-      <p>Additional SHOPPA tools will appear here as they ship.</p>
+      <p>How commodities are decoupling from the broad market, where institutions are positioning,
+         and the methodology behind the analytics.</p>
     </a>
   </div>
 </main>
