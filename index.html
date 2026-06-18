@@ -7,11 +7,19 @@
   :root{--bg:#0b0e13;--card:#161b22;--line:#222a33;--ink:#e6e6e6;--mut:#8b949e;--accent:#58a6ff}
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,Segoe UI,Arial,sans-serif}
-  header{padding:42px 24px 26px;text-align:center;border-bottom:1px solid var(--line);
-    background:radial-gradient(900px 220px at 50% -40px,#13202f,transparent)}
-  .brand{font-size:30px;font-weight:800;letter-spacing:.12em}
-  .brand span{color:var(--accent)}
-  .tag{color:var(--mut);font-size:13px;margin-top:6px}
+  header.shdr{position:relative;display:flex;align-items:center;gap:18px;margin:18px;
+    background:#0a0d12;border:1px solid var(--line);border-top:2px solid #45c9e0;border-radius:10px;
+    padding:20px 24px;overflow:hidden}
+  header.shdr::before{content:"";position:absolute;top:9px;left:9px;width:14px;height:14px;
+    border-top:2px solid #45c9e0;border-left:2px solid #45c9e0;opacity:.55}
+  .shdr .mark{width:54px;height:54px;border-radius:50%;border:2px solid #45c9e0;flex:0 0 auto;
+    display:flex;align-items:center;justify-content:center;font:800 26px ui-monospace,Consolas,monospace;color:#45c9e0}
+  .shdr .eyebrow{font:600 10px ui-monospace,Consolas,monospace;letter-spacing:.24em;color:var(--mut)}
+  .shdr .htitle{font:800 26px ui-monospace,Consolas,monospace;letter-spacing:.02em;margin:3px 0}
+  .shdr .htitle span{color:#45c9e0}
+  .shdr .hsub{font:600 10.5px ui-monospace,Consolas,monospace;letter-spacing:.16em;color:var(--mut)}
+  .shdr .status{margin-left:auto;align-self:flex-start;font:600 10px ui-monospace,Consolas,monospace;
+    letter-spacing:.1em;color:#3fb950;border:1px solid #1f6f43;border-radius:6px;padding:4px 10px}
   main{max-width:1040px;margin:0 auto;padding:26px 22px 60px}
   h2{font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;margin:28px 0 12px}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
@@ -36,9 +44,14 @@
     background-image:var(--img,url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'/>")),url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='90'><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%2358a6ff' stop-opacity='.30'/><stop offset='1' stop-color='%2358a6ff' stop-opacity='0'/></linearGradient></defs><polygon points='0,90 0,68 24,62 48,72 72,44 96,54 120,30 144,42 168,20 192,30 216,12 240,22 240,90' fill='url(%23g)'/><polyline points='0,68 24,62 48,72 72,44 96,54 120,30 144,42 168,20 192,30 216,12 240,22' fill='none' stroke='%2358a6ff' stroke-width='3'/></svg>")}
   footer{color:var(--mut);font-size:11px;text-align:center;padding:24px;border-top:1px solid var(--line)}
 </style>
-<header>
-  <div class=brand>SHOPPA<span> FUND</span></div>
-  <div class=tag>Market research, volatility, credit, flow &amp; trading dashboards</div>
+<header class=shdr>
+  <div class=mark>S</div>
+  <div>
+    <div class=eyebrow>SHOPPA FUND ANALYTICS</div>
+    <div class=htitle>SHOPPA FUND <span>&mdash; APPS &amp; DASHBOARDS</span></div>
+    <div class=hsub>MARKET RESEARCH &middot; VOLATILITY &middot; CREDIT &middot; FLOW &middot; COMMODITIES</div>
+  </div>
+  <div class=status>&#9679; LIVE</div>
 </header>
 <main>
   <h2>Dashboards</h2>
