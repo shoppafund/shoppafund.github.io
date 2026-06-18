@@ -24,13 +24,16 @@
     font-weight:700;letter-spacing:.04em}
   .new{background:var(--accent);color:#0b0e13}
   .live{background:#1f6f43;color:#d8ffe9}
-  .regime{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
-  .regime .lead{margin:0 0 10px;color:var(--mut);font-size:12.5px;line-height:1.5}
-  .regime .pages{display:flex;flex-wrap:wrap;gap:8px}
-  .regime .pages a{display:inline-block;background:var(--bg);border:1px solid #30363d;border-radius:8px;
-    padding:6px 11px;font-size:12.5px;color:var(--accent);text-decoration:none}
-  .regime .pages a:hover{border-color:var(--accent)}
-  .regime .pages a.main{background:#13202f;color:#e6e6e6;font-weight:600}
+  .regime .lead{margin:0 0 12px;color:var(--mut);font-size:12.5px;line-height:1.5}
+  .gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+  .mcard{display:block;background:var(--card);border:1px solid var(--line);border-radius:10px;
+    overflow:hidden;text-decoration:none;color:inherit;transition:.15s}
+  .mcard:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .mcard h4{margin:0;padding:9px 11px 7px;font-size:12.5px;font-weight:600}
+  .mcard.main h4{color:var(--accent)}
+  .mcard .thumb{height:72px;border-top:1px solid var(--line);background-color:#0b0e13;
+    background-repeat:no-repeat;background-position:center;background-size:cover;
+    background-image:var(--img,url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'/>")),url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='90'><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%2358a6ff' stop-opacity='.30'/><stop offset='1' stop-color='%2358a6ff' stop-opacity='0'/></linearGradient></defs><polygon points='0,90 0,68 24,62 48,72 72,44 96,54 120,30 144,42 168,20 192,30 216,12 240,22 240,90' fill='url(%23g)'/><polyline points='0,68 24,62 48,72 72,44 96,54 120,30 144,42 168,20 192,30 216,12 240,22' fill='none' stroke='%2358a6ff' stroke-width='3'/></svg>")}
   footer{color:var(--mut);font-size:11px;text-align:center;padding:24px;border-top:1px solid var(--line)}
 </style>
 <header>
@@ -66,16 +69,16 @@
   <div class=regime>
     <p class=lead>Multi-page market-regime suite (8503): breadth, liquidity, credit, internals, sectors,
        flows, technical setups, topping signals, risk. Open the full dashboard or jump to a module:</p>
-    <div class=pages>
-      <a class=main target=_blank rel=noopener href="http://164.92.102.141:8503/">Overview / Bond Indicator</a>
-      <a target=_blank rel=noopener href="http://164.92.102.141:8503/Fed_Liquidity">Fed Liquidity</a>
-      <a target=_blank rel=noopener href="http://164.92.102.141:8503/Credit_Spreads">Credit Spreads</a>
-      <a target=_blank rel=noopener href="http://164.92.102.141:8503/Market_Internals">Market Internals</a>
-      <a target=_blank rel=noopener href="http://164.92.102.141:8503/Sectors">Sectors</a>
-      <a target=_blank rel=noopener href="http://164.92.102.141:8503/ETF_Flows">ETF Flows</a>
-      <a target=_blank rel=noopener href="http://164.92.102.141:8503/Technical_Setups">Technical Setups</a>
-      <a target=_blank rel=noopener href="http://164.92.102.141:8503/Topping_Signals">Topping Signals</a>
-      <a target=_blank rel=noopener href="http://164.92.102.141:8503/Risk_Scorecard">Risk Scorecard</a>
+    <div class=gal>
+      <a class="mcard main" target=_blank rel=noopener href="http://164.92.102.141:8503/"><h4>Overview / Bond Indicator</h4><div class=thumb style="--img:url('thumbs/overview.png')"></div></a>
+      <a class=mcard target=_blank rel=noopener href="http://164.92.102.141:8503/Fed_Liquidity"><h4>Fed Liquidity</h4><div class=thumb style="--img:url('thumbs/fed_liquidity.png')"></div></a>
+      <a class=mcard target=_blank rel=noopener href="http://164.92.102.141:8503/Credit_Spreads"><h4>Credit Spreads</h4><div class=thumb style="--img:url('thumbs/credit_spreads.png')"></div></a>
+      <a class=mcard target=_blank rel=noopener href="http://164.92.102.141:8503/Market_Internals"><h4>Market Internals</h4><div class=thumb style="--img:url('thumbs/market_internals.png')"></div></a>
+      <a class=mcard target=_blank rel=noopener href="http://164.92.102.141:8503/Sectors"><h4>Sectors</h4><div class=thumb style="--img:url('thumbs/sectors.png')"></div></a>
+      <a class=mcard target=_blank rel=noopener href="http://164.92.102.141:8503/ETF_Flows"><h4>ETF Flows</h4><div class=thumb style="--img:url('thumbs/etf_flows.png')"></div></a>
+      <a class=mcard target=_blank rel=noopener href="http://164.92.102.141:8503/Technical_Setups"><h4>Technical Setups</h4><div class=thumb style="--img:url('thumbs/technical_setups.png')"></div></a>
+      <a class=mcard target=_blank rel=noopener href="http://164.92.102.141:8503/Topping_Signals"><h4>Topping Signals</h4><div class=thumb style="--img:url('thumbs/topping_signals.png')"></div></a>
+      <a class=mcard target=_blank rel=noopener href="http://164.92.102.141:8503/Risk_Scorecard"><h4>Risk Scorecard</h4><div class=thumb style="--img:url('thumbs/risk_scorecard.png')"></div></a>
     </div>
   </div>
 
