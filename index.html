@@ -54,35 +54,10 @@
   <div class=status>&#9679; LIVE</div>
 </header>
 <main>
-  <h2>Dashboards</h2>
-  <div class=grid>
-    <a class=card href="./cockpit/">
-      <span class="pill new">NEW</span>
-      <h3>Commodity Cockpit</h3>
-      <p>Sub-sector relative strength, trend, volatility, risk-parity weights, correlation map,
-         and a position-size calculator across the commodity complex.
-         <span style="color:var(--accent)">Pairs with Silver Lead Map (Live apps)</span> for where each name sits on silver's lead path.</p>
-    </a>
-    <a class=card href="https://shoppafund.github.io/vix-tracker/vix-tracker.html">
-      <h3>VIX Term Structure Tracker</h3>
-      <p>Live VIX futures curve (contango/backwardation) with historical snapshots.</p>
-    </a>
-    <a class=card href="https://shoppafund.github.io/natgas-tracker/natgas-term-structure.html">
-      <h3>NatGas Term Structure Tracker</h3>
-      <p>Natural gas futures curve tracker.</p>
-    </a>
-    <a class=card href="./flow/">
-      <span class="pill new">NEW</span>
-      <h3>Smart-Money Flow</h3>
-      <p>Price with institutional dark-pool prints marked, and cumulative
-         accumulation/distribution flow underneath.</p>
-    </a>
-  </div>
-
   <h2>Market Regime <span style="text-transform:none;color:#3fb950;font-weight:400">&middot; live &middot; 8 modules</span></h2>
   <div class=regime>
     <p class=lead>Multi-page market-regime suite (8503): breadth, liquidity, credit, internals, sectors,
-       flows, technical setups, topping signals, risk. Open the full dashboard or jump to a module:</p>
+       flows, technical setups, topping signals, risk. Start here for the overall market view, or jump to a module:</p>
     <div class=gal>
       <a class="mcard main" target=_blank rel=noopener href="http://164.92.102.141:8503/"><h4>Overview / Bond Indicator</h4><div class=thumb style="--img:url('thumbs/overview.png')"></div></a>
       <a class=mcard target=_blank rel=noopener href="http://164.92.102.141:8503/Fed_Liquidity"><h4>Fed Liquidity</h4><div class=thumb style="--img:url('thumbs/fed_liquidity.png')"></div></a>
@@ -96,17 +71,50 @@
     </div>
   </div>
 
+  <h2>Commodities</h2>
+  <div class=grid>
+    <a class=card href="./cockpit/">
+      <span class="pill new">NEW</span>
+      <h3>Commodity Cockpit</h3>
+      <p>Sub-sector relative strength, trend, volatility, risk-parity weights, correlation map,
+         and a position-size calculator across the commodity complex.</p>
+    </a>
+    <a class=card target=_blank rel=noopener href="http://164.92.102.141:8512/">
+      <span class="pill new">NEW</span>
+      <h3>Silver Lead Map</h3>
+      <p>Locates each commodity on silver's price-action path (silver = leading indicator). Ensemble shape-matching with horizon buckets (0–8 / 6–18 / 20–36 mo behind silver), agreement score &amp; projection.</p>
+    </a>
+    <a class=card href="https://shoppafund.github.io/natgas-tracker/natgas-term-structure.html">
+      <h3>NatGas Term Structure Tracker</h3>
+      <p>Natural gas futures curve tracker.</p>
+    </a>
+    <a class=card href="./report/">
+      <h3>Commodities &amp; Decoupling</h3>
+      <p>How commodities are decoupling from the broad market, where institutions are positioning,
+         and the methodology behind the analytics.</p>
+    </a>
+  </div>
+
+  <h2>Dashboards</h2>
+  <div class=grid>
+    <a class=card href="https://shoppafund.github.io/vix-tracker/vix-tracker.html">
+      <h3>VIX Term Structure Tracker</h3>
+      <p>Live VIX futures curve (contango/backwardation) with historical snapshots.</p>
+    </a>
+    <a class=card href="./flow/">
+      <span class="pill new">NEW</span>
+      <h3>Smart-Money Flow</h3>
+      <p>Price with institutional dark-pool prints marked, and cumulative
+         accumulation/distribution flow underneath.</p>
+    </a>
+  </div>
+
   <h2>Live apps</h2>
   <div class=grid>
     <a class=card target=_blank rel=noopener href="http://164.92.102.141:8511/">
       <span class="pill live">LIVE</span>
       <h3>Signal Convergence</h3>
       <p>Multi-signal buy/sell scanner — Weinstein + breadth/McClellan + VIX regime, with dark-pool magnets &amp; option walls. Pullback-into-support &amp; breakout entries; commodities included.</p>
-    </a>
-    <a class=card target=_blank rel=noopener href="http://164.92.102.141:8512/">
-      <span class="pill new">NEW</span>
-      <h3>Silver Lead Map</h3>
-      <p>Locates each commodity on silver's price-action path (silver = leading indicator). Ensemble shape-matching with horizon buckets (0–8 / 6–18 / 20–36 mo behind silver), agreement score &amp; projection.</p>
     </a>
     <a class=card target=_blank rel=noopener href="http://164.92.102.141:8501/">
       <span class="pill live">LIVE</span>
@@ -132,15 +140,6 @@
       <span class="pill live">LIVE</span>
       <h3>Weinstein Stage Analysis v2</h3>
       <p>Rebuilt decision engine — Scan + Deep Dive, Plotly chart, full intel panel with book-cited dropdowns.</p>
-    </a>
-  </div>
-
-  <h2>Research notes</h2>
-  <div class=grid>
-    <a class=card href="./report/">
-      <h3>Commodities &amp; Decoupling</h3>
-      <p>How commodities are decoupling from the broad market, where institutions are positioning,
-         and the methodology behind the analytics.</p>
     </a>
   </div>
 </main>
