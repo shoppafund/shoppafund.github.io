@@ -22,26 +22,32 @@
     letter-spacing:.1em;color:#3fb950;border:1px solid #1f6f43;border-radius:6px;padding:4px 10px}
   main{max-width:none;margin:0;padding:18px 18px 60px}
   h2{font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;margin:28px 0 12px}
+  .lead{margin:0 0 12px;color:var(--mut);font-size:12.5px;line-height:1.5}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(max(290px,calc((100% - 48px)/4)),1fr));gap:16px}
-  a.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;
-    padding:16px 18px;text-decoration:none;color:inherit;transition:.15s;position:relative}
-  a.card:hover{border-color:var(--accent);transform:translateY(-2px)}
-  .card h3{margin:0 0 6px;font-size:15.5px}
-  .card p{margin:0;color:var(--mut);font-size:12.5px;line-height:1.5}
-  .pill{position:absolute;top:14px;right:14px;font-size:9.5px;border-radius:10px;padding:1px 7px;
-    font-weight:700;letter-spacing:.04em}
-  .new{background:var(--accent);color:#0b0e13}
-  .live{background:#1f6f43;color:#d8ffe9}
-  .regime .lead{margin:0 0 12px;color:var(--mut);font-size:12.5px;line-height:1.5}
   .gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(max(225px,calc((100% - 42px)/4)),1fr));gap:14px}
-  .mcard{display:block;background:var(--card);border:1px solid var(--line);border-radius:10px;
-    overflow:hidden;text-decoration:none;color:inherit;transition:.15s}
-  .mcard:hover{border-color:var(--accent);transform:translateY(-2px)}
-  .mcard h4{margin:0;padding:9px 11px 7px;font-size:12.5px;font-weight:600}
-  .mcard.main h4{color:var(--accent)}
-  .mcard .thumb{height:120px;border-top:1px solid var(--line);background-color:#0b0e13;
+  .tile{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;
+    display:flex;flex-direction:column;transition:.15s}
+  .tile:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .tile .thumb{display:block;height:120px;border-bottom:1px solid var(--line);background-color:#0b0e13;
     background-repeat:no-repeat;background-position:center;background-size:cover;
     background-image:var(--img,url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'/>")),url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='90'><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%2358a6ff' stop-opacity='.30'/><stop offset='1' stop-color='%2358a6ff' stop-opacity='0'/></linearGradient></defs><polygon points='0,90 0,68 24,62 48,72 72,44 96,54 120,30 144,42 168,20 192,30 216,12 240,22 240,90' fill='url(%23g)'/><polyline points='0,68 24,62 48,72 72,44 96,54 120,30 144,42 168,20 192,30 216,12 240,22' fill='none' stroke='%2358a6ff' stroke-width='3'/></svg>")}
+  .tbody{padding:11px 13px}
+  .trow{display:flex;align-items:center;gap:8px}
+  .ttitle{font:600 14.5px -apple-system,Segoe UI,Arial;color:var(--ink);text-decoration:none;line-height:1.25}
+  .ttitle:hover{color:var(--accent)}
+  .tile.main .ttitle{color:var(--accent)}
+  .pill{font-size:9.5px;border-radius:10px;padding:1px 7px;font-weight:700;letter-spacing:.04em;flex:0 0 auto}
+  .new{background:var(--accent);color:#0b0e13}
+  .live{background:#1f6f43;color:#d8ffe9}
+  .chev{margin-left:auto;flex:0 0 auto;background:none;border:1px solid var(--line);border-radius:7px;
+    color:var(--mut);width:28px;height:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s}
+  .chev:hover{border-color:var(--accent);color:var(--accent)}
+  .chev.open{color:var(--accent);border-color:#2d4a63}
+  .chev svg{transition:transform .18s}
+  .chev.open svg{transform:rotate(180deg)}
+  .tdesc{max-height:0;overflow:hidden;opacity:0;transition:.2s;color:var(--mut);
+    font:400 12px -apple-system,Segoe UI,Arial;line-height:1.5}
+  .tdesc.open{max-height:280px;opacity:1;margin-top:9px}
   footer{color:var(--mut);font-size:11px;text-align:center;padding:24px;border-top:1px solid var(--line)}
 </style>
 <header class=shdr>
@@ -55,91 +61,130 @@
 </header>
 <main>
   <h2>Market Regime <span style="text-transform:none;color:#3fb950;font-weight:400">&middot; live &middot; 9 modules + signals</span></h2>
-  <div class=regime>
-    <p class=lead>Multi-page market-regime suite (8503): breadth, liquidity, credit, internals, sectors,
-       flows, technical setups, topping signals, risk. Start here for the overall market view, or jump to a module:</p>
-    <div class=gal>
-      <a class="mcard main" target=_blank rel=noopener href="http://164.92.102.141:8503/"><h4>Overview / Bond Indicator</h4><div class=thumb style="--img:url('thumbs/overview.png')"></div></a>
-      <a class=mcard target=_blank rel=noopener href="http://164.92.102.141:8503/Fed_Liquidity"><h4>Fed Liquidity</h4><div class=thumb style="--img:url('thumbs/fed_liquidity.png')"></div></a>
-      <a class=mcard target=_blank rel=noopener href="http://164.92.102.141:8503/Credit_Spreads"><h4>Credit Spreads</h4><div class=thumb style="--img:url('thumbs/credit_spreads.png')"></div></a>
-      <a class=mcard target=_blank rel=noopener href="http://164.92.102.141:8503/Market_Internals"><h4>Market Internals</h4><div class=thumb style="--img:url('thumbs/market_internals.png')"></div></a>
-      <a class=mcard target=_blank rel=noopener href="http://164.92.102.141:8503/Sectors"><h4>Sectors</h4><div class=thumb style="--img:url('thumbs/sectors.png')"></div></a>
-      <a class=mcard target=_blank rel=noopener href="http://164.92.102.141:8503/ETF_Flows"><h4>ETF Flows</h4><div class=thumb style="--img:url('thumbs/etf_flows.png')"></div></a>
-      <a class=mcard target=_blank rel=noopener href="http://164.92.102.141:8503/Technical_Setups"><h4>Technical Setups</h4><div class=thumb style="--img:url('thumbs/technical_setups.png')"></div></a>
-      <a class=mcard target=_blank rel=noopener href="http://164.92.102.141:8503/Topping_Signals"><h4>Topping Signals</h4><div class=thumb style="--img:url('thumbs/topping_signals.png')"></div></a>
-      <a class=mcard target=_blank rel=noopener href="http://164.92.102.141:8503/Risk_Scorecard"><h4>Risk Scorecard</h4><div class=thumb style="--img:url('thumbs/risk_scorecard.png')"></div></a>
+  <p class=lead>Multi-page market-regime suite (8503): breadth, liquidity, credit, internals, sectors,
+     flows, technical setups, topping signals, risk. Start here for the overall market view, or jump to a module:</p>
+  <div class=gal>
+    <div class="tile main">
+      <a class=thumb target=_blank rel=noopener href="http://164.92.102.141:8503/" style="--img:url('thumbs/overview.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="http://164.92.102.141:8503/">Overview / Bond Indicator</a><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Headline regime read: NYSE new highs, HY bond A-D line, Bond CEF A-D and HY OAS spread rolled into one alert level.</div></div>
     </div>
-    <p class=lead style="margin-top:16px">Companion regime signals <span style="color:var(--mut)">&middot; standalone dashboards that corroborate the suite — the volatility-regime and institutional-flow legs of the same read</span></p>
-    <div class=grid>
-      <a class=card href="https://shoppafund.github.io/vix-tracker/vix-tracker.html">
-        <h3>VIX Term Structure Tracker</h3>
-        <p>VIX futures curve — contango (risk-on) vs backwardation (risk-off). Confirms or diverges from the breadth/flow regime read; the divergences are often the early tell.</p>
-      </a>
-      <a class=card href="./flow/">
-        <span class="pill new">NEW</span>
-        <h3>Smart-Money Flow</h3>
-        <p>Institutional dark-pool prints + cumulative accumulation/distribution on SPY/QQQ &amp; names — the flow leg confirming regime breadth.</p>
-      </a>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="http://164.92.102.141:8503/Fed_Liquidity" style="--img:url('thumbs/fed_liquidity.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="http://164.92.102.141:8503/Fed_Liquidity">Fed Liquidity</a><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Fed reverse repo, foreign repo pool, custody holdings and FIMA balances — the liquidity plumbing behind risk assets.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="http://164.92.102.141:8503/Credit_Spreads" style="--img:url('thumbs/credit_spreads.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="http://164.92.102.141:8503/Credit_Spreads">Credit Spreads</a><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>HY &amp; IG option-adjusted spreads, yield curve and SOFR — credit stress as the earliest risk-off signal.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="http://164.92.102.141:8503/Market_Internals" style="--img:url('thumbs/market_internals.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="http://164.92.102.141:8503/Market_Internals">Market Internals</a><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>McClellan oscillator, advance-decline and breadth internals (NYMO, moving averages, MACD) across the tape.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="http://164.92.102.141:8503/Sectors" style="--img:url('thumbs/sectors.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="http://164.92.102.141:8503/Sectors">Sectors</a><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>All 11 GICS sectors' relative strength vs SPY — who's leading and lagging the rotation.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="http://164.92.102.141:8503/ETF_Flows" style="--img:url('thumbs/etf_flows.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="http://164.92.102.141:8503/ETF_Flows">ETF Flows</a><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>ETF dollar flow scaled per 1% underlying move — structural demand across major index and sector ETFs.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="http://164.92.102.141:8503/Technical_Setups" style="--img:url('thumbs/technical_setups.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="http://164.92.102.141:8503/Technical_Setups">Technical Setups</a><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Percent of the S&amp;P 1500 above key moving averages (50-day / 200-day) and related setup scans.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="http://164.92.102.141:8503/Topping_Signals" style="--img:url('thumbs/topping_signals.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="http://164.92.102.141:8503/Topping_Signals">Topping Signals</a><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Late-cycle warning checks — price versus breadth and credit divergences measured against trend.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="http://164.92.102.141:8503/Risk_Scorecard" style="--img:url('thumbs/risk_scorecard.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="http://164.92.102.141:8503/Risk_Scorecard">Risk Scorecard</a><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Composite risk-on / risk-off scorecard rolling up every signal in the suite.</div></div>
+    </div>
+  </div>
+
+  <p class=lead style="margin-top:18px">Companion regime signals <span style="color:var(--mut)">&middot; standalone dashboards that corroborate the suite — the volatility-regime and institutional-flow legs of the same read</span></p>
+  <div class=grid>
+    <div class=tile>
+      <a class=thumb href="https://shoppafund.github.io/vix-tracker/vix-tracker.html" style="--img:url('thumbs/vix.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle href="https://shoppafund.github.io/vix-tracker/vix-tracker.html">VIX Term Structure Tracker</a><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>VIX futures curve — contango (risk-on) vs backwardation (risk-off). Confirms or diverges from the breadth/flow regime read; the divergences are often the early tell.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb href="./flow/" style="--img:url('thumbs/flow.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle href="./flow/">Smart-Money Flow</a><span class="pill new">NEW</span><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Institutional dark-pool prints + cumulative accumulation/distribution on SPY/QQQ &amp; names — the flow leg confirming regime breadth.</div></div>
     </div>
   </div>
 
   <h2>Commodities</h2>
   <div class=grid>
-    <a class=card href="./cockpit/">
-      <span class="pill new">NEW</span>
-      <h3>Commodity Cockpit</h3>
-      <p>Sub-sector relative strength, trend, volatility, risk-parity weights, correlation map,
-         and a position-size calculator across the commodity complex.</p>
-    </a>
-    <a class=card target=_blank rel=noopener href="http://164.92.102.141:8512/">
-      <span class="pill new">NEW</span>
-      <h3>Silver Lead Map</h3>
-      <p>Locates each commodity on silver's price-action path (silver = leading indicator). Ensemble shape-matching with horizon buckets (0–8 / 6–18 / 20–36 mo behind silver), agreement score &amp; projection.</p>
-    </a>
-    <a class=card href="https://shoppafund.github.io/natgas-tracker/natgas-term-structure.html">
-      <h3>NatGas Term Structure Tracker</h3>
-      <p>Natural gas futures curve tracker.</p>
-    </a>
-    <a class=card href="./report/">
-      <h3>Commodities &amp; Decoupling</h3>
-      <p>How commodities are decoupling from the broad market, where institutions are positioning,
-         and the methodology behind the analytics.</p>
-    </a>
+    <div class=tile>
+      <a class=thumb href="./cockpit/" style="--img:url('thumbs/cockpit.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle href="./cockpit/">Commodity Cockpit</a><span class="pill new">NEW</span><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Sub-sector relative strength, trend, volatility, risk-parity weights, correlation map, and a position-size calculator across the commodity complex.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="http://164.92.102.141:8512/" style="--img:url('thumbs/silver.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="http://164.92.102.141:8512/">Silver Lead Map</a><span class="pill new">NEW</span><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Locates each commodity on silver's price-action path (silver = leading indicator). Ensemble shape-matching with horizon buckets (0&ndash;8 / 6&ndash;18 / 20&ndash;36 mo behind silver), agreement score &amp; projection.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb href="https://shoppafund.github.io/natgas-tracker/natgas-term-structure.html" style="--img:url('thumbs/natgas.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle href="https://shoppafund.github.io/natgas-tracker/natgas-term-structure.html">NatGas Term Structure Tracker</a><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Natural gas futures curve tracker — contango/backwardation and seasonal structure shifts.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb href="./report/" style="--img:url('thumbs/decoupling.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle href="./report/">Commodities &amp; Decoupling</a><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>How commodities are decoupling from the broad market, where institutions are positioning, and the methodology behind the analytics.</div></div>
+    </div>
   </div>
 
   <h2>Live apps</h2>
   <div class=grid>
-    <a class=card target=_blank rel=noopener href="http://164.92.102.141:8511/">
-      <span class="pill live">LIVE</span>
-      <h3>Signal Convergence</h3>
-      <p>Multi-signal buy/sell scanner — Weinstein + breadth/McClellan + VIX regime, with dark-pool magnets &amp; option walls. Pullback-into-support &amp; breakout entries; commodities included.</p>
-    </a>
-    <a class=card target=_blank rel=noopener href="http://164.92.102.141:8501/">
-      <span class="pill live">LIVE</span>
-      <h3>Volatility AI Lab</h3>
-      <p>Options scanner — broken-wing / ratio put fly setups, composite volatility/structure score.</p>
-    </a>
-    <a class=card target=_blank rel=noopener href="http://164.92.102.141:8502/">
-      <span class="pill live">LIVE</span>
-      <h3>Options Intel Lab</h3>
-      <p>Options trade builder — IV term structure, strike engine, directional trades with delta + convexity.</p>
-    </a>
-    <a class=card target=_blank rel=noopener href="http://164.92.102.141:8506/">
-      <span class="pill live">LIVE</span>
-      <h3>MarketPhase AI</h3>
-      <p>Multi-indicator market phase scoring dashboard.</p>
-    </a>
-    <a class=card target=_blank rel=noopener href="http://164.92.102.141:8507/">
-      <span class="pill live">LIVE</span>
-      <h3>Weinstein Stage Analysis (v1 — legacy)</h3>
-      <p>Original Weinstein stage scorer and tier ranker.</p>
-    </a>
-    <a class=card target=_blank rel=noopener href="http://164.92.102.141:8508/">
-      <span class="pill live">LIVE</span>
-      <h3>Weinstein Stage Analysis v2</h3>
-      <p>Rebuilt decision engine — Scan + Deep Dive, Plotly chart, full intel panel with book-cited dropdowns.</p>
-    </a>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="http://164.92.102.141:8511/" style="--img:url('thumbs/signal_convergence.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="http://164.92.102.141:8511/">Signal Convergence</a><span class="pill live">LIVE</span><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Multi-signal buy/sell scanner — Weinstein + breadth/McClellan + VIX regime, with dark-pool magnets &amp; option walls. Pullback-into-support &amp; breakout entries; commodities included.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="http://164.92.102.141:8501/" style="--img:url('thumbs/vol_ai_lab.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="http://164.92.102.141:8501/">Volatility AI Lab</a><span class="pill live">LIVE</span><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Options scanner — broken-wing / ratio put fly setups, composite volatility/structure score.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="http://164.92.102.141:8502/" style="--img:url('thumbs/options_intel.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="http://164.92.102.141:8502/">Options Intel Lab</a><span class="pill live">LIVE</span><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Options trade builder — IV term structure, strike engine, directional trades with delta + convexity.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="http://164.92.102.141:8506/" style="--img:url('thumbs/marketphase.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="http://164.92.102.141:8506/">MarketPhase AI</a><span class="pill live">LIVE</span><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Multi-indicator market phase scoring dashboard — momentum, breadth and macro into one phase call.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="http://164.92.102.141:8507/" style="--img:url('thumbs/weinstein_v1.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="http://164.92.102.141:8507/">Weinstein Stage Analysis (v1 &middot; legacy)</a><span class="pill live">LIVE</span><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Original Weinstein stage scorer and tier ranker.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="http://164.92.102.141:8508/" style="--img:url('thumbs/weinstein_v2.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="http://164.92.102.141:8508/">Weinstein Stage Analysis v2</a><span class="pill live">LIVE</span><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Rebuilt decision engine — Scan + Deep Dive, Plotly chart, full intel panel with book-cited dropdowns.</div></div>
+    </div>
   </div>
 </main>
 <footer>SHOPPA Fund &middot; shoppafund.github.io &middot; analytics are descriptive/regime tools, not investment advice</footer>
+<script>
+function tg(b){b.classList.toggle('open');var d=b.closest('.tbody').querySelector('.tdesc');if(d)d.classList.toggle('open');}
+</script>
 </html>
