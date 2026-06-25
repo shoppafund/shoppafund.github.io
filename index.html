@@ -2,44 +2,88 @@
 <html lang=en>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width, initial-scale=1">
-<title>SHOPPA Fund — Apps & Dashboards</title>
+<title>SHOPPA Fund — Terminal</title>
 <base target="_blank">
 <meta name="referrer" content="no-referrer">
 <style>
-  :root{--bg:#0b0e13;--card:#161b22;--line:#222a33;--ink:#e6e6e6;--mut:#8b949e;--accent:#58a6ff}
+  :root{--bg:#06080d;--card:rgba(18,24,33,.55);--line:#1d2734;--ink:#e6e6e6;--mut:#8b949e;--accent:#58a6ff;--cyan:#45c9e0}
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,Segoe UI,Arial,sans-serif}
-  header.shdr{position:relative;display:flex;align-items:center;gap:18px;margin:18px;
-    background:#0a0d12;border:1px solid var(--line);border-top:2px solid #45c9e0;border-radius:10px;
-    padding:20px 24px;overflow:hidden}
-  header.shdr::before{content:"";position:absolute;top:9px;left:9px;width:14px;height:14px;
-    border-top:2px solid #45c9e0;border-left:2px solid #45c9e0;opacity:.55}
-  .shdr .mark{width:58px;height:58px;border-radius:50%;border:1px solid #45c9e0;flex:0 0 auto;
-    background:#000 url('shoppa_logo.jpg') center/cover;box-shadow:0 0 0 3px #0a0d12,0 0 14px rgba(69,201,224,.25)}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#06080d;color:var(--ink);font-family:-apple-system,Segoe UI,Arial,sans-serif;overflow-x:hidden}
+  /* ---- deep space backdrop ---- */
+  .sky{position:fixed;inset:0;z-index:-1;overflow:hidden;background:radial-gradient(130% 90% at 50% -10%,#0b1626,#070a10 55%,#05070b)}
+  .sky .neb{position:absolute;inset:0;background:radial-gradient(38% 30% at 80% 8%,rgba(69,201,224,.14),transparent 70%),radial-gradient(42% 34% at 8% 96%,rgba(150,120,255,.12),transparent 70%);animation:neb 16s ease-in-out infinite}
+  @keyframes neb{50%{opacity:.55}}
+  .sky .stars{position:absolute;inset:-50px;background-image:radial-gradient(1px 1px at 30px 40px,#fff,transparent),radial-gradient(1px 1px at 130px 90px,#bfe,transparent),radial-gradient(1px 1px at 220px 50px,#fff,transparent),radial-gradient(1px 1px at 300px 130px,#9cf,transparent),radial-gradient(1px 1px at 80px 170px,#fff,transparent),radial-gradient(1px 1px at 360px 30px,#fff,transparent),radial-gradient(1px 1px at 180px 200px,#cff,transparent);background-repeat:repeat;background-size:380px 230px;opacity:.55;animation:tw 5s ease-in-out infinite}
+  .sky .stars.s2{background-size:560px 320px;opacity:.4;animation:drift 90s linear infinite,tw 8s ease-in-out infinite}
+  @keyframes tw{50%{opacity:.25}}
+  @keyframes drift{to{background-position:560px 0}}
+  /* ---- header ---- */
+  header.shdr{position:relative;display:flex;align-items:center;gap:16px;margin:16px 18px 0;padding:14px 22px;
+    background:rgba(10,13,18,.5);backdrop-filter:blur(8px);border:1px solid var(--line);border-top:2px solid var(--cyan);border-radius:12px;overflow:hidden}
+  .shdr::before{content:"";position:absolute;top:9px;left:9px;width:14px;height:14px;border-top:2px solid var(--cyan);border-left:2px solid var(--cyan);opacity:.55}
+  .shdr .mark{width:54px;height:54px;border-radius:50%;border:1px solid var(--cyan);flex:0 0 auto;background:#000 url('shoppa_logo.jpg') center/cover;box-shadow:0 0 0 3px #06080d,0 0 18px rgba(69,201,224,.45);animation:pulse 3.4s ease-in-out infinite}
+  @keyframes pulse{50%{box-shadow:0 0 0 3px #06080d,0 0 30px rgba(69,201,224,.85)}}
   .shdr .eyebrow{font:600 10px ui-monospace,Consolas,monospace;letter-spacing:.24em;color:var(--mut)}
-  .shdr .htitle{font:800 26px ui-monospace,Consolas,monospace;letter-spacing:.02em;margin:3px 0}
-  .shdr .htitle span{color:#45c9e0}
-  .shdr .hsub{font:600 10.5px ui-monospace,Consolas,monospace;letter-spacing:.16em;color:var(--mut)}
-  .shdr .status{margin-left:auto;align-self:flex-start;font:600 10px ui-monospace,Consolas,monospace;
-    letter-spacing:.1em;color:#3fb950;border:1px solid #1f6f43;border-radius:6px;padding:4px 10px}
+  .shdr .htitle{font:800 25px ui-monospace,Consolas,monospace;letter-spacing:.02em;margin:3px 0}
+  .shdr .htitle span{color:var(--cyan)}
+  .shdr .hsub{font:600 10px ui-monospace,Consolas,monospace;letter-spacing:.16em;color:var(--mut)}
+  .shdr .status{margin-left:auto;align-self:flex-start;display:flex;align-items:center;gap:6px;font:600 9.5px ui-monospace,monospace;letter-spacing:.12em;color:var(--cyan);border:1px solid #1c4a55;border-radius:6px;padding:4px 10px}
+  .shdr .status i{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);animation:tw 1.6s infinite}
+  /* ---- ticker ---- */
+  .ticker{overflow:hidden;border-top:1px solid #16202c;border-bottom:1px solid #16202c;background:rgba(8,11,16,.55);height:30px;margin:12px 0 0}
+  .ticker .tk{display:flex;gap:28px;white-space:nowrap;width:max-content;line-height:30px;font:600 11px ui-monospace,monospace;color:#7d8896;animation:tkm 26s linear infinite;padding-left:18px}
+  .ticker b{color:#e6e6e6}.up{color:#3fb950!important}.dn{color:#e2554b!important}.warn{color:#e0a23f!important}
+  @keyframes tkm{to{transform:translateX(-50%)}}
+  /* ---- orbital command center ---- */
+  .hero{position:relative;display:flex;flex-direction:column;align-items:center;padding:6px 0 4px}
+  .system{position:relative;height:330px;width:100%;max-width:520px;display:flex;align-items:center;justify-content:center}
+  .warp{position:absolute;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(69,201,224,.22),rgba(88,166,255,.06) 40%,transparent 68%);animation:tw 4s ease-in-out infinite}
+  .ring{position:absolute;top:50%;left:50%;border-radius:50%;transform:translate(-50%,-50%)}
+  .r1{width:140px;height:140px;border:1px solid rgba(69,201,224,.35);box-shadow:0 0 18px rgba(69,201,224,.12) inset;animation:spin 16s linear infinite}
+  .r2{width:230px;height:230px;border:1px solid rgba(88,166,255,.26);animation:spinr 26s linear infinite}
+  .r3{width:320px;height:320px;border:1px dashed rgba(150,120,255,.26);animation:spin 42s linear infinite}
+  @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+  @keyframes spinr{to{transform:translate(-50%,-50%) rotate(-360deg)}}
+  .node{position:absolute;top:-8px;left:50%;margin-left:-7px;width:14px;height:14px;display:flex;align-items:center;justify-content:center}
+  .node b{width:11px;height:11px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan),0 0 4px #fff}
+  .n2 b{background:#58a6ff;box-shadow:0 0 12px #58a6ff,0 0 4px #fff}
+  .n3 b{background:#b692ff;box-shadow:0 0 12px #b692ff,0 0 4px #fff}
+  .node em{position:absolute;top:15px;left:50%;transform:translateX(-50%);font:700 8px ui-monospace,monospace;letter-spacing:.12em;color:#9fb2c4;white-space:nowrap;font-style:normal}
+  .r1 .node{animation:spinr 16s linear infinite}.r2 .node{animation:spin 26s linear infinite}.r3 .node{animation:spinr 42s linear infinite}
+  .pip{position:absolute;width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.7);box-shadow:0 0 6px #fff}
+  .p2{bottom:-3px;left:50%;margin-left:-3px}.p3{top:50%;right:-3px;margin-top:-3px;background:#b692ff;box-shadow:0 0 6px #b692ff}
+  .core{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:72px;height:72px;border-radius:50%;border:1px solid var(--cyan);background:radial-gradient(circle,#0c2230,#05070b);display:flex;align-items:center;justify-content:center;color:#9fe9f5;font:800 30px ui-monospace,monospace;z-index:3;box-shadow:0 0 30px rgba(69,201,224,.6)}
+  .coreglow{position:absolute;inset:-6px;border-radius:50%;background:radial-gradient(circle,rgba(69,201,224,.5),transparent 70%);animation:tw 2.6s ease-in-out infinite}
+  .core span{position:relative;z-index:2;text-shadow:0 0 14px var(--cyan)}
+  .navchips{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:2px 0 6px}
+  .nc{display:flex;align-items:center;gap:9px;text-decoration:none;color:#cdd9e5;font:700 11px ui-monospace,monospace;letter-spacing:.12em;
+    background:rgba(16,22,32,.55);border:1px solid var(--line);border-radius:30px;padding:9px 18px;backdrop-filter:blur(6px);transition:.18s}
+  .nc i{width:8px;height:8px;border-radius:50%;background:var(--c);box-shadow:0 0 10px var(--c)}
+  .nc:hover{transform:translateY(-2px);border-color:var(--c);color:#fff;box-shadow:0 0 18px color-mix(in srgb,var(--c) 40%,transparent)}
+  /* ---- sections ---- */
   main{max-width:none;margin:0;padding:18px 18px 60px}
-  h2{font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;margin:28px 0 12px}
+  h2{font-size:12px;color:#9fb2c4;text-transform:uppercase;letter-spacing:.18em;margin:34px 0 12px;scroll-margin-top:14px;display:flex;align-items:center;gap:10px}
+  h2::before{content:"";width:20px;height:2px;background:linear-gradient(90deg,var(--cyan),transparent);box-shadow:0 0 8px var(--cyan)}
+  h2 span{letter-spacing:.04em}
   .lead{margin:0 0 12px;color:var(--mut);font-size:12.5px;line-height:1.5}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(max(290px,calc((100% - 48px)/4)),1fr));gap:16px}
   .gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(max(225px,calc((100% - 42px)/4)),1fr));gap:14px}
-  .tile{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;
-    display:flex;flex-direction:column;transition:.15s}
-  .tile:hover{border-color:var(--accent);transform:translateY(-2px)}
+  /* ---- glass tiles ---- */
+  .tile{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+    display:flex;flex-direction:column;backdrop-filter:blur(6px);transition:transform .2s,box-shadow .2s,border-color .2s}
+  .tile::after{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(88,166,255,.55),transparent);opacity:.6;z-index:3}
+  .tile:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 14px 32px rgba(0,0,0,.55),0 0 22px rgba(88,166,255,.25)}
   .tile .thumb{display:block;height:160px;border-bottom:1px solid var(--line);background-color:#0b0e13;
-    background-repeat:no-repeat;background-position:center;background-size:cover;
+    background-repeat:no-repeat;background-position:center;background-size:cover;transition:transform .3s;
     background-image:var(--img,url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'/>")),url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='90'><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%2358a6ff' stop-opacity='.30'/><stop offset='1' stop-color='%2358a6ff' stop-opacity='0'/></linearGradient></defs><polygon points='0,90 0,68 24,62 48,72 72,44 96,54 120,30 144,42 168,20 192,30 216,12 240,22 240,90' fill='url(%23g)'/><polyline points='0,68 24,62 48,72 72,44 96,54 120,30 144,42 168,20 192,30 216,12 240,22' fill='none' stroke='%2358a6ff' stroke-width='3'/></svg>")}
+  .tile:hover .thumb{transform:scale(1.05)}
   .tbody{padding:11px 13px}
   .trow{display:flex;align-items:center;gap:8px}
   .ttitle{font:600 14.5px -apple-system,Segoe UI,Arial;color:var(--ink);text-decoration:none;line-height:1.25}
   .ttitle:hover{color:var(--accent)}
-  .tile.main .ttitle{color:var(--accent)}
   .pill{font-size:9.5px;border-radius:10px;padding:1px 7px;font-weight:700;letter-spacing:.04em;flex:0 0 auto}
-  .new{background:var(--accent);color:#0b0e13}
+  .new{background:var(--accent);color:#06080d}
   .live{background:#1f6f43;color:#d8ffe9}
   .report{background:#30363d;color:#adbac7}
   .chev{margin-left:auto;flex:0 0 auto;background:none;border:1px solid var(--line);border-radius:7px;
@@ -48,22 +92,47 @@
   .chev.open{color:var(--accent);border-color:#2d4a63}
   .chev svg{transition:transform .18s}
   .chev.open svg{transform:rotate(180deg)}
-  .tdesc{max-height:0;overflow:hidden;opacity:0;transition:.2s;color:var(--mut);
-    font:400 12px -apple-system,Segoe UI,Arial;line-height:1.5}
+  .tdesc{max-height:0;overflow:hidden;opacity:0;transition:.2s;color:var(--mut);font:400 12px -apple-system,Segoe UI,Arial;line-height:1.5}
   .tdesc.open{max-height:280px;opacity:1;margin-top:9px}
+  .tdesc a{color:var(--accent)}
   footer{color:var(--mut);font-size:11px;text-align:center;padding:24px;border-top:1px solid var(--line)}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important}}
 </style>
+
+<div class=sky><span class=stars></span><span class="stars s2"></span><span class=neb></span></div>
+
 <header class=shdr>
   <div class=mark></div>
   <div>
     <div class=eyebrow>SHOPPA FUND ANALYTICS</div>
-    <div class=htitle>SHOPPA FUND <span>&mdash; APPS &amp; DASHBOARDS</span></div>
+    <div class=htitle>SHOPPA FUND <span>&middot; TERMINAL</span></div>
     <div class=hsub>MARKET RESEARCH &middot; VOLATILITY &middot; CREDIT &middot; FLOW &middot; COMMODITIES</div>
   </div>
-  <div class=status>&#9679; LIVE</div>
+  <div class=status><i></i>SYSTEMS LIVE</div>
 </header>
+
+<div class=ticker><div class=tk>
+  <span>SPX <b class=up>7,501 &#9650;</b></span><span>VIX <b class=up>14.0 &#9660;</b></span><span>HY OAS <b class=warn>2.63%</b></span><span>CRUDE <b class=up>+1.2%</b></span><span>GOLD <b class=up>&#9650;</b></span><span>SILVER <b class=up>&#9650;&#9650;</b></span><span>NATGAS <b class=dn>&minus;2.1%</b></span><span>REGIME <b class=warn>CAUTION</b></span>
+  <span>SPX <b class=up>7,501 &#9650;</b></span><span>VIX <b class=up>14.0 &#9660;</b></span><span>HY OAS <b class=warn>2.63%</b></span><span>CRUDE <b class=up>+1.2%</b></span><span>GOLD <b class=up>&#9650;</b></span><span>SILVER <b class=up>&#9650;&#9650;</b></span><span>NATGAS <b class=dn>&minus;2.1%</b></span><span>REGIME <b class=warn>CAUTION</b></span>
+</div></div>
+
+<section class=hero>
+  <div class=system>
+    <div class=warp></div>
+    <div class="ring r3"><i class="node n3"><b></b><em>LIVE APPS</em></i><i class="pip p3"></i></div>
+    <div class="ring r2"><i class="node n2"><b></b><em>COMMODITIES</em></i><i class="pip p2"></i></div>
+    <div class="ring r1"><i class="node n1"><b></b><em>REGIME</em></i></div>
+    <div class=core><div class=coreglow></div><span>S</span></div>
+  </div>
+  <div class=navchips>
+    <a href="#regime" target=_self class=nc style="--c:#45c9e0"><i></i>Market Regime</a>
+    <a href="#commodities" target=_self class=nc style="--c:#7ee787"><i></i>Commodities</a>
+    <a href="#liveapps" target=_self class=nc style="--c:#b692ff"><i></i>Live Apps</a>
+  </div>
+</section>
+
 <main>
-  <h2>Market Regime <span style="text-transform:none;color:#3fb950;font-weight:400">&middot; live &middot; 9 modules + signals</span></h2>
+  <h2 id=regime>Market Regime <span style="text-transform:none;color:#3fb950;font-weight:400">&middot; live &middot; 9 modules + signals</span></h2>
   <p class=lead>Multi-page market-regime suite (8503): breadth, liquidity, credit, internals, sectors,
      flows, technical setups, topping signals, risk. Start here for the overall market view, or jump to a module:</p>
   <div class=gal>
@@ -128,7 +197,7 @@
     </div>
   </div>
 
-  <h2>Commodities</h2>
+  <h2 id=commodities>Commodities</h2>
   <div class=grid>
     <div class=tile>
       <a class=thumb href="./cockpit/" style="--img:url('thumbs/cockpit.png')"></a>
@@ -152,7 +221,7 @@
     </div>
   </div>
 
-  <h2>Live apps</h2>
+  <h2 id=liveapps>Live apps</h2>
   <div class=grid>
     <div class=tile>
       <a class=thumb target=_blank rel=noopener href="http://164.92.102.141:8512/pattern_scan"></a>
