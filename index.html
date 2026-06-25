@@ -68,6 +68,10 @@
   .amoon .glyph{font:700 11px ui-monospace,Consolas,monospace;color:#06121c;transform:rotate(calc(-1 * var(--a)));line-height:1}
   .cluster:hover .gw{animation-play-state:paused}
   #cap.on{color:#dff}
+  .pring{position:absolute;top:50%;left:50%;border-radius:50%;border:2px solid rgba(120,184,255,.55);box-shadow:0 0 16px rgba(88,166,255,.28);transform:translate(-50%,-50%) rotate(-22deg);pointer-events:none}
+  .pring.a{width:198px;height:60px;z-index:4}
+  .pring.b{width:242px;height:82px;border-width:1px;border-color:rgba(159,233,245,.3);z-index:2}
+  .ell{position:absolute;inset:0;transform:rotate(-20deg) scaleX(1.6);pointer-events:none}
   .planet{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:3;
     font:800 11px ui-monospace,monospace;letter-spacing:.08em;color:#dff;transition:transform .2s,box-shadow .2s}
   .planet small{font-weight:600;font-size:8px;letter-spacing:.14em;color:#7f93a6;margin-top:3px}
@@ -168,6 +172,7 @@
         <i class=mh style="--a:327deg"><a class=amoon href="http://164.92.102.141:8511/flow" onmouseover="cap('Smart-Money Flow')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&lambda;</span></span></a></i>
       </div>
       <div class=orb style="width:336px;height:336px;--sp:50s;--mc:#79b8ff"><i class=mh style="--a:0deg"><b class=moon></b></i><i class=mh style="--a:36deg"><b class=moon></b></i><i class=mh style="--a:72deg"><b class=moon></b></i><i class=mh style="--a:108deg"><b class=moon></b></i><i class=mh style="--a:144deg"><b class=moon></b></i><i class=mh style="--a:180deg"><b class=moon></b></i><i class=mh style="--a:216deg"><b class=moon></b></i><i class=mh style="--a:252deg"><b class=moon></b></i><i class=mh style="--a:288deg"><b class=moon></b></i><i class=mh style="--a:324deg"><b class=moon></b></i></div>
+      <span class="pring b"></span><span class="pring a"></span>
       <div class=planet>MARKET<br>REGIME<small>11 MODULES</small></div>
     </div>
     <div class="cluster med pc" data-sec=commodities onclick="openSec('commodities')">
@@ -178,6 +183,7 @@
         <i class=mh style="--a:180deg"><a class=amoon href="https://shoppafund.github.io/natgas-tracker/natgas-term-structure.html" onmouseover="cap('NatGas Term Structure')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&gamma;</span></span></a></i>
         <i class=mh style="--a:270deg"><a class=amoon href="./report/" onmouseover="cap('Commodities &amp; Decoupling')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&delta;</span></span></a></i>
       </div>
+      <div class=ell><div class=orb style="width:150px;height:150px;--sp:34s;--mc:#7ee787"><i class=mh style="--a:0deg"><b class=moon></b></i><i class=mh style="--a:72deg"><b class=moon></b></i><i class=mh style="--a:144deg"><b class=moon></b></i><i class=mh style="--a:216deg"><b class=moon></b></i><i class=mh style="--a:288deg"><b class=moon></b></i></div></div>
       <div class=planet style="font-size:9px;letter-spacing:.03em">COMMODITIES<small>4 APPS</small></div>
     </div>
     <div class="cluster med pl" data-sec=liveapps onclick="openSec('liveapps')">
