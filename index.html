@@ -91,6 +91,11 @@
   .lgrp.two ul{columns:2;column-gap:24px}
   .lgrp li{color:#9fb2c4;line-height:1.7;white-space:nowrap}
   .lgrp li b{color:#cfe;font-family:ui-monospace,Consolas,monospace;display:inline-block;width:15px;text-align:center;margin-right:4px}
+  .lgrp a{color:inherit;text-decoration:none;display:block;border-radius:6px;padding:0 4px;transition:.12s}
+  .lgrp a:hover{color:#fff;background:rgba(255,255,255,.05)}
+  .lgrp a:hover b{color:#fff;text-shadow:0 0 9px var(--c)}
+  .amoon.lit{transform:scale(1.95);box-shadow:0 0 26px #fff,0 0 13px var(--mc);z-index:8}
+  .cluster.frozen .orb,.cluster.frozen .gw{animation-play-state:paused}
   /* ---- collapsible app panels ---- */
   .apppanel{display:none;animation:fade .3s ease;scroll-margin-top:14px}
   .apppanel.show{display:block}
@@ -202,9 +207,34 @@
   </div>
   <div class=hint id=cap>HOVER THE RING TO PAUSE &middot; HOVER A MOON FOR ITS APP &middot; CLICK A PLANET TO ENTER</div>
   <div class=legend>
-    <div class="lgrp two" style="--c:#45c9e0"><h5><i></i>MARKET REGIME</h5><ul><li><b>&alpha;</b>Bond Indicator</li><li><b>&beta;</b>Fed Liquidity</li><li><b>&gamma;</b>Credit Spreads</li><li><b>&delta;</b>Market Internals</li><li><b>&epsilon;</b>Sectors</li><li><b>&zeta;</b>ETF Flows</li><li><b>&eta;</b>Technical Setups</li><li><b>&theta;</b>Topping Signals</li><li><b>&iota;</b>Risk Scorecard</li><li><b>&kappa;</b>VIX Term Structure</li><li><b>&lambda;</b>Smart-Money Flow</li></ul></div>
-    <div class=lgrp style="--c:#7ee787"><h5><i></i>COMMODITIES</h5><ul><li><b>&alpha;</b>Commodity Cockpit</li><li><b>&beta;</b>Silver Lead Map</li><li><b>&gamma;</b>NatGas Term Structure</li><li><b>&delta;</b>Commodities &amp; Decoupling</li></ul></div>
-    <div class=lgrp style="--c:#b692ff"><h5><i></i>LIVE APPS</h5><ul><li><b>&alpha;</b>Pattern Recognition</li><li><b>&beta;</b>Signal Convergence</li><li><b>&gamma;</b>Volatility AI Lab</li><li><b>&delta;</b>Options Intel Lab</li><li><b>&epsilon;</b>MarketPhase AI</li><li><b>&zeta;</b>Weinstein v1</li><li><b>&eta;</b>Weinstein v2</li></ul></div>
+    <div class="lgrp two" style="--c:#45c9e0"><h5><i></i>MARKET REGIME</h5><ul>
+      <li><a href="http://164.92.102.141:8503/" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&alpha;</b>Bond Indicator</a></li>
+      <li><a href="http://164.92.102.141:8503/Fed_Liquidity" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&beta;</b>Fed Liquidity</a></li>
+      <li><a href="http://164.92.102.141:8503/Credit_Spreads" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&gamma;</b>Credit Spreads</a></li>
+      <li><a href="http://164.92.102.141:8503/Market_Internals" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&delta;</b>Market Internals</a></li>
+      <li><a href="http://164.92.102.141:8503/Sectors" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&epsilon;</b>Sectors</a></li>
+      <li><a href="http://164.92.102.141:8503/ETF_Flows" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&zeta;</b>ETF Flows</a></li>
+      <li><a href="http://164.92.102.141:8503/Technical_Setups" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&eta;</b>Technical Setups</a></li>
+      <li><a href="http://164.92.102.141:8503/Topping_Signals" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&theta;</b>Topping Signals</a></li>
+      <li><a href="http://164.92.102.141:8503/Risk_Scorecard" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&iota;</b>Risk Scorecard</a></li>
+      <li><a href="https://shoppafund.github.io/vix-tracker/vix-tracker.html" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&kappa;</b>VIX Term Structure</a></li>
+      <li><a href="http://164.92.102.141:8511/flow" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&lambda;</b>Smart-Money Flow</a></li>
+    </ul></div>
+    <div class=lgrp style="--c:#7ee787"><h5><i></i>COMMODITIES</h5><ul>
+      <li><a href="./cockpit/" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&alpha;</b>Commodity Cockpit</a></li>
+      <li><a href="http://164.92.102.141:8512/" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&beta;</b>Silver Lead Map</a></li>
+      <li><a href="https://shoppafund.github.io/natgas-tracker/natgas-term-structure.html" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&gamma;</b>NatGas Term Structure</a></li>
+      <li><a href="./report/" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&delta;</b>Commodities &amp; Decoupling</a></li>
+    </ul></div>
+    <div class=lgrp style="--c:#b692ff"><h5><i></i>LIVE APPS</h5><ul>
+      <li><a href="http://164.92.102.141:8512/pattern_scan" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&alpha;</b>Pattern Recognition</a></li>
+      <li><a href="http://164.92.102.141:8511/" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&beta;</b>Signal Convergence</a></li>
+      <li><a href="http://164.92.102.141:8501/" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&gamma;</b>Volatility AI Lab</a></li>
+      <li><a href="http://164.92.102.141:8502/" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&delta;</b>Options Intel Lab</a></li>
+      <li><a href="http://164.92.102.141:8506/" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&epsilon;</b>MarketPhase AI</a></li>
+      <li><a href="http://164.92.102.141:8507/" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&zeta;</b>Weinstein v1</a></li>
+      <li><a href="http://164.92.102.141:8508/" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&eta;</b>Weinstein v2</a></li>
+    </ul></div>
   </div>
 </section>
 
@@ -353,5 +383,6 @@ function openSec(id){
 }
 var CAPDEF='HOVER THE RING TO PAUSE · HOVER A MOON FOR ITS APP · CLICK A PLANET TO ENTER';
 function cap(t){var e=document.getElementById('cap');if(!e)return;if(t){e.textContent='▸ '+t;e.classList.add('on');}else{e.textContent=CAPDEF;e.classList.remove('on');}}
+function hi(el,on){var h=el.getAttribute('href');var m=document.querySelector('.amoon[href="'+h+'"]');if(!m)return;m.classList.toggle('lit',!!on);var c=m.closest('.cluster');if(c)c.classList.toggle('frozen',!!on);}
 </script>
 </html>
