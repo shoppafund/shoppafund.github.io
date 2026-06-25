@@ -14,8 +14,20 @@
   .sky{position:fixed;inset:0;z-index:-1;overflow:hidden;background:radial-gradient(130% 90% at 50% -10%,#0b1626,#070a10 55%,#05070b)}
   .sky .neb{position:absolute;inset:0;background:radial-gradient(38% 30% at 80% 8%,rgba(69,201,224,.14),transparent 70%),radial-gradient(42% 34% at 8% 96%,rgba(150,120,255,.12),transparent 70%);animation:neb 16s ease-in-out infinite}
   @keyframes neb{50%{opacity:.55}}
-  .sky .stars{position:absolute;inset:-50px;background-image:radial-gradient(1px 1px at 30px 40px,#fff,transparent),radial-gradient(1px 1px at 130px 90px,#bfe,transparent),radial-gradient(1px 1px at 220px 50px,#fff,transparent),radial-gradient(1px 1px at 300px 130px,#9cf,transparent),radial-gradient(1px 1px at 80px 170px,#fff,transparent),radial-gradient(1px 1px at 360px 30px,#fff,transparent),radial-gradient(1px 1px at 180px 200px,#cff,transparent);background-repeat:repeat;background-size:380px 230px;opacity:.55;animation:tw 5s ease-in-out infinite}
-  .sky .stars.s2{background-size:560px 320px;opacity:.4;animation:drift 90s linear infinite,tw 8s ease-in-out infinite}
+  .sky .stars{position:absolute;inset:-60px;background-repeat:repeat;opacity:.78;background-size:340px 240px;animation:tw 4.5s ease-in-out infinite;
+    background-image:radial-gradient(2px 2px at 30px 40px,#fff,transparent),radial-gradient(1px 1px at 130px 90px,#bfe,transparent),radial-gradient(1.6px 1.6px at 220px 50px,#fff,transparent),radial-gradient(1px 1px at 300px 130px,#9cf,transparent),radial-gradient(2px 2px at 80px 170px,#fff,transparent),radial-gradient(1px 1px at 360px 30px,#cff,transparent),radial-gradient(1px 1px at 180px 210px,#fff,transparent)}
+  .sky .stars.s2{background-size:520px 360px;opacity:.5;animation:drift 80s linear infinite,tw 7s ease-in-out infinite}
+  .sky .stars.s3{background-size:680px 480px;opacity:.4;animation:drift2 150s linear infinite,tw 9s ease-in-out infinite;
+    background-image:radial-gradient(1.4px 1.4px at 60px 120px,#fff,transparent),radial-gradient(1px 1px at 260px 60px,#adf,transparent),radial-gradient(1.2px 1.2px at 420px 200px,#fff,transparent),radial-gradient(1px 1px at 520px 90px,#cff,transparent),radial-gradient(2px 2px at 160px 320px,#fff,transparent),radial-gradient(1px 1px at 600px 380px,#fff,transparent)}
+  @keyframes drift2{to{background-position:-680px 0}}
+  .sky .spk{position:absolute;width:16px;height:16px;background:radial-gradient(circle,rgba(255,255,255,.85),transparent 38%);animation:spk var(--d,4s) ease-in-out infinite}
+  .sky .spk::before,.sky .spk::after{content:"";position:absolute;left:50%;top:50%;background:linear-gradient(transparent,rgba(200,240,255,.95),transparent)}
+  .sky .spk::before{width:1.4px;height:18px;transform:translate(-50%,-50%)}
+  .sky .spk::after{height:1.4px;width:18px;transform:translate(-50%,-50%)}
+  @keyframes spk{0%,100%{opacity:.18;transform:scale(.55)}50%{opacity:1;transform:scale(1)}}
+  .sky .shoot{position:absolute;width:150px;height:2px;border-radius:2px;background:linear-gradient(90deg,rgba(255,255,255,0),#fff);filter:drop-shadow(0 0 6px #cfe);opacity:0;animation:shoot 12s linear infinite}
+  .sky .shoot.b{top:58%;left:42%;animation-delay:7s;animation-duration:16s}
+  @keyframes shoot{0%{opacity:0;transform:translate(-180px,-80px) rotate(20deg)}5%{opacity:.95}15%{opacity:.95}21%{opacity:0;transform:translate(560px,220px) rotate(20deg)}100%{opacity:0}}
   @keyframes tw{50%{opacity:.25}}
   @keyframes drift{to{background-position:560px 0}}
   /* ---- header ---- */
@@ -46,7 +58,10 @@
   .orb.rev{animation-name:spinr}
   .cluster:hover .orb{animation-play-state:paused}
   .mh{position:absolute;inset:0;transform:rotate(var(--a))}
-  .moon{position:absolute;top:-5px;left:50%;margin-left:-5px;width:10px;height:10px;border-radius:50%;background:var(--mc);box-shadow:0 0 9px var(--mc),0 0 3px #fff}
+  .moon{position:absolute;top:calc(var(--ms,9px)/-2);left:50%;margin-left:calc(var(--ms,9px)/-2);width:var(--ms,9px);height:var(--ms,9px);border-radius:50%;background:var(--mc);box-shadow:0 0 10px var(--mc),0 0 3px #fff}
+  .mh:nth-child(3n) .moon{--ms:13px}
+  .mh:nth-child(4n) .moon{--ms:6px}
+  .mh:nth-child(5n) .moon{--ms:11px;background:#fff;box-shadow:0 0 10px var(--mc),0 0 4px #fff}
   .planet{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:3;
     font:800 11px ui-monospace,monospace;letter-spacing:.08em;color:#dff;transition:transform .2s,box-shadow .2s}
   .planet small{font-weight:600;font-size:8px;letter-spacing:.14em;color:#7f93a6;margin-top:3px}
@@ -101,7 +116,11 @@
   @media (prefers-reduced-motion:reduce){*{animation:none!important}}
 </style>
 
-<div class=sky><span class=stars></span><span class="stars s2"></span><span class=neb></span></div>
+<div class=sky>
+  <span class=stars></span><span class="stars s2"></span><span class="stars s3"></span><span class=neb></span>
+  <i class=spk style="top:13%;left:18%;--d:3.5s"></i><i class=spk style="top:24%;left:74%;--d:5s"></i><i class=spk style="top:60%;left:9%;--d:4.2s"></i><i class=spk style="top:72%;left:88%;--d:6s"></i><i class=spk style="top:38%;left:53%;--d:5.5s"></i><i class=spk style="top:86%;left:31%;--d:4.8s"></i>
+  <span class=shoot style="top:15%;left:6%"></span><span class="shoot b"></span>
+</div>
 
 <header class=shdr>
   <div class=mark></div>
@@ -121,16 +140,19 @@
 <section class=hero>
   <div class=system>
     <div class="cluster big pr" data-sec=regime onclick="openSec('regime')">
-      <div class=orb style="width:160px;height:160px;--sp:16s;--mc:#45c9e0"><i class=mh style="--a:0deg"><b class=moon></b></i><i class=mh style="--a:72deg"><b class=moon></b></i><i class=mh style="--a:144deg"><b class=moon></b></i><i class=mh style="--a:216deg"><b class=moon></b></i><i class=mh style="--a:288deg"><b class=moon></b></i></div>
-      <div class="orb rev" style="width:262px;height:262px;--sp:32s;--mc:#79b8ff"><i class=mh style="--a:0deg"><b class=moon></b></i><i class=mh style="--a:60deg"><b class=moon></b></i><i class=mh style="--a:120deg"><b class=moon></b></i><i class=mh style="--a:180deg"><b class=moon></b></i><i class=mh style="--a:240deg"><b class=moon></b></i><i class=mh style="--a:300deg"><b class=moon></b></i></div>
+      <div class=orb style="width:130px;height:130px;--sp:13s;--mc:#9fe9f5"><i class=mh style="--a:0deg"><b class=moon></b></i><i class=mh style="--a:90deg"><b class=moon></b></i><i class=mh style="--a:180deg"><b class=moon></b></i><i class=mh style="--a:270deg"><b class=moon></b></i></div>
+      <div class="orb rev" style="width:200px;height:200px;--sp:24s;--mc:#45c9e0"><i class=mh style="--a:0deg"><b class=moon></b></i><i class=mh style="--a:51deg"><b class=moon></b></i><i class=mh style="--a:103deg"><b class=moon></b></i><i class=mh style="--a:154deg"><b class=moon></b></i><i class=mh style="--a:206deg"><b class=moon></b></i><i class=mh style="--a:257deg"><b class=moon></b></i><i class=mh style="--a:309deg"><b class=moon></b></i></div>
+      <div class=orb style="width:282px;height:282px;--sp:38s;--mc:#79b8ff"><i class=mh style="--a:0deg"><b class=moon></b></i><i class=mh style="--a:40deg"><b class=moon></b></i><i class=mh style="--a:80deg"><b class=moon></b></i><i class=mh style="--a:120deg"><b class=moon></b></i><i class=mh style="--a:160deg"><b class=moon></b></i><i class=mh style="--a:200deg"><b class=moon></b></i><i class=mh style="--a:240deg"><b class=moon></b></i><i class=mh style="--a:280deg"><b class=moon></b></i><i class=mh style="--a:320deg"><b class=moon></b></i></div>
       <div class=planet>MARKET<br>REGIME<small>11 MODULES</small></div>
     </div>
     <div class="cluster med pc" data-sec=commodities onclick="openSec('commodities')">
-      <div class=orb style="width:168px;height:168px;--sp:22s;--mc:#7ee787"><i class=mh style="--a:0deg"><b class=moon></b></i><i class=mh style="--a:90deg"><b class=moon></b></i><i class=mh style="--a:180deg"><b class=moon></b></i><i class=mh style="--a:270deg"><b class=moon></b></i></div>
+      <div class="orb rev" style="width:118px;height:118px;--sp:16s;--mc:#7ee787"><i class=mh style="--a:0deg"><b class=moon></b></i><i class=mh style="--a:120deg"><b class=moon></b></i><i class=mh style="--a:240deg"><b class=moon></b></i></div>
+      <div class=orb style="width:190px;height:190px;--sp:27s;--mc:#9fe87f"><i class=mh style="--a:0deg"><b class=moon></b></i><i class=mh style="--a:60deg"><b class=moon></b></i><i class=mh style="--a:120deg"><b class=moon></b></i><i class=mh style="--a:180deg"><b class=moon></b></i><i class=mh style="--a:240deg"><b class=moon></b></i><i class=mh style="--a:300deg"><b class=moon></b></i></div>
       <div class=planet style="font-size:9px;letter-spacing:.03em">COMMODITIES<small>4 APPS</small></div>
     </div>
     <div class="cluster med pl" data-sec=liveapps onclick="openSec('liveapps')">
-      <div class="orb rev" style="width:182px;height:182px;--sp:26s;--mc:#b692ff"><i class=mh style="--a:0deg"><b class=moon></b></i><i class=mh style="--a:51deg"><b class=moon></b></i><i class=mh style="--a:103deg"><b class=moon></b></i><i class=mh style="--a:154deg"><b class=moon></b></i><i class=mh style="--a:206deg"><b class=moon></b></i><i class=mh style="--a:257deg"><b class=moon></b></i><i class=mh style="--a:309deg"><b class=moon></b></i></div>
+      <div class="orb rev" style="width:118px;height:118px;--sp:15s;--mc:#b692ff"><i class=mh style="--a:0deg"><b class=moon></b></i><i class=mh style="--a:90deg"><b class=moon></b></i><i class=mh style="--a:180deg"><b class=moon></b></i><i class=mh style="--a:270deg"><b class=moon></b></i></div>
+      <div class=orb style="width:194px;height:194px;--sp:29s;--mc:#c9b3ff"><i class=mh style="--a:0deg"><b class=moon></b></i><i class=mh style="--a:40deg"><b class=moon></b></i><i class=mh style="--a:80deg"><b class=moon></b></i><i class=mh style="--a:120deg"><b class=moon></b></i><i class=mh style="--a:160deg"><b class=moon></b></i><i class=mh style="--a:200deg"><b class=moon></b></i><i class=mh style="--a:240deg"><b class=moon></b></i><i class=mh style="--a:280deg"><b class=moon></b></i><i class=mh style="--a:320deg"><b class=moon></b></i></div>
       <div class=planet>LIVE<br>APPS<small>7 APPS</small></div>
     </div>
   </div>
