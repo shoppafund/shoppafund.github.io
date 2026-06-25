@@ -101,6 +101,11 @@
   .lgrp a:hover b{color:#fff;text-shadow:0 0 9px var(--c)}
   .amoon.lit{transform:scale(1.95);box-shadow:0 0 26px #fff,0 0 13px var(--mc);z-index:8}
   .cluster.frozen .orb,.cluster.frozen .gw{animation-play-state:paused}
+  .prevcard{position:fixed;z-index:50;width:240px;pointer-events:none;opacity:0;transform:translateY(6px);transition:opacity .12s,transform .12s;background:rgba(13,18,26,.97);border:1px solid var(--accent);border-radius:12px;overflow:hidden;box-shadow:0 16px 42px rgba(0,0,0,.6),0 0 22px rgba(88,166,255,.28)}
+  .prevcard.on{opacity:1;transform:none}
+  .prevcard .pimg{height:120px;background:#0b0e13 center/cover no-repeat;border-bottom:1px solid var(--line)}
+  .prevcard .pttl{font:600 13px -apple-system,Segoe UI,Arial;color:var(--ink);padding:9px 12px 0}
+  .prevcard .pds{font:400 11px -apple-system,Segoe UI,Arial;color:var(--mut);padding:4px 12px 11px;line-height:1.45}
   /* ---- collapsible app panels ---- */
   .apppanel{display:none;animation:fade .3s ease;scroll-margin-top:14px}
   .apppanel.show{display:block}
@@ -380,6 +385,7 @@
   </section>
 </main>
 <footer>SHOPPA Fund &middot; shoppafund.github.io &middot; analytics are descriptive/regime tools, not investment advice</footer>
+<div id=prev class=prevcard><div class=pimg></div><div class=pttl></div><div class=pds></div></div>
 <script>
 function tg(b){b.classList.toggle('open');var d=b.closest('.tbody').querySelector('.tdesc');if(d)d.classList.toggle('open');}
 function openSec(id){
@@ -390,5 +396,8 @@ function openSec(id){
 var CAPDEF='HOVER THE RING TO PAUSE · HOVER A MOON FOR ITS APP · CLICK A PLANET TO ENTER';
 function cap(t){var e=document.getElementById('cap');if(!e)return;if(t){e.textContent='▸ '+t;e.classList.add('on');}else{e.textContent=CAPDEF;e.classList.remove('on');}}
 function hi(el,on){var h=el.getAttribute('href');var m=document.querySelector('.amoon[href="'+h+'"]');if(!m)return;m.classList.toggle('lit',!!on);var c=m.closest('.cluster');if(c)c.classList.toggle('frozen',!!on);}
+function showPrev(m,info){var p=document.getElementById('prev');if(!p)return;p.querySelector('.pimg').style.backgroundImage=info.img?("url('"+info.img+"')"):'none';p.querySelector('.pttl').textContent=info.title;var d=p.querySelector('.pds');d.textContent=info.desc?(info.desc.length>150?info.desc.slice(0,150)+'…':info.desc):'';p.classList.add('on');var r=m.getBoundingClientRect(),w=240,ch=p.offsetHeight||190;var left=Math.max(10,Math.min(r.left+r.width/2-w/2,innerWidth-w-10));var top=r.top-ch-12;if(top<10)top=r.bottom+12;p.style.left=left+'px';p.style.top=top+'px';}
+function hidePrev(){var p=document.getElementById('prev');if(p)p.classList.remove('on');}
+(function(){var data={};document.querySelectorAll('.tile').forEach(function(t){var a=t.querySelector('.ttitle');if(!a)return;var th=t.querySelector('.thumb'),img='';if(th){var s=th.getAttribute('style')||'',mm=s.match(/--img:url\((['"]?)([^'")]+)\1\)/);if(mm)img=mm[2];}var d=t.querySelector('.tdesc');data[a.getAttribute('href')]={title:a.textContent.trim(),img:img,desc:d?d.textContent.trim():''};});document.querySelectorAll('.amoon').forEach(function(mo){var info=data[mo.getAttribute('href')];if(!info)return;mo.addEventListener('mouseenter',function(){showPrev(mo,info);});mo.addEventListener('mouseleave',hidePrev);});})();
 </script>
 </html>
