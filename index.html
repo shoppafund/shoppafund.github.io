@@ -89,11 +89,12 @@
   .pc{--pc:#7ee787;--pg:rgba(126,231,135,.5)}.pc .planet{border:1px solid #7ee787;background:radial-gradient(circle,#0e2417,#05070b)}
   .pl{--pc:#b692ff;--pg:rgba(150,120,255,.5)}.pl .planet{border:1px solid #b692ff;background:radial-gradient(circle,#171029,#05070b)}
   .hint{font:700 9.5px ui-monospace,monospace;letter-spacing:.3em;color:#6f8499;margin:12px 0 2px;text-align:center}
-  .legend{display:flex;gap:46px;flex-wrap:nowrap;justify-content:center;align-items:flex-start;margin:14px auto 0;max-width:none;padding:0 28px}
+  .legend{display:grid;grid-template-columns:repeat(4,1fr);column-gap:26px;align-items:start;margin:16px auto 0;max-width:1500px;padding:0 32px}
   .lgrp h5{font:700 9px ui-monospace,monospace;letter-spacing:.16em;color:var(--mut);margin:0 0 6px;display:flex;align-items:center;gap:7px}
   .lgrp h5 i{width:8px;height:8px;border-radius:50%;background:var(--c);box-shadow:0 0 8px var(--c)}
   .lgrp ul{list-style:none;margin:0;padding:0;font:400 11px -apple-system,Segoe UI,Arial}
-  .lgrp.two ul{display:grid;grid-template-columns:auto auto;column-gap:28px;align-items:start}
+  .lgrp.two{grid-column:span 2}
+  .lgrp.two ul{display:grid;grid-template-columns:1fr 1fr;column-gap:26px;align-items:start}
   .lgrp li{color:#9fb2c4;line-height:1.5;display:flex;flex-wrap:wrap;align-items:center}
   .lgrp li b{color:#cfe;font-family:ui-monospace,Consolas,monospace;display:inline-block;width:15px;text-align:center;margin-right:4px}
   .lgrp a{color:inherit;text-decoration:none;flex:0 1 auto;white-space:nowrap;border-radius:6px;padding:0 4px;transition:.12s}
