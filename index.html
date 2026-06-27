@@ -29,21 +29,10 @@
   .sky .shoot{position:absolute;width:150px;height:2px;border-radius:2px;background:linear-gradient(90deg,rgba(255,255,255,0),#fff);filter:drop-shadow(0 0 6px #cfe);opacity:0;animation:shoot 12s linear infinite}
   .sky .shoot.b{top:58%;left:42%;animation-delay:7s;animation-duration:16s}
   @keyframes shoot{0%{opacity:0;transform:translate(-180px,-80px) rotate(20deg)}5%{opacity:.95}15%{opacity:.95}21%{opacity:0;transform:translate(560px,220px) rotate(20deg)}100%{opacity:0}}
-  .blackhole{position:absolute;top:-95px;right:-70px;width:410px;height:410px;border-radius:50%;perspective:620px;
-    background:
-      radial-gradient(circle,transparent 25.5%,rgba(215,238,255,.97) 29%,rgba(150,196,255,.5) 32.5%,transparent 39%),
-      radial-gradient(circle,#000 29%,rgba(0,0,0,.7) 46%,transparent 60%),
-      radial-gradient(circle,rgba(95,135,225,.16) 36%,transparent 73%);
-    box-shadow:0 0 120px 30px rgba(38,66,150,.5),0 0 55px 10px rgba(150,190,255,.22)}
-  .blackhole::before{content:"";position:absolute;inset:-52px;border-radius:50%;
-    background:conic-gradient(from 0deg,rgba(255,150,70,0),rgba(255,188,98,.92),rgba(255,150,70,.3),rgba(150,205,255,.88),rgba(198,142,255,.72),rgba(255,150,70,0));
-    -webkit-mask:radial-gradient(circle,transparent 37%,#000 44%,#000 60%,transparent 69%);
-    mask:radial-gradient(circle,transparent 37%,#000 44%,#000 60%,transparent 69%);
-    transform:rotateX(77deg);animation:disk 22s linear infinite;filter:blur(1.4px) brightness(1.25) saturate(1.2) drop-shadow(0 0 14px rgba(255,170,90,.45))}
-  .blackhole::after{content:"";position:absolute;inset:12px;border-radius:50%;
-    box-shadow:0 0 34px 2px rgba(170,200,255,.5),inset 0 0 32px rgba(120,160,255,.3);
-    background:radial-gradient(circle,transparent 54%,rgba(255,178,108,.16) 62%,transparent 72%)}
-  @keyframes disk{from{transform:rotateX(74deg) rotate(0)}to{transform:rotateX(74deg) rotate(360deg)}}
+  .moonbg{position:absolute;top:-92px;right:-72px;width:480px;height:480px;border-radius:50%;
+    background:url('moon_bg.png') center/contain no-repeat;
+    filter:drop-shadow(0 0 52px rgba(150,190,255,.22));opacity:.96;animation:moonfloat 28s ease-in-out infinite}
+  @keyframes moonfloat{50%{transform:translateY(12px)}}
   @keyframes tw{50%{opacity:.25}}
   @keyframes drift{to{background-position:560px 0}}
   /* ---- header ---- */
@@ -171,7 +160,7 @@
   <span class=stars></span><span class="stars s2"></span><span class="stars s3"></span><span class=neb></span>
   <i class=spk style="top:13%;left:18%;--d:3.5s"></i><i class=spk style="top:24%;left:74%;--d:5s"></i><i class=spk style="top:60%;left:9%;--d:4.2s"></i><i class=spk style="top:72%;left:88%;--d:6s"></i><i class=spk style="top:38%;left:53%;--d:5.5s"></i><i class=spk style="top:86%;left:31%;--d:4.8s"></i>
   <span class=shoot style="top:15%;left:6%"></span><span class="shoot b"></span>
-  <div class=blackhole></div>
+  <div class=moonbg></div>
 </div>
 
 <header class=shdr>
