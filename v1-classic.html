@@ -38,7 +38,7 @@
   header.shdr{position:relative;display:flex;align-items:center;gap:16px;margin:16px 18px 0;padding:14px 22px;
     background:rgba(10,13,18,.5);backdrop-filter:blur(8px);border:1px solid var(--line);border-top:2px solid var(--cyan);border-radius:12px;overflow:hidden}
   .shdr::before{content:"";position:absolute;top:9px;left:9px;width:14px;height:14px;border-top:2px solid var(--cyan);border-left:2px solid var(--cyan);opacity:.55}
-  .shdr .mark{width:54px;height:54px;border-radius:50%;border:1px solid var(--cyan);flex:0 0 auto;background:#000 url('shoppa_white.png') center/cover;box-shadow:0 0 0 3px #06080d,0 0 18px rgba(69,201,224,.45);animation:pulse 3.4s ease-in-out infinite}
+  .shdr .mark{width:54px;height:54px;border-radius:50%;border:1px solid var(--cyan);flex:0 0 auto;background:#000 url('shoppa_logo.jpg') center/cover;box-shadow:0 0 0 3px #06080d,0 0 18px rgba(69,201,224,.45);animation:pulse 3.4s ease-in-out infinite}
   @keyframes pulse{50%{box-shadow:0 0 0 3px #06080d,0 0 30px rgba(69,201,224,.85)}}
   .shdr .eyebrow{font:600 10px ui-monospace,Consolas,monospace;letter-spacing:.24em;color:var(--mut)}
   .shdr .htitle{font:800 25px ui-monospace,Consolas,monospace;letter-spacing:.02em;margin:3px 0}
@@ -78,16 +78,16 @@
   .pring.b{width:242px;height:82px;border-width:1px;border-color:rgba(159,233,245,.3);z-index:2}
   .ell{position:absolute;inset:0;transform:rotate(-20deg) scaleX(1.6);pointer-events:none}
   .planet{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:3;
-    font:800 11px ui-monospace,monospace;letter-spacing:.08em;color:#fff;text-shadow:0 1px 4px #000,0 0 9px rgba(0,0,0,.85);transition:transform .2s,box-shadow .2s}
+    font:800 11px ui-monospace,monospace;letter-spacing:.08em;color:#dff;transition:transform .2s,box-shadow .2s}
   .planet small{font-weight:600;font-size:8px;letter-spacing:.14em;color:#7f93a6;margin-top:3px}
   .planet::after{content:"";position:absolute;inset:-7px;border-radius:50%;background:radial-gradient(circle,var(--pg),transparent 70%);animation:tw 3s ease-in-out infinite;z-index:-1}
-  .cluster.big .planet{width:120px;height:120px;font-size:12px}
-  .cluster.med .planet{width:100px;height:100px}
+  .cluster.big .planet{width:104px;height:104px;font-size:12px}
+  .cluster.med .planet{width:74px;height:74px}
   .cluster:hover .planet{transform:translate(-50%,-50%) scale(1.06);box-shadow:0 0 34px var(--pg)}
   .cluster.active .planet{box-shadow:0 0 0 2px var(--pc),0 0 30px var(--pg)}
-  .pr{--pc:#45c9e0;--pg:rgba(69,201,224,.55)}.pr .planet{border:1px solid #45c9e0;background:#05070b url('moon.png') center/cover;box-shadow:inset 0 0 24px 7px rgba(4,8,16,.7)}
-  .pc{--pc:#7ee787;--pg:rgba(126,231,135,.5)}.pc .planet{border:1px solid #7ee787;background:#05070b url('tag_commodities.png') center/cover;box-shadow:inset 0 0 20px 6px rgba(4,8,16,.6)}
-  .pl{--pc:#b692ff;--pg:rgba(150,120,255,.5)}.pl .planet{border:1px solid #b692ff;background:#05070b url('tag_tradelab.png') center/cover;box-shadow:inset 0 0 20px 6px rgba(4,8,16,.6)}
+  .pr{--pc:#45c9e0;--pg:rgba(69,201,224,.55)}.pr .planet{border:1px solid #45c9e0;background:radial-gradient(circle,#0c2230,#05070b)}
+  .pc{--pc:#7ee787;--pg:rgba(126,231,135,.5)}.pc .planet{border:1px solid #7ee787;background:radial-gradient(circle,#0e2417,#05070b)}
+  .pl{--pc:#b692ff;--pg:rgba(150,120,255,.5)}.pl .planet{border:1px solid #b692ff;background:radial-gradient(circle,#171029,#05070b)}
   .hint{font:700 9.5px ui-monospace,monospace;letter-spacing:.3em;color:#6f8499;margin:48px 0 2px;text-align:center}
   .legend{display:grid;grid-template-columns:repeat(4,1fr);column-gap:26px;align-items:start;margin:16px auto 0;max-width:1140px;padding:0 24px}
   .lgrp h5{font:700 9px ui-monospace,monospace;letter-spacing:.16em;color:var(--mut);margin:0 0 6px;display:flex;align-items:center;gap:7px}
@@ -199,7 +199,7 @@
       <div class=planet>MARKET<br>REGIME<small>11 MODULES</small></div>
     </div>
     <div class="cluster med pc" data-sec=commodities onclick="openSec('commodities')" style="transform:translateY(-48px)">
-      <div class="orb rev" style="width:130px;height:130px;--sp:16s;--mc:#7ee787"><i class=mh style="--a:0deg"><b class=moon></b></i><i class=mh style="--a:120deg"><b class=moon></b></i><i class=mh style="--a:240deg"><b class=moon></b></i></div>
+      <div class="orb rev" style="width:114px;height:114px;--sp:16s;--mc:#7ee787"><i class=mh style="--a:0deg"><b class=moon></b></i><i class=mh style="--a:120deg"><b class=moon></b></i><i class=mh style="--a:240deg"><b class=moon></b></i></div>
       <div class=orb style="width:190px;height:190px;--sp:28s;--mc:#7ee787">
         <i class=mh style="--a:0deg"><a class=amoon href="./cockpit/" onmouseover="cap('Commodity Cockpit')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&alpha;</span></span></a></i>
         <i class=mh style="--a:90deg"><a class=amoon href="https://silver.shoppafund.com/" onmouseover="cap('Silver Lead Map')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&beta;</span></span></a></i>
@@ -210,7 +210,7 @@
       <div class=planet style="font-size:9px;letter-spacing:.03em">COMMODITIES<small>4 APPS</small></div>
     </div>
     <div class="cluster med pl" data-sec=liveapps onclick="openSec('liveapps')" style="transform:translateY(42px)">
-      <div class="orb rev" style="width:130px;height:130px;--sp:15s;--mc:#b692ff"><i class=mh style="--a:0deg"><b class=moon></b></i><i class=mh style="--a:90deg"><b class=moon></b></i><i class=mh style="--a:180deg"><b class=moon></b></i><i class=mh style="--a:270deg"><b class=moon></b></i></div>
+      <div class="orb rev" style="width:114px;height:114px;--sp:15s;--mc:#b692ff"><i class=mh style="--a:0deg"><b class=moon></b></i><i class=mh style="--a:90deg"><b class=moon></b></i><i class=mh style="--a:180deg"><b class=moon></b></i><i class=mh style="--a:270deg"><b class=moon></b></i></div>
       <div class=orb style="width:196px;height:196px;--sp:30s;--mc:#b692ff">
         <i class=mh style="--a:0deg"><a class=amoon href="https://silver.shoppafund.com/pattern_scan" onmouseover="cap('Pattern Recognition')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&alpha;</span></span></a></i>
         <i class=mh style="--a:51deg"><a class=amoon href="https://signal.shoppafund.com/" onmouseover="cap('Signal Convergence')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&beta;</span></span></a></i>
