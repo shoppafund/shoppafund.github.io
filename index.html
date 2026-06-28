@@ -39,8 +39,8 @@
   header.shdr{--cyan:#2e74c0;position:relative;display:flex;align-items:center;gap:16px;margin:16px 18px 0;padding:14px 22px;
     background:rgba(10,13,18,.5);backdrop-filter:blur(8px);border:1px solid var(--line);border-top:2px solid var(--cyan);border-radius:12px;overflow:hidden}
   .shdr::before{content:"";position:absolute;top:9px;left:9px;width:14px;height:14px;border-top:2px solid var(--cyan);border-left:2px solid var(--cyan);opacity:.55}
-  .shdr .mark{width:54px;height:54px;border-radius:50%;border:1px solid var(--cyan);flex:0 0 auto;background:#000 url('shoppa_mark.png') center/contain no-repeat;box-shadow:0 0 0 3px #06080d,0 0 18px rgba(60,125,205,.5);animation:pulse 3.4s ease-in-out infinite}
-  @keyframes pulse{50%{box-shadow:0 0 0 3px #06080d,0 0 30px rgba(60,125,205,.85)}}
+  .shdr .mark{width:56px;height:56px;flex:0 0 auto;background:center/contain no-repeat url('shoppa_mark.png');filter:drop-shadow(0 0 5px rgba(60,125,205,.55));animation:pulse 3.4s ease-in-out infinite}
+  @keyframes pulse{50%{filter:drop-shadow(0 0 10px rgba(60,125,205,.9))}}
   .shdr .eyebrow{font:600 12px ui-monospace,Consolas,monospace;letter-spacing:.24em;color:var(--mut)}
   .shdr .htitle{font:800 25px ui-monospace,Consolas,monospace;letter-spacing:.02em;margin:3px 0}
   .shdr .htitle span{color:var(--cyan)}
