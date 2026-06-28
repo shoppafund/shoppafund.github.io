@@ -83,12 +83,12 @@
   .planet small{font-weight:600;font-size:12px;letter-spacing:.1em;color:#9fb6c8;margin-top:4px}
   .planet::after{content:"";position:absolute;inset:-7px;border-radius:50%;background:radial-gradient(circle,var(--pg),transparent 70%);animation:tw 3s ease-in-out infinite;z-index:-1}
   .cluster.big .planet{width:158px;height:158px;font-size:14px}
-  .cluster.med .planet{width:132px;height:132px}
+  .cluster.med .planet{width:158px;height:158px;font-size:14px}
   .cluster:hover .planet{transform:translate(-50%,-50%) scale(1.06);box-shadow:0 0 34px var(--pg)}
   .cluster.active .planet{box-shadow:0 0 0 2px var(--pc),0 0 30px var(--pg)}
   .pr{--pc:#45c9e0;--pg:rgba(69,201,224,.55)}.pr .planet{border:1px solid #a98c54;background:radial-gradient(circle at 36% 30%,rgba(255,238,205,.22),rgba(255,238,205,0) 46%),linear-gradient(-26deg,rgba(18,12,5,0) 0%,rgba(18,12,5,.34) 16%,rgba(122,94,58,0) 30%,rgba(18,12,5,.3) 51%,rgba(122,94,58,.12) 69%,rgba(18,12,5,0) 100%),linear-gradient(-16deg,#5e4828 0%,#6f5533 4%,#4a3a20 9%,#6b5230 12%,#3a2c16 17%,#785c38 23%,#534025 27%,#6e5532 33%,#42331b 38%,#735738 44%,#50402a 49%,#382a14 54%,#6b5230 60%,#574326 65%,#785c38 72%,#463618 78%,#6e5532 85%,#503e22 92%,#5a4527 100%),radial-gradient(circle,#5e4823,#2c2110);box-shadow:inset -16px -18px 42px 7px rgba(14,9,3,.78),inset 8px 10px 18px rgba(255,236,200,.09)}
   .pc{--pc:#7ee787;--pg:rgba(126,231,135,.5)}.pc .planet{border:1px solid #7ee787;background:#05070b url('tag_commodities.png') center/cover;box-shadow:inset 0 0 20px 6px rgba(4,8,16,.6)}
-  .pl{--pc:#b692ff;--pg:rgba(150,120,255,.5)}.pl .planet{border:1px solid #b692ff;background:#05070b url('tag_tradelab.png') center/cover;box-shadow:inset 0 0 20px 6px rgba(4,8,16,.6)}
+  .pl{--pc:#3461c4;--pg:rgba(52,97,196,.5)}.pl .planet{border:1px solid #3461c4;background:radial-gradient(circle at 36% 30%,rgba(170,200,255,.22),rgba(170,200,255,0) 46%),radial-gradient(circle,#21407c,#0b1830);box-shadow:inset -14px -16px 40px 6px rgba(3,7,16,.72),inset 8px 10px 18px rgba(150,190,255,.10)}
   .hint{font:700 12px ui-monospace,monospace;letter-spacing:.22em;color:#7c91a6;margin:48px 0 2px;text-align:center}
   .legend{display:flex;justify-content:space-between;gap:36px 48px;flex-wrap:wrap;align-items:flex-start;margin:48px auto 0;max-width:1480px;padding:0 40px}
   .lgrp h5{font:700 12px ui-monospace,monospace;letter-spacing:.14em;color:var(--mut);margin:0 0 7px;display:flex;align-items:center;gap:7px}
@@ -197,7 +197,7 @@
       </div>
       <div class=orb style="width:440px;height:440px;--sp:54s;--mc:#79b8ff"><i class=mh style="--a:6deg"><b class=moon></b></i><i class=mh style="--a:52deg"><b class=moon></b></i><i class=mh style="--a:88deg"><b class=moon></b></i><i class=mh style="--a:140deg"><b class=moon></b></i><i class=mh style="--a:178deg"><b class=moon></b></i><i class=mh style="--a:224deg"><b class=moon></b></i><i class=mh style="--a:268deg"><b class=moon></b></i><i class=mh style="--a:312deg"><b class=moon></b></i><i class=mh style="--a:348deg"><b class=moon></b></i></div>
       <span class="pring b"></span><span class="pring a"></span>
-      <div class=planet>MARKET<br>REGIME<small>11 MODULES</small></div>
+      <div class=planet>MARKET<br>REGIME</div>
     </div>
     <div class="cluster med pc" data-sec=commodities onclick="openSec('commodities')" style="transform:translate(-145px,-48px)">
       <div class="orb rev" style="width:172px;height:172px;--sp:16s;--mc:#7ee787"><i class=mh style="--a:0deg"><b class=moon></b></i><i class=mh style="--a:120deg"><b class=moon></b></i><i class=mh style="--a:240deg"><b class=moon></b></i></div>
@@ -207,11 +207,11 @@
         <i class=mh style="--a:240deg"><a class=amoon href="https://shoppafund.github.io/natgas-tracker/natgas-term-structure.html" onmouseover="cap('NatGas Term Structure')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&gamma;</span></span></a></i>
       </div>
       <div class=ell><div class=orb style="width:198px;height:198px;--sp:34s;--mc:#7ee787"><i class=mh style="--a:0deg"><b class=moon></b></i><i class=mh style="--a:72deg"><b class=moon></b></i><i class=mh style="--a:144deg"><b class=moon></b></i><i class=mh style="--a:216deg"><b class=moon></b></i><i class=mh style="--a:288deg"><b class=moon></b></i></div></div>
-      <div class=planet style="font-size:12px;letter-spacing:.01em">COMMODITIES<small>3 APPS</small></div>
+      <div class=planet style="letter-spacing:.01em">COMMODITIES</div>
     </div>
     <div class="cluster med pl" data-sec=liveapps onclick="openSec('liveapps')" style="transform:translate(-320px,42px)">
-      <div class="orb rev" style="width:172px;height:172px;--sp:15s;--mc:#b692ff"><i class=mh style="--a:0deg"><b class=moon></b></i><i class=mh style="--a:90deg"><b class=moon></b></i><i class=mh style="--a:180deg"><b class=moon></b></i><i class=mh style="--a:270deg"><b class=moon></b></i></div>
-      <div class=orb style="width:258px;height:258px;--sp:30s;--mc:#b692ff">
+      <div class="orb rev" style="width:172px;height:172px;--sp:15s;--mc:#3461c4"><i class=mh style="--a:0deg"><b class=moon></b></i><i class=mh style="--a:90deg"><b class=moon></b></i><i class=mh style="--a:180deg"><b class=moon></b></i><i class=mh style="--a:270deg"><b class=moon></b></i></div>
+      <div class=orb style="width:258px;height:258px;--sp:30s;--mc:#3461c4">
         <i class=mh style="--a:0deg"><a class=amoon href="https://silver.shoppafund.com/pattern_scan" onmouseover="cap('Pattern Recognition')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&alpha;</span></span></a></i>
         <i class=mh style="--a:60deg"><a class=amoon href="https://signal.shoppafund.com/" onmouseover="cap('Signal Convergence')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&beta;</span></span></a></i>
         <i class=mh style="--a:120deg"><a class=amoon href="https://vol.shoppafund.com/" onmouseover="cap('Volatility AI Lab')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&gamma;</span></span></a></i>
@@ -219,7 +219,7 @@
         <i class=mh style="--a:240deg"><a class=amoon href="https://marketphase.shoppafund.com/" onmouseover="cap('MarketPhase AI')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&epsilon;</span></span></a></i>
         <i class=mh style="--a:300deg"><a class=amoon href="https://weinstein2.shoppafund.com/" onmouseover="cap('Cycle Stage')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&zeta;</span></span></a></i>
       </div>
-      <div class=planet>TRADE<br>LAB<small>6 TOOLS</small></div>
+      <div class=planet>TRADE<br>LAB</div>
     </div>
   </div>
   <div class=hint id=cap>CLICK A PLANET TO ENTER</div>
@@ -242,7 +242,7 @@
       <li><a href="https://silver.shoppafund.com/" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&beta;</b>Silver Lead Map</a></li>
       <li><a href="https://shoppafund.github.io/natgas-tracker/natgas-term-structure.html" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&gamma;</b>NatGas Term Structure</a></li>
     </ul></div>
-    <div class=lgrp style="--c:#b692ff"><h5><i></i>TRADE LAB</h5><ul>
+    <div class=lgrp style="--c:#3461c4"><h5><i></i>TRADE LAB</h5><ul>
       <li><a href="https://silver.shoppafund.com/pattern_scan" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&alpha;</b>Pattern Recognition</a></li>
       <li><a href="https://signal.shoppafund.com/" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&beta;</b>Signal Convergence</a></li>
       <li><a href="https://vol.shoppafund.com/" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&gamma;</b>Volatility AI Lab</a></li>
