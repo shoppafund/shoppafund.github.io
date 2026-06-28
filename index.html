@@ -36,16 +36,16 @@
   @keyframes tw{50%{opacity:.25}}
   @keyframes drift{to{background-position:560px 0}}
   /* ---- header ---- */
-  header.shdr{position:relative;display:flex;align-items:center;gap:16px;margin:16px 18px 0;padding:14px 22px;
+  header.shdr{--cyan:#3461c4;position:relative;display:flex;align-items:center;gap:16px;margin:16px 18px 0;padding:14px 22px;
     background:rgba(10,13,18,.5);backdrop-filter:blur(8px);border:1px solid var(--line);border-top:2px solid var(--cyan);border-radius:12px;overflow:hidden}
   .shdr::before{content:"";position:absolute;top:9px;left:9px;width:14px;height:14px;border-top:2px solid var(--cyan);border-left:2px solid var(--cyan);opacity:.55}
-  .shdr .mark{width:54px;height:54px;border-radius:50%;border:1px solid var(--cyan);flex:0 0 auto;background:#000 url('shoppa_white.png') center/cover;box-shadow:0 0 0 3px #06080d,0 0 18px rgba(69,201,224,.45);animation:pulse 3.4s ease-in-out infinite}
-  @keyframes pulse{50%{box-shadow:0 0 0 3px #06080d,0 0 30px rgba(69,201,224,.85)}}
+  .shdr .mark{width:54px;height:54px;border-radius:50%;border:1px solid var(--cyan);flex:0 0 auto;background:#000 url('shoppa_mark.png') center/contain no-repeat;box-shadow:0 0 0 3px #06080d,0 0 18px rgba(52,97,196,.45);animation:pulse 3.4s ease-in-out infinite}
+  @keyframes pulse{50%{box-shadow:0 0 0 3px #06080d,0 0 30px rgba(52,97,196,.85)}}
   .shdr .eyebrow{font:600 12px ui-monospace,Consolas,monospace;letter-spacing:.24em;color:var(--mut)}
   .shdr .htitle{font:800 25px ui-monospace,Consolas,monospace;letter-spacing:.02em;margin:3px 0}
   .shdr .htitle span{color:var(--cyan)}
   .shdr .hsub{font:600 12px ui-monospace,Consolas,monospace;letter-spacing:.16em;color:var(--mut)}
-  .shdr .status{margin-left:auto;align-self:flex-start;display:flex;align-items:center;gap:6px;font:600 12px ui-monospace,monospace;letter-spacing:.12em;color:var(--cyan);border:1px solid #1c4a55;border-radius:6px;padding:4px 10px}
+  .shdr .status{margin-left:auto;align-self:flex-start;display:flex;align-items:center;gap:6px;font:600 12px ui-monospace,monospace;letter-spacing:.12em;color:var(--cyan);border:1px solid #23386b;border-radius:6px;padding:4px 10px}
   .shdr .status i{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);animation:tw 1.6s infinite}
   /* ---- ticker ---- */
   .ticker{overflow:hidden;border-top:1px solid #16202c;border-bottom:1px solid #16202c;background:rgba(8,11,16,.55);height:30px;margin:12px 0 0}
