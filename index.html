@@ -93,7 +93,7 @@
   .legend{display:flex;justify-content:space-between;gap:36px 48px;flex-wrap:wrap;align-items:flex-start;margin:48px auto 0;max-width:1480px;padding:0 40px}
   .lgrp h5{font:700 12px ui-monospace,monospace;letter-spacing:.14em;color:var(--mut);margin:0 0 7px;display:flex;align-items:center;gap:7px}
   .lgrp h5 i{width:8px;height:8px;border-radius:50%;background:var(--c);box-shadow:0 0 8px var(--c)}
-  .lgrp ul{list-style:none;margin:0;padding:0;font:400 12px -apple-system,Segoe UI,Arial;max-width:200px}
+  .lgrp ul{list-style:none;margin:0;padding:0;font:400 14px -apple-system,Segoe UI,Arial;max-width:220px}
   .lgrp.two{grid-column:span 2}
   .lgrp.two ul{display:grid;grid-template-columns:1fr 1fr;column-gap:16px;align-items:start;max-width:340px}
   .lgrp li{color:#9fb2c4;line-height:1.5;display:flex;flex-wrap:wrap;align-items:center}
@@ -222,7 +222,7 @@
       <div class=planet>TRADE<br>LAB<small>6 TOOLS</small></div>
     </div>
   </div>
-  <div class=hint id=cap>HOVER THE RING TO PAUSE &middot; HOVER A MOON FOR ITS APP &middot; CLICK A PLANET TO ENTER</div>
+  <div class=hint id=cap>CLICK A PLANET TO ENTER</div>
   <div class=legend>
     <div class="lgrp two" style="--c:#45c9e0"><h5><i></i>MARKET REGIME</h5><ul>
       <li><a href="https://regime.shoppafund.com/" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&alpha;</b>Bond Indicator</a></li>
@@ -387,7 +387,7 @@ function openSec(id){
   document.querySelectorAll('.cluster').forEach(function(c){c.classList.toggle('active',c.dataset.sec===id);});
   var el=document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
 }
-var CAPDEF='HOVER THE RING TO PAUSE · HOVER A MOON FOR ITS APP · CLICK A PLANET TO ENTER';
+var CAPDEF='CLICK A PLANET TO ENTER';
 function cap(t){var e=document.getElementById('cap');if(!e)return;if(t){e.textContent='▸ '+t;e.classList.add('on');}else{e.textContent=CAPDEF;e.classList.remove('on');}}
 function hi(el,on){var h=el.getAttribute('href');var m=document.querySelector('.amoon[href="'+h+'"]');if(!m)return;m.classList.toggle('lit',!!on);var c=m.closest('.cluster');if(c)c.classList.toggle('frozen',!!on);}
 function showPrev(m,info){var p=document.getElementById('prev');if(!p)return;p.querySelector('.pimg').style.backgroundImage=info.img?("url('"+info.img+"')"):'none';p.querySelector('.pttl').textContent=info.title;var d=p.querySelector('.pds');d.textContent=info.desc?(info.desc.length>150?info.desc.slice(0,150)+'…':info.desc):'';p.classList.add('on');var r=m.getBoundingClientRect(),w=240,ch=p.offsetHeight||190;var left=Math.max(10,Math.min(r.left+r.width/2-w/2,innerWidth-w-10));var top=r.top-ch-12;if(top<10)top=r.bottom+12;p.style.left=left+'px';p.style.top=top+'px';}
