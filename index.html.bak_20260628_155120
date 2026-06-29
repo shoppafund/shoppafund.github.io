@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang=en>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width, initial-scale=1">
+<title>SHOPPA Fund — Terminal</title>
+<link rel="icon" type="image/png" href="shoppa_favicon.png">
+<base target="_blank">
+<meta name="referrer" content="no-referrer">
+<style>
+  :root{--bg:#06080d;--card:rgba(18,24,33,.55);--line:#1d2734;--ink:#e6e6e6;--mut:#8b949e;--accent:#58a6ff;--cyan:#45c9e0}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#06080d;color:var(--ink);font-family:-apple-system,Segoe UI,Arial,sans-serif;overflow-x:hidden}
+  /* ---- deep space backdrop ---- */
+  .sky{position:fixed;inset:0;z-index:-1;overflow:hidden;background:radial-gradient(130% 90% at 50% -10%,#0b1626,#070a10 55%,#05070b)}
+  .sky .neb{position:absolute;inset:0;background:radial-gradient(38% 30% at 80% 8%,rgba(69,201,224,.14),transparent 70%),radial-gradient(42% 34% at 8% 96%,rgba(150,120,255,.12),transparent 70%);animation:neb 16s ease-in-out infinite}
+  @keyframes neb{50%{opacity:.55}}
+  .sky .stars{position:absolute;inset:-60px;background-repeat:repeat;opacity:.78;background-size:340px 240px;animation:tw 4.5s ease-in-out infinite;
+    background-image:radial-gradient(2px 2px at 30px 40px,#fff,transparent),radial-gradient(1px 1px at 130px 90px,#bfe,transparent),radial-gradient(1.6px 1.6px at 220px 50px,#fff,transparent),radial-gradient(1px 1px at 300px 130px,#9cf,transparent),radial-gradient(2px 2px at 80px 170px,#fff,transparent),radial-gradient(1px 1px at 360px 30px,#cff,transparent),radial-gradient(1px 1px at 180px 210px,#fff,transparent)}
+  .sky .stars.s2{background-size:520px 360px;opacity:.5;animation:drift 80s linear infinite,tw 7s ease-in-out infinite}
+  .sky .stars.s3{background-size:680px 480px;opacity:.4;animation:drift2 150s linear infinite,tw 9s ease-in-out infinite;
+    background-image:radial-gradient(1.4px 1.4px at 60px 120px,#fff,transparent),radial-gradient(1px 1px at 260px 60px,#adf,transparent),radial-gradient(1.2px 1.2px at 420px 200px,#fff,transparent),radial-gradient(1px 1px at 520px 90px,#cff,transparent),radial-gradient(2px 2px at 160px 320px,#fff,transparent),radial-gradient(1px 1px at 600px 380px,#fff,transparent)}
+  @keyframes drift2{to{background-position:-680px 0}}
+  .sky .spk{position:absolute;width:16px;height:16px;background:radial-gradient(circle,rgba(255,255,255,.85),transparent 38%);animation:spk var(--d,4s) ease-in-out infinite}
+  .sky .spk::before,.sky .spk::after{content:"";position:absolute;left:50%;top:50%;background:linear-gradient(transparent,rgba(200,240,255,.95),transparent)}
+  .sky .spk::before{width:1.4px;height:18px;transform:translate(-50%,-50%)}
+  .sky .spk::after{height:1.4px;width:18px;transform:translate(-50%,-50%)}
+  @keyframes spk{0%,100%{opacity:.18;transform:scale(.55)}50%{opacity:1;transform:scale(1)}}
+  .sky .shoot{position:absolute;width:150px;height:2px;border-radius:2px;background:linear-gradient(90deg,rgba(255,255,255,0),#fff);filter:drop-shadow(0 0 6px #cfe);opacity:0;animation:shoot 12s linear infinite}
+  .sky .shoot.b{top:58%;left:42%;animation-delay:7s;animation-duration:16s}
+  @keyframes shoot{0%{opacity:0;transform:translate(-180px,-80px) rotate(20deg)}5%{opacity:.95}15%{opacity:.95}21%{opacity:0;transform:translate(560px,220px) rotate(20deg)}100%{opacity:0}}
+  .moonbg{position:absolute;top:-92px;right:-72px;width:480px;height:480px;border-radius:50%;
+    background:url('moon_bg.png') center/contain no-repeat;
+    filter:drop-shadow(0 0 52px rgba(150,190,255,.22));opacity:.96;animation:moonfloat 28s ease-in-out infinite}
+  @keyframes moonfloat{50%{transform:translateY(12px)}}
+  @keyframes tw{50%{opacity:.25}}
+  @keyframes drift{to{background-position:560px 0}}
+  /* ---- header ---- */
+  header.shdr{--cyan:#2e74c0;position:relative;display:flex;align-items:center;gap:16px;margin:16px 18px 0;padding:14px 22px;
+    background:rgba(10,13,18,.5);backdrop-filter:blur(8px);border:1px solid var(--line);border-top:2px solid var(--cyan);border-radius:12px;overflow:hidden}
+  .shdr::before{content:"";position:absolute;top:9px;left:9px;width:14px;height:14px;border-top:2px solid var(--cyan);border-left:2px solid var(--cyan);opacity:.55}
+  .shdr .mark{width:60px;height:60px;flex:0 0 auto;background:center/contain no-repeat url('shoppa_mark.png');filter:drop-shadow(0 0 3px rgba(60,125,205,.5));animation:pulse 3.4s ease-in-out infinite}
+  @keyframes pulse{50%{filter:drop-shadow(0 0 7px rgba(60,125,205,.85))}}
+  .shdr .eyebrow{font:600 12px ui-monospace,Consolas,monospace;letter-spacing:.24em;color:var(--mut)}
+  .shdr .htitle{font:800 25px ui-monospace,Consolas,monospace;letter-spacing:.02em;margin:3px 0}
+  .shdr .htitle span{color:var(--cyan)}
+  .shdr .hsub{font:600 12px ui-monospace,Consolas,monospace;letter-spacing:.16em;color:var(--mut)}
+  .shdr .status{margin-left:auto;align-self:flex-start;display:flex;align-items:center;gap:6px;font:600 12px ui-monospace,monospace;letter-spacing:.12em;color:var(--cyan);border:1px solid #2a5a92;border-radius:6px;padding:4px 10px}
+  .shdr .status i{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);animation:tw 1.6s infinite}
+  /* ---- ticker ---- */
+  .ticker{overflow:hidden;border-top:1px solid #16202c;border-bottom:1px solid #16202c;background:rgba(8,11,16,.55);height:30px;margin:12px 0 0}
+  .ticker .tk{display:flex;gap:28px;white-space:nowrap;width:max-content;line-height:30px;font:600 12px ui-monospace,monospace;color:#7d8896;animation:tkm 26s linear infinite;padding-left:18px}
+  .ticker b{color:#e6e6e6}.up{color:#3fb950!important}.dn{color:#e2554b!important}.warn{color:#e0a23f!important}
+  @keyframes tkm{to{transform:translateX(-50%)}}
+  /* ---- orbital solar system ---- */
+  .hero{position:relative;display:flex;flex-direction:column;align-items:center;padding:10px 0 0}
+  .system{position:relative;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;padding:8px 12px;width:100%;max-width:1720px;margin:0 auto}
+  @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+  @keyframes spinr{to{transform:translate(-50%,-50%) rotate(-360deg)}}
+  .cluster{position:relative;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:0 0 auto}
+  .cluster.big{width:460px;height:460px}.cluster.med{width:300px;height:300px}
+  .orb{position:absolute;top:50%;left:50%;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;border:1px solid rgba(130,160,190,.16);animation:spin var(--sp,24s) linear infinite}
+  .orb.rev{animation-name:spinr}
+  .cluster:hover .orb{animation-play-state:paused}
+  .mh{position:absolute;inset:0;transform:rotate(var(--a))}
+  .moon{position:absolute;top:calc(var(--ms,9px)/-2);left:50%;margin-left:calc(var(--ms,9px)/-2);width:var(--ms,9px);height:var(--ms,9px);border-radius:50%;background:var(--mc);box-shadow:0 0 10px var(--mc),0 0 3px #fff}
+  .mh:nth-child(3n) .moon{--ms:13px}
+  .mh:nth-child(4n) .moon{--ms:6px}
+  .mh:nth-child(5n) .moon{--ms:11px;background:#fff;box-shadow:0 0 10px var(--mc),0 0 4px #fff}
+  .amoon{position:absolute;top:-9px;left:50%;margin-left:-9px;width:18px;height:18px;border-radius:50%;background:var(--mc);box-shadow:0 0 11px var(--mc),0 0 3px #fff;pointer-events:auto;cursor:pointer;transition:transform .12s,box-shadow .12s}
+  .amoon:hover{transform:scale(1.55);box-shadow:0 0 18px #fff,0 0 9px var(--mc);z-index:6}
+  .amoon .gw{position:absolute;inset:0;display:grid;place-items:center;animation:cspin var(--sp,24s) linear infinite}
+  @keyframes cspin{to{transform:rotate(-360deg)}}
+  .amoon .glyph{font:700 12px ui-monospace,Consolas,monospace;color:#06121c;transform:rotate(calc(-1 * var(--a)));transform-origin:center;line-height:1}
+  .cluster:hover .gw{animation-play-state:paused}
+  #cap.on{color:#dff}
+  .pring{position:absolute;top:50%;left:50%;border-radius:50%;border:2px solid rgba(120,184,255,.55);box-shadow:0 0 16px rgba(88,166,255,.28);transform:translate(-50%,-50%) rotate(-22deg);pointer-events:none}
+  .pring.a{width:260px;height:80px;z-index:4}
+  .pring.b{width:320px;height:108px;border-width:1px;border-color:rgba(159,233,245,.3);z-index:2}
+  .ell{position:absolute;inset:0;transform:rotate(-20deg) scaleX(1.6);pointer-events:none}
+  .planet{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:3;
+    font:800 12px ui-monospace,monospace;letter-spacing:.08em;color:#fff;text-shadow:0 1px 4px #000,0 0 9px rgba(0,0,0,.85);transition:transform .2s,box-shadow .2s}
+  .planet small{font-weight:600;font-size:12px;letter-spacing:.1em;color:#9fb6c8;margin-top:4px}
+  .planet::after{content:"";position:absolute;inset:-7px;border-radius:50%;background:radial-gradient(circle,var(--pg),transparent 70%);animation:tw 3s ease-in-out infinite;z-index:-1}
+  .cluster.big .planet{width:158px;height:158px;font-size:14px}
+  .cluster.med .planet{width:158px;height:158px;font-size:14px}
+  .cluster:hover .planet{transform:translate(-50%,-50%) scale(1.06);box-shadow:0 0 34px var(--pg)}
+  .cluster.active .planet{box-shadow:0 0 0 2px var(--pc),0 0 30px var(--pg)}
+  .pr{--pc:#45c9e0;--pg:rgba(69,201,224,.55)}.pr .planet{border:1px solid #a98c54;background:radial-gradient(circle at 36% 30%,rgba(255,238,205,.22),rgba(255,238,205,0) 46%),linear-gradient(-26deg,rgba(18,12,5,0) 0%,rgba(18,12,5,.34) 16%,rgba(122,94,58,0) 30%,rgba(18,12,5,.3) 51%,rgba(122,94,58,.12) 69%,rgba(18,12,5,0) 100%),linear-gradient(-16deg,#5e4828 0%,#6f5533 4%,#4a3a20 9%,#6b5230 12%,#3a2c16 17%,#785c38 23%,#534025 27%,#6e5532 33%,#42331b 38%,#735738 44%,#50402a 49%,#382a14 54%,#6b5230 60%,#574326 65%,#785c38 72%,#463618 78%,#6e5532 85%,#503e22 92%,#5a4527 100%),radial-gradient(circle,#5e4823,#2c2110);box-shadow:inset -16px -18px 42px 7px rgba(14,9,3,.78),inset 8px 10px 18px rgba(255,236,200,.09)}
+  .pc{--pc:#7ee787;--pg:rgba(126,231,135,.5)}.pc .planet{border:1px solid #7ee787;background:#05070b url('tag_commodities.png') center/cover;box-shadow:inset 0 0 20px 6px rgba(4,8,16,.6)}
+  .pl{--pc:#3461c4;--pg:rgba(52,97,196,.5)}.pl .planet{border:1px solid #3461c4;background:#05070b url('tag_tradelab.png') center/cover;box-shadow:inset 0 0 20px 6px rgba(4,8,16,.6)}
+  .hint{font:700 12px ui-monospace,monospace;letter-spacing:.22em;color:#7c91a6;margin:48px 0 2px;text-align:center}
+  .legend{display:flex;justify-content:space-between;gap:36px 48px;flex-wrap:wrap;align-items:flex-start;margin:48px auto 0;max-width:1480px;padding:0 40px}
+  .lgrp h5{font:700 12px ui-monospace,monospace;letter-spacing:.14em;color:var(--mut);margin:0 0 7px;display:flex;align-items:center;gap:7px}
+  .lgrp h5 i{width:8px;height:8px;border-radius:50%;background:var(--c);box-shadow:0 0 8px var(--c)}
+  .lgrp ul{list-style:none;margin:0;padding:0;font:400 16px -apple-system,Segoe UI,Arial;max-width:250px}
+  .lgrp.two{grid-column:span 2}
+  .lgrp.two ul{display:grid;grid-template-columns:1fr 1fr;column-gap:16px;align-items:start;max-width:380px}
+  .lgrp li{color:#9fb2c4;line-height:1.5;display:flex;flex-wrap:wrap;align-items:center}
+  .lgrp li b{color:#cfe;font-family:ui-monospace,Consolas,monospace;display:inline-block;width:15px;text-align:center;margin-right:4px}
+  .lgrp a{color:inherit;text-decoration:none;flex:0 1 auto;white-space:nowrap;border-radius:6px;padding:0 4px;transition:.12s}
+  .lgrp a:hover{color:#fff;background:rgba(255,255,255,.05)}
+  .lgrp a:hover b{color:#fff;text-shadow:0 0 9px var(--c)}
+  .lchev{flex:0 0 auto;background:none;border:0;color:#5f7186;cursor:pointer;padding:0;margin-left:5px;display:inline-flex;align-items:center;line-height:1}
+  .lchev:hover,.lchev.open{color:var(--accent)}
+  .lchev svg{width:9px;height:9px;transition:transform .15s}
+  .lchev.open svg{transform:rotate(180deg)}
+  .ldesc{flex:0 0 100%;max-height:0;overflow:hidden;opacity:0;transition:.18s;color:var(--mut);font-size:12px;line-height:1.45}
+  .ldesc.open{max-height:160px;opacity:1;margin:2px 0 6px}
+  .amoon.lit{transform:scale(1.95);box-shadow:0 0 26px #fff,0 0 13px var(--mc);z-index:8}
+  .cluster.frozen .orb,.cluster.frozen .gw{animation-play-state:paused}
+  .prevcard{position:fixed;z-index:50;width:240px;pointer-events:none;opacity:0;transform:translateY(6px);transition:opacity .12s,transform .12s;background:rgba(13,18,26,.97);border:1px solid var(--accent);border-radius:12px;overflow:hidden;box-shadow:0 16px 42px rgba(0,0,0,.6),0 0 22px rgba(88,166,255,.28)}
+  .prevcard.on{opacity:1;transform:none}
+  .prevcard .pimg{height:120px;background:#0b0e13 center/cover no-repeat;border-bottom:1px solid var(--line)}
+  .prevcard .pttl{font:600 13px -apple-system,Segoe UI,Arial;color:var(--ink);padding:9px 12px 0}
+  .prevcard .pds{font:400 12px -apple-system,Segoe UI,Arial;color:var(--mut);padding:4px 12px 11px;line-height:1.45}
+  /* ---- collapsible app panels ---- */
+  .apppanel{display:none;animation:fade .3s ease;scroll-margin-top:14px}
+  .apppanel.show{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  /* ---- sections ---- */
+  main{max-width:none;margin:0;padding:20px 56px 100px}
+  h2{font-size:12px;color:#9fb2c4;text-transform:uppercase;letter-spacing:.18em;margin:34px 0 12px;scroll-margin-top:14px;display:flex;align-items:center;gap:10px}
+  h2::before{content:"";width:20px;height:2px;background:linear-gradient(90deg,var(--cyan),transparent);box-shadow:0 0 8px var(--cyan)}
+  h2 span{letter-spacing:.04em}
+  .lead{margin:0 0 12px;color:var(--mut);font-size:12.5px;line-height:1.5}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:44px 34px;margin:8px 0}
+  .gal{display:grid;grid-template-columns:repeat(3,1fr);gap:44px 34px;margin:8px 0}
+  .grid.duo{grid-template-columns:repeat(2,calc((100% - 68px)/3));justify-content:center}
+  /* ---- glass tiles ---- */
+  .tile{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+    display:flex;flex-direction:column;backdrop-filter:blur(6px);transition:transform .2s,box-shadow .2s,border-color .2s}
+  .tile::after{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(88,166,255,.55),transparent);opacity:.6;z-index:3}
+  .tile:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 14px 32px rgba(0,0,0,.55),0 0 22px rgba(88,166,255,.25)}
+  .tile .thumb{display:block;height:180px;border-bottom:1px solid var(--line);background-color:#0b0e13;
+    background-repeat:no-repeat;background-position:center;background-size:cover;transition:transform .3s;
+    background-image:var(--img,url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'/>")),url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='90'><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%2358a6ff' stop-opacity='.30'/><stop offset='1' stop-color='%2358a6ff' stop-opacity='0'/></linearGradient></defs><polygon points='0,90 0,68 24,62 48,72 72,44 96,54 120,30 144,42 168,20 192,30 216,12 240,22 240,90' fill='url(%23g)'/><polyline points='0,68 24,62 48,72 72,44 96,54 120,30 144,42 168,20 192,30 216,12 240,22' fill='none' stroke='%2358a6ff' stroke-width='3'/></svg>")}
+  .tile:hover .thumb{transform:scale(1.05)}
+  .tbody{padding:11px 13px}
+  .trow{display:flex;align-items:center;gap:8px}
+  .ttitle{font:600 14.5px -apple-system,Segoe UI,Arial;color:var(--ink);text-decoration:none;line-height:1.25}
+  .ttitle:hover{color:var(--accent)}
+  .pill{font-size:12px;border-radius:10px;padding:1px 8px;font-weight:700;letter-spacing:.04em;flex:0 0 auto}
+  .new{background:var(--accent);color:#06080d}
+  .live{background:#1f6f43;color:#d8ffe9}
+  .report{background:#30363d;color:#adbac7}
+  .chev{margin-left:auto;flex:0 0 auto;background:none;border:1px solid var(--line);border-radius:7px;
+    color:var(--mut);width:28px;height:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s}
+  .chev:hover{border-color:var(--accent);color:var(--accent)}
+  .chev.open{color:var(--accent);border-color:#2d4a63}
+  .chev svg{transition:transform .18s}
+  .chev.open svg{transform:rotate(180deg)}
+  .tdesc{max-height:0;overflow:hidden;opacity:0;transition:.2s;color:var(--mut);font:400 12px -apple-system,Segoe UI,Arial;line-height:1.5}
+  .tdesc.open{max-height:280px;opacity:1;margin-top:9px}
+  .tdesc a{color:var(--accent)}
+  footer{color:var(--mut);font-size:12px;text-align:center;padding:24px;border-top:1px solid var(--line)}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+
+<div class=sky>
+  <span class=stars></span><span class="stars s2"></span><span class="stars s3"></span><span class=neb></span>
+  <i class=spk style="top:13%;left:18%;--d:3.5s"></i><i class=spk style="top:24%;left:74%;--d:5s"></i><i class=spk style="top:60%;left:9%;--d:4.2s"></i><i class=spk style="top:72%;left:88%;--d:6s"></i><i class=spk style="top:38%;left:53%;--d:5.5s"></i><i class=spk style="top:86%;left:31%;--d:4.8s"></i>
+  <span class=shoot style="top:15%;left:6%"></span><span class="shoot b"></span>
+  <div class=moonbg></div>
+</div>
+
+<header class=shdr>
+  <div class=mark></div>
+  <div>
+    <div class=eyebrow>SHOPPA FUND ANALYTICS</div>
+    <div class=htitle>SHOPPA FUND <span>&middot; TERMINAL</span></div>
+    <div class=hsub>MARKET RESEARCH &middot; VOLATILITY &middot; CREDIT &middot; FLOW &middot; COMMODITIES</div>
+  </div>
+  <div class=status><i></i>SYSTEMS LIVE</div>
+</header>
+
+<div class=ticker><div class=tk>
+  <span>SPX <b class=up>7,501 &#9650;</b></span><span>VIX <b class=up>14.0 &#9660;</b></span><span>HY OAS <b class=warn>2.63%</b></span><span>CRUDE <b class=up>+1.2%</b></span><span>GOLD <b class=up>&#9650;</b></span><span>SILVER <b class=up>&#9650;&#9650;</b></span><span>NATGAS <b class=dn>&minus;2.1%</b></span><span>REGIME <b class=warn>CAUTION</b></span>
+  <span>SPX <b class=up>7,501 &#9650;</b></span><span>VIX <b class=up>14.0 &#9660;</b></span><span>HY OAS <b class=warn>2.63%</b></span><span>CRUDE <b class=up>+1.2%</b></span><span>GOLD <b class=up>&#9650;</b></span><span>SILVER <b class=up>&#9650;&#9650;</b></span><span>NATGAS <b class=dn>&minus;2.1%</b></span><span>REGIME <b class=warn>CAUTION</b></span>
+</div></div>
+
+<section class=hero>
+  <div class=system>
+    <div class="cluster big pr" data-sec=regime onclick="openSec('regime')" style="transform:translateY(26px)">
+      <div class="orb rev" style="width:228px;height:228px;--sp:18s;--mc:#9fe9f5"><i class=mh style="--a:12deg"><b class=moon></b></i><i class=mh style="--a:96deg"><b class=moon></b></i><i class=mh style="--a:172deg"><b class=moon></b></i><i class=mh style="--a:286deg"><b class=moon></b></i></div>
+      <div class=orb style="width:352px;height:352px;--sp:34s;--mc:#45c9e0">
+        <i class=mh style="--a:0deg"><a class=amoon href="https://regime.shoppafund.com/" onmouseover="cap('Bond Indicator')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&alpha;</span></span></a></i>
+        <i class=mh style="--a:33deg"><a class=amoon href="https://regime.shoppafund.com/Fed_Liquidity" onmouseover="cap('Fed Liquidity')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&beta;</span></span></a></i>
+        <i class=mh style="--a:65deg"><a class=amoon href="https://regime.shoppafund.com/Credit_Spreads" onmouseover="cap('Credit Spreads')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&gamma;</span></span></a></i>
+        <i class=mh style="--a:98deg"><a class=amoon href="https://regime.shoppafund.com/Market_Internals" onmouseover="cap('Market Internals')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&delta;</span></span></a></i>
+        <i class=mh style="--a:131deg"><a class=amoon href="https://regime.shoppafund.com/Sectors" onmouseover="cap('Sectors')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&epsilon;</span></span></a></i>
+        <i class=mh style="--a:164deg"><a class=amoon href="https://regime.shoppafund.com/ETF_Flows" onmouseover="cap('ETF Flows')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&zeta;</span></span></a></i>
+        <i class=mh style="--a:196deg"><a class=amoon href="https://regime.shoppafund.com/Technical_Setups" onmouseover="cap('Technical Setups')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&eta;</span></span></a></i>
+        <i class=mh style="--a:229deg"><a class=amoon href="https://regime.shoppafund.com/Topping_Signals" onmouseover="cap('Topping Signals')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&theta;</span></span></a></i>
+        <i class=mh style="--a:262deg"><a class=amoon href="https://regime.shoppafund.com/Risk_Scorecard" onmouseover="cap('Risk Scorecard')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&iota;</span></span></a></i>
+        <i class=mh style="--a:295deg"><a class=amoon href="https://shoppafund.github.io/vix-tracker/vix-tracker.html" onmouseover="cap('VIX Term Structure')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&kappa;</span></span></a></i>
+        <i class=mh style="--a:327deg"><a class=amoon href="https://signal.shoppafund.com/flow" onmouseover="cap('Smart-Money Flow')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&lambda;</span></span></a></i>
+      </div>
+      <div class=orb style="width:440px;height:440px;--sp:54s;--mc:#79b8ff"><i class=mh style="--a:6deg"><b class=moon></b></i><i class=mh style="--a:52deg"><b class=moon></b></i><i class=mh style="--a:88deg"><b class=moon></b></i><i class=mh style="--a:140deg"><b class=moon></b></i><i class=mh style="--a:178deg"><b class=moon></b></i><i class=mh style="--a:224deg"><b class=moon></b></i><i class=mh style="--a:268deg"><b class=moon></b></i><i class=mh style="--a:312deg"><b class=moon></b></i><i class=mh style="--a:348deg"><b class=moon></b></i></div>
+      <span class="pring b"></span><span class="pring a"></span>
+      <div class=planet>MARKET<br>REGIME</div>
+    </div>
+    <div class="cluster med pc" data-sec=commodities onclick="openSec('commodities')" style="transform:translate(-145px,-48px)">
+      <div class="orb rev" style="width:172px;height:172px;--sp:16s;--mc:#7ee787"><i class=mh style="--a:0deg"><b class=moon></b></i><i class=mh style="--a:120deg"><b class=moon></b></i><i class=mh style="--a:240deg"><b class=moon></b></i></div>
+      <div class=orb style="width:252px;height:252px;--sp:28s;--mc:#7ee787">
+        <i class=mh style="--a:0deg"><a class=amoon href="./cockpit/" onmouseover="cap('Commodity Cockpit')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&alpha;</span></span></a></i>
+        <i class=mh style="--a:120deg"><a class=amoon href="https://silver.shoppafund.com/" onmouseover="cap('Pattern Recognition')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&beta;</span></span></a></i>
+        <i class=mh style="--a:240deg"><a class=amoon href="https://shoppafund.github.io/natgas-tracker/natgas-term-structure.html" onmouseover="cap('NatGas Term Structure')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&gamma;</span></span></a></i>
+      </div>
+      <div class=ell><div class=orb style="width:198px;height:198px;--sp:34s;--mc:#7ee787"><i class=mh style="--a:0deg"><b class=moon></b></i><i class=mh style="--a:72deg"><b class=moon></b></i><i class=mh style="--a:144deg"><b class=moon></b></i><i class=mh style="--a:216deg"><b class=moon></b></i><i class=mh style="--a:288deg"><b class=moon></b></i></div></div>
+      <div class=planet style="letter-spacing:.01em">COMMODITIES</div>
+    </div>
+    <div class="cluster med pl" data-sec=liveapps onclick="openSec('liveapps')" style="transform:translate(-320px,42px)">
+      <div class="orb rev" style="width:172px;height:172px;--sp:15s;--mc:#3461c4"><i class=mh style="--a:0deg"><b class=moon></b></i><i class=mh style="--a:90deg"><b class=moon></b></i><i class=mh style="--a:180deg"><b class=moon></b></i><i class=mh style="--a:270deg"><b class=moon></b></i></div>
+      <div class=orb style="width:258px;height:258px;--sp:30s;--mc:#3461c4">
+        <i class=mh style="--a:0deg"><a class=amoon href="https://silver.shoppafund.com/pattern_scan" onmouseover="cap('Pattern Recognition')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&alpha;</span></span></a></i>
+        <i class=mh style="--a:60deg"><a class=amoon href="https://signal.shoppafund.com/" onmouseover="cap('Signal Convergence')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&beta;</span></span></a></i>
+        <i class=mh style="--a:120deg"><a class=amoon href="https://vol.shoppafund.com/" onmouseover="cap('Volatility AI Lab')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&gamma;</span></span></a></i>
+        <i class=mh style="--a:180deg"><a class=amoon href="https://options.shoppafund.com/" onmouseover="cap('Options Intel Lab')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&delta;</span></span></a></i>
+        <i class=mh style="--a:240deg"><a class=amoon href="https://marketphase.shoppafund.com/" onmouseover="cap('MarketPhase AI')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&epsilon;</span></span></a></i>
+        <i class=mh style="--a:300deg"><a class=amoon href="https://weinstein2.shoppafund.com/" onmouseover="cap('Cycle Stage')" onmouseout="cap()" onclick="event.stopPropagation()"><span class=gw><span class=glyph>&zeta;</span></span></a></i>
+      </div>
+      <div class=ell style="transform:rotate(34deg) scaleX(1.5)"><div class=orb style="width:296px;height:296px;--sp:48s;--mc:#9fd0ff"><i class=mh style="--a:210deg"><b class=moon style="--ms:13px;background:#ffd27a;box-shadow:0 0 15px #ffb347,0 0 5px #fff3d6"></b></i></div></div>
+      <div class=planet>TRADE<br>LAB</div>
+    </div>
+  </div>
+  <div class=hint id=cap>CLICK A PLANET TO ENTER</div>
+  <div class=legend>
+    <div class="lgrp two" style="--c:#45c9e0"><h5><i></i>MARKET REGIME</h5><ul>
+      <li><a href="https://regime.shoppafund.com/" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&alpha;</b>Bond Indicator</a></li>
+      <li><a href="https://regime.shoppafund.com/Fed_Liquidity" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&beta;</b>Fed Liquidity</a></li>
+      <li><a href="https://regime.shoppafund.com/Credit_Spreads" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&gamma;</b>Credit Spreads</a></li>
+      <li><a href="https://regime.shoppafund.com/Market_Internals" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&delta;</b>Market Internals</a></li>
+      <li><a href="https://regime.shoppafund.com/Sectors" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&epsilon;</b>Sectors</a></li>
+      <li><a href="https://regime.shoppafund.com/ETF_Flows" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&zeta;</b>ETF Flows</a></li>
+      <li><a href="https://regime.shoppafund.com/Technical_Setups" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&eta;</b>Technical Setups</a></li>
+      <li><a href="https://regime.shoppafund.com/Topping_Signals" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&theta;</b>Topping Signals</a></li>
+      <li><a href="https://regime.shoppafund.com/Risk_Scorecard" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&iota;</b>Risk Scorecard</a></li>
+      <li><a href="https://shoppafund.github.io/vix-tracker/vix-tracker.html" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&kappa;</b>VIX Term Structure</a></li>
+      <li><a href="https://signal.shoppafund.com/flow" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&lambda;</b>Smart-Money Flow</a></li>
+    </ul></div>
+    <div class=lgrp style="--c:#7ee787"><h5><i></i>COMMODITIES</h5><ul>
+      <li><a href="./cockpit/" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&alpha;</b>Commodity Cockpit</a></li>
+      <li><a href="https://silver.shoppafund.com/" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&beta;</b>Pattern Recognition</a></li>
+      <li><a href="https://shoppafund.github.io/natgas-tracker/natgas-term-structure.html" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&gamma;</b>NatGas Term Structure</a></li>
+    </ul></div>
+    <div class=lgrp style="--c:#3461c4"><h5><i></i>TRADE LAB</h5><ul>
+      <li><a href="https://silver.shoppafund.com/pattern_scan" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&alpha;</b>Pattern Recognition</a></li>
+      <li><a href="https://signal.shoppafund.com/" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&beta;</b>Signal Convergence</a></li>
+      <li><a href="https://vol.shoppafund.com/" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&gamma;</b>Volatility AI Lab</a></li>
+      <li><a href="https://options.shoppafund.com/" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&delta;</b>Options Intel Lab</a></li>
+      <li><a href="https://marketphase.shoppafund.com/" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&epsilon;</b>MarketPhase AI</a></li>
+      <li><a href="https://weinstein2.shoppafund.com/" onmouseover="hi(this,1)" onmouseout="hi(this,0)"><b>&zeta;</b>Cycle Stage</a></li>
+    </ul></div>
+  </div>
+</section>
+
+<main>
+  <section class="apppanel" id="regime">
+  <h2>Market Regime <span style="text-transform:none;color:#3fb950;font-weight:400">&middot; live &middot; 9 modules + signals</span></h2>
+  <p class=lead>Multi-page market-regime suite (8503): breadth, liquidity, credit, internals, sectors,
+     flows, technical setups, topping signals, risk. Start here for the overall market view, or jump to a module:</p>
+  <div class=gal>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="https://regime.shoppafund.com/" style="--img:url('thumbs/overview.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="https://regime.shoppafund.com/">Bond Indicator</a><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Headline regime read: NYSE new highs, HY bond A-D line, Bond CEF A-D and HY OAS spread rolled into one alert level.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="https://regime.shoppafund.com/Fed_Liquidity" style="--img:url('thumbs/fed_liquidity.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="https://regime.shoppafund.com/Fed_Liquidity">Fed Liquidity</a><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Fed reverse repo, foreign repo pool, custody holdings and FIMA balances — the liquidity plumbing behind risk assets.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="https://regime.shoppafund.com/Credit_Spreads" style="--img:url('thumbs/credit_spreads.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="https://regime.shoppafund.com/Credit_Spreads">Credit Spreads</a><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>HY &amp; IG option-adjusted spreads, yield curve and SOFR — credit stress as the earliest risk-off signal.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="https://regime.shoppafund.com/Market_Internals" style="--img:url('thumbs/market_internals.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="https://regime.shoppafund.com/Market_Internals">Market Internals</a><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>McClellan oscillator, advance-decline and breadth internals (NYMO, moving averages, MACD) across the tape.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="https://regime.shoppafund.com/Sectors" style="--img:url('thumbs/sectors.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="https://regime.shoppafund.com/Sectors">Sectors</a><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>All 11 GICS sectors' relative strength vs SPY — who's leading and lagging the rotation.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="https://regime.shoppafund.com/ETF_Flows" style="--img:url('thumbs/etf_flows.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="https://regime.shoppafund.com/ETF_Flows">ETF Flows</a><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>ETF dollar flow scaled per 1% underlying move — structural demand across major index and sector ETFs.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="https://regime.shoppafund.com/Technical_Setups" style="--img:url('thumbs/technical_setups.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="https://regime.shoppafund.com/Technical_Setups">Technical Setups</a><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Percent of the S&amp;P 1500 above key moving averages (50-day / 200-day) and related setup scans.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="https://regime.shoppafund.com/Topping_Signals" style="--img:url('thumbs/topping_signals.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="https://regime.shoppafund.com/Topping_Signals">Topping Signals</a><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Late-cycle warning checks — price versus breadth and credit divergences measured against trend.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="https://regime.shoppafund.com/Risk_Scorecard" style="--img:url('thumbs/risk_scorecard.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="https://regime.shoppafund.com/Risk_Scorecard">Risk Scorecard</a><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Composite risk-on / risk-off scorecard rolling up every signal in the suite.</div></div>
+    </div>
+  </div>
+
+  <div class="grid duo">
+    <div class=tile>
+      <a class=thumb href="https://shoppafund.github.io/vix-tracker/vix-tracker.html" style="--img:url('thumbs/vix.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle href="https://shoppafund.github.io/vix-tracker/vix-tracker.html">VIX Term Structure Tracker</a><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>VIX futures curve — contango (risk-on) vs backwardation (risk-off). Confirms or diverges from the breadth/flow regime read; the divergences are often the early tell.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="https://signal.shoppafund.com/flow" style="--img:url('thumbs/flow_art.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="https://signal.shoppafund.com/flow">Smart-Money Flow</a><span class="pill live">LIVE</span><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Search ANY ticker → its institutional dark-pool accumulation/distribution for the last session, live. (The QQQ snapshot also lives at <a href="./flow/">/flow/</a>.)</div></div>
+    </div>
+  </div>
+  </section>
+
+  <section class="apppanel" id="commodities">
+  <h2>Commodities</h2>
+  <div class=grid>
+    <div class=tile>
+      <a class=thumb href="./cockpit/" style="--img:url('thumbs/cockpit_tag.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle href="./cockpit/">Commodity Cockpit</a><span class="pill new">NEW</span><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Sub-sector relative strength, trend, volatility, risk-parity weights, correlation map, and a position-size calculator across the commodity complex.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="https://silver.shoppafund.com/" style="--img:url('thumbs/art_d.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="https://silver.shoppafund.com/">Pattern Recognition</a><span class="pill new">NEW</span><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Locates each commodity on silver's price-action path (silver = leading indicator). Ensemble shape-matching with horizon buckets (0&ndash;8 / 6&ndash;18 / 20&ndash;36 mo behind silver), agreement score &amp; projection.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb href="https://shoppafund.github.io/natgas-tracker/natgas-term-structure.html" style="--img:url('thumbs/natgas_tag.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle href="https://shoppafund.github.io/natgas-tracker/natgas-term-structure.html">NatGas Term Structure Tracker</a><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Natural gas futures curve tracker — contango/backwardation and seasonal structure shifts.</div></div>
+    </div>
+  </div>
+  </section>
+
+  <section class="apppanel" id="liveapps">
+  <h2>Trade Lab</h2>
+  <div class=grid>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="https://silver.shoppafund.com/pattern_scan" style="--img:url('thumbs/art_b.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="https://silver.shoppafund.com/pattern_scan">Pattern Recognition</a><span class="pill new">NEW</span><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Scale/%-invariant chart-pattern matcher. Find which charts are currently tracing a pattern (topping / bottoming), or score any ticker against every pattern &mdash; baseline-calibrated so it flags only <em>unusual</em> matches, not everything that's trending. (Lives in the Silver Lead Map app, separate &ldquo;Pattern recognition&rdquo; tabs.)</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="https://signal.shoppafund.com/" style="--img:url('thumbs/art_e.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="https://signal.shoppafund.com/">Signal Convergence</a><span class="pill live">LIVE</span><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Multi-signal buy/sell scanner — Weinstein + breadth/McClellan + VIX regime, with dark-pool magnets &amp; option walls. Pullback-into-support &amp; breakout entries; commodities included.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="https://vol.shoppafund.com/" style="--img:url('thumbs/art_i.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="https://vol.shoppafund.com/">Volatility AI Lab</a><span class="pill live">LIVE</span><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Options scanner — broken-wing / ratio put fly setups, composite volatility/structure score.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="https://options.shoppafund.com/" style="--img:url('thumbs/art_f.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="https://options.shoppafund.com/">Options Intel Lab</a><span class="pill live">LIVE</span><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Options trade builder — IV term structure, strike engine, directional trades with delta + convexity.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="https://marketphase.shoppafund.com/" style="--img:url('thumbs/art_g.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="https://marketphase.shoppafund.com/">MarketPhase AI</a><span class="pill live">LIVE</span><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Multi-indicator market phase scoring dashboard — momentum, breadth and macro into one phase call.</div></div>
+    </div>
+    <div class=tile>
+      <a class=thumb target=_blank rel=noopener href="https://weinstein2.shoppafund.com/" style="--img:url('thumbs/art_l.png')"></a>
+      <div class=tbody><div class=trow><a class=ttitle target=_blank rel=noopener href="https://weinstein2.shoppafund.com/">Cycle Stage</a><span class="pill live">LIVE</span><button class=chev onclick="tg(this)" aria-label="details"><svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class=tdesc>Stage-cycle decision engine — Scan + Deep Dive, Plotly chart, full intel panel with book-cited dropdowns.</div></div>
+    </div>
+  </div>
+  </section>
+</main>
+<footer>SHOPPA Fund &middot; shoppafund.github.io &middot; analytics are descriptive/regime tools, not investment advice</footer>
+<div id=prev class=prevcard><div class=pimg></div><div class=pttl></div><div class=pds></div></div>
+<script>
+function tg(b){b.classList.toggle('open');var d=b.closest('.tbody').querySelector('.tdesc');if(d)d.classList.toggle('open');}
+function openSec(id){
+  document.querySelectorAll('.apppanel').forEach(function(p){p.classList.toggle('show',p.id===id);});
+  document.querySelectorAll('.cluster').forEach(function(c){c.classList.toggle('active',c.dataset.sec===id);});
+  var el=document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+var CAPDEF='CLICK A PLANET TO ENTER';
+function cap(t){var e=document.getElementById('cap');if(!e)return;if(t){e.textContent='▸ '+t;e.classList.add('on');}else{e.textContent=CAPDEF;e.classList.remove('on');}}
+function hi(el,on){var h=el.getAttribute('href');var m=document.querySelector('.amoon[href="'+h+'"]');if(!m)return;m.classList.toggle('lit',!!on);var c=m.closest('.cluster');if(c)c.classList.toggle('frozen',!!on);}
+function showPrev(m,info){var p=document.getElementById('prev');if(!p)return;p.querySelector('.pimg').style.backgroundImage=info.img?("url('"+info.img+"')"):'none';p.querySelector('.pttl').textContent=info.title;var d=p.querySelector('.pds');d.textContent=info.desc?(info.desc.length>150?info.desc.slice(0,150)+'…':info.desc):'';p.classList.add('on');var r=m.getBoundingClientRect(),w=240,ch=p.offsetHeight||190;var left=Math.max(10,Math.min(r.left+r.width/2-w/2,innerWidth-w-10));var top=r.top-ch-12;if(top<10)top=r.bottom+12;p.style.left=left+'px';p.style.top=top+'px';}
+function hidePrev(){var p=document.getElementById('prev');if(p)p.classList.remove('on');}
+function fitZoom(){var el=document.documentElement;el.style.zoom='';var z=Math.min(Math.max(window.innerWidth/1880,0.75),1.5);el.style.zoom=z;}
+fitZoom();window.addEventListener('resize',fitZoom);
+(function(){var data={};document.querySelectorAll('.tile').forEach(function(t){var a=t.querySelector('.ttitle');if(!a)return;var th=t.querySelector('.thumb'),img='';if(th){var s=th.getAttribute('style')||'',mm=s.match(/--img:url\((['"]?)([^'")]+)\1\)/);if(mm)img=mm[2];}var d=t.querySelector('.tdesc');data[a.getAttribute('href')]={title:a.textContent.trim(),img:img,desc:d?d.textContent.trim():''};});document.querySelectorAll('.amoon').forEach(function(mo){var info=data[mo.getAttribute('href')];if(!info)return;mo.addEventListener('mouseenter',function(){showPrev(mo,info);});mo.addEventListener('mouseleave',hidePrev);});document.querySelectorAll('.lgrp li').forEach(function(li){var a=li.querySelector('a');if(!a)return;var info=data[a.getAttribute('href')];if(!info||!info.desc)return;var b=document.createElement('button');b.className='lchev';b.setAttribute('aria-label','details');b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';var ds=document.createElement('span');ds.className='ldesc';ds.textContent=info.desc;b.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();b.classList.toggle('open');ds.classList.toggle('open');});a.after(b);b.after(ds);});
+function syncLegend(){}
+syncLegend();window.addEventListener('resize',syncLegend);setTimeout(syncLegend,400);})();
+</script>
+</html>
