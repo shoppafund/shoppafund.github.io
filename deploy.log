@@ -753,3 +753,36 @@ Traceback (most recent call last):
     raise CalledProcessError(retcode, process.args,
                              output=stdout, stderr=stderr)
 subprocess.CalledProcessError: Command '['python', 'commodity_cockpit.py', '--last', '2026-07-09']' returned non-zero exit status 1.
+  Agriculture         DBA   up   -7.7%RS  dec+0.40  flow$  -7.6M  vol  13%  wt  14%
+  Steel               SLX  mix  -10.0%RS  dec-0.12  flow$  -1.3M  vol  27%  wt   7%
+  Solar/transition    TAN  mix  -10.6%RS  dec+0.08  flow$  +8.8M  vol  44%  wt   4%
+  Nat Gas             UNG   dn  -13.6%RS  dec+0.50  flow$  -1.6M  vol  39%  wt   5%
+  Energy (broad)      XLE  mix  -15.0%RS  dec+0.23  flow$ -99.4M  vol  24%  wt   8%
+  Broad commodities   DBC  mix  -15.2%RS  dec+0.78  flow$ +20.7M  vol  21%  wt   9%
+  Oil E&P             XOP  mix  -16.5%RS  dec+0.42  flow$ -14.4M  vol  31%  wt   6%
+  Lithium             LIT  mix  -16.8%RS  dec+0.13  flow$  -2.1M  vol  34%  wt   5%
+  Copper             COPX  mix  -17.2%RS  dec-0.01  flow$ -17.2M  vol  53%  wt   3%
+  Metals & mining     XME  mix  -19.0%RS  dec-0.03  flow$ -48.1M  vol  39%  wt   5%
+  Potash/Fertilizer   NTR  mix  -21.1%RS  dec+0.54  flow$  +0.9M  vol  32%  wt   6%
+  Rare earth         REMX  mix  -25.5%RS  dec+0.05  flow$ -11.3M  vol  49%  wt   4%
+  Uranium             URA   dn  -26.7%RS  dec-0.01  flow$  -6.9M  vol  52%  wt   3%
+  Coal                BTU   dn  -26.7%RS  dec+0.66  flow$  +5.6M  vol  54%  wt   3%
+  Palladium          PALL   dn  -29.6%RS  dec-0.10  flow$  -0.1M  vol  40%  wt   4%
+  Silver miners      SILJ   dn  -30.0%RS  dec+0.07  flow$  -7.6M  vol  60%  wt   3%
+  Gold miners        GDXJ   dn  -33.7%RS  dec+0.03  flow$ -15.6M  vol  56%  wt   3%
+  Platinum           PPLT   dn  -33.9%RS  dec-0.07  flow$  +0.5M  vol  39%  wt   5%
+  Aluminum             AA  mix  -44.6%RS  dec+0.15  flow$ +20.9M  vol  57%  wt   3%
+-> wrote commodity_cockpit.html
+📊 Commodity cockpit 2026-06-12: leaders Steel, Lithium, Solar/transition | regime decoupled (-0.20)
+  (no changes since last run)
+warning: in the working copy of 'deploy.log', LF will be replaced by CRLF the next time Git touches it
+[main 281b1fa] auto: refresh 2026-07-10
+ 2 files changed, 130 insertions(+), 4 deletions(-)
+To https://github.com/shoppafund/shoppafund.github.io.git
+   4e9803e..281b1fa  main -> main
+> python commodity_cockpit.py --last 2026-07-10
+> python cockpit_alerts.py
+> git add -A
+> git push origin main
+
+Live: https://shoppafund.github.io/  (refreshed 2026-07-10)
