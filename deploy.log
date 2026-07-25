@@ -1096,3 +1096,36 @@ To https://github.com/shoppafund/shoppafund.github.io.git
 > git push origin main
 
 Live: https://shoppafund.github.io/  (refreshed 2026-07-22)
+  Energy (broad)      XLE   up   +1.2%RS  dec+0.00  flow$ +95.8M  vol  24%  wt   8%
+  Oil E&P             XOP   up   +0.6%RS  dec+0.16  flow$ +62.4M  vol  30%  wt   6%
+  Agriculture         DBA   up   +0.3%RS  dec+0.28  flow$  -0.3M  vol  13%  wt  14%
+  Broad commodities   DBC   up   -1.1%RS  dec+0.45  flow$  -1.7M  vol  21%  wt   9%
+  Steel               SLX  mix   -4.6%RS  dec-0.28  flow$  +1.4M  vol  27%  wt   7%
+  Nat Gas             UNG   dn   -6.9%RS  dec+0.20  flow$  -2.5M  vol  39%  wt   5%
+  Potash/Fertilizer   NTR   up   -8.0%RS  dec+0.33  flow$  +1.2M  vol  30%  wt   6%
+  Solar/transition    TAN  mix  -11.1%RS  dec+0.08  flow$  +0.9M  vol  44%  wt   4%
+  Copper             COPX  mix  -11.5%RS  dec-0.11  flow$ +51.0M  vol  54%  wt   3%
+  Coal                BTU   dn  -17.8%RS  dec+0.51  flow$  +0.5M  vol  52%  wt   4%
+  Metals & mining     XME  mix  -19.1%RS  dec-0.13  flow$  +1.1M  vol  40%  wt   5%
+  Lithium             LIT  mix  -22.4%RS  dec+0.13  flow$  -8.4M  vol  34%  wt   5%
+  Palladium          PALL   dn  -22.8%RS  dec-0.15  flow$  -1.8M  vol  42%  wt   4%
+  Silver miners      SILJ   dn  -25.0%RS  dec-0.04  flow$  -4.8M  vol  60%  wt   3%
+  Gold miners        GDXJ   dn  -26.2%RS  dec-0.06  flow$ -17.0M  vol  57%  wt   3%
+  Platinum           PPLT   dn  -27.1%RS  dec-0.19  flow$  -2.3M  vol  39%  wt   5%
+  Uranium             URA   dn  -32.5%RS  dec-0.07  flow$  -2.1M  vol  51%  wt   4%
+  Rare earth         REMX  mix  -36.8%RS  dec+0.06  flow$ -28.4M  vol  49%  wt   4%
+  Aluminum             AA  mix  -37.7%RS  dec+0.16  flow$ -17.4M  vol  57%  wt   3%
+-> wrote commodity_cockpit.html
+📊 Commodity cockpit 2026-06-12: leaders Steel, Lithium, Solar/transition | regime decoupled (-0.20)
+  (no changes since last run)
+warning: in the working copy of 'deploy.log', LF will be replaced by CRLF the next time Git touches it
+[main 170af26] auto: refresh 2026-07-23
+ 2 files changed, 37 insertions(+), 4 deletions(-)
+To https://github.com/shoppafund/shoppafund.github.io.git
+   80a681f..170af26  main -> main
+> python commodity_cockpit.py --last 2026-07-23
+> python cockpit_alerts.py
+> git add -A
+> git push origin main
+
+Live: https://shoppafund.github.io/  (refreshed 2026-07-23)
