@@ -1129,3 +1129,224 @@ To https://github.com/shoppafund/shoppafund.github.io.git
 > git push origin main
 
 Live: https://shoppafund.github.io/  (refreshed 2026-07-23)
+  Energy (broad)      XLE   up   +0.3%RS  dec+0.05  flow$ +74.8M  vol  24%  wt   8%
+  Agriculture         DBA   up   -1.2%RS  dec+0.28  flow$  +1.4M  vol  13%  wt  14%
+  Oil E&P             XOP   up   -1.7%RS  dec+0.21  flow$ +31.2M  vol  30%  wt   6%
+  Steel               SLX  mix   -2.1%RS  dec-0.30  flow$  +1.4M  vol  27%  wt   7%
+  Broad commodities   DBC   up   -3.6%RS  dec+0.44  flow$  -2.6M  vol  21%  wt   9%
+  Nat Gas             UNG   dn   -4.0%RS  dec+0.21  flow$  -7.3M  vol  39%  wt   5%
+  Potash/Fertilizer   NTR   up  -10.0%RS  dec+0.24  flow$  +0.5M  vol  30%  wt   6%
+  Copper             COPX  mix  -10.1%RS  dec-0.12  flow$ +56.6M  vol  54%  wt   3%
+  Solar/transition    TAN  mix  -16.8%RS  dec+0.04  flow$  -0.2M  vol  44%  wt   4%
+  Metals & mining     XME  mix  -17.8%RS  dec-0.17  flow$ +28.2M  vol  40%  wt   5%
+  Palladium          PALL   dn  -19.4%RS  dec-0.13  flow$  -1.9M  vol  40%  wt   4%
+  Coal                BTU   dn  -21.0%RS  dec+0.44  flow$  +0.4M  vol  53%  wt   3%
+  Lithium             LIT  mix  -21.8%RS  dec+0.11  flow$  -8.0M  vol  34%  wt   5%
+  Silver miners      SILJ   dn  -23.5%RS  dec-0.07  flow$  -4.8M  vol  60%  wt   3%
+  Gold miners        GDXJ   dn  -24.1%RS  dec-0.10  flow$ -14.4M  vol  57%  wt   3%
+  Platinum           PPLT   dn  -25.1%RS  dec-0.24  flow$  -1.9M  vol  39%  wt   5%
+  Uranium             URA   dn  -33.7%RS  dec-0.11  flow$  +0.1M  vol  51%  wt   4%
+  Rare earth         REMX  mix  -35.6%RS  dec+0.03  flow$ -23.9M  vol  48%  wt   4%
+  Aluminum             AA  mix  -36.6%RS  dec+0.05  flow$ -17.4M  vol  57%  wt   3%
+-> wrote commodity_cockpit.html
+📊 Commodity cockpit 2026-06-12: leaders Steel, Lithium, Solar/transition | regime decoupled (-0.20)
+  (no changes since last run)
+warning: in the working copy of 'deploy.log', LF will be replaced by CRLF the next time Git touches it
+[main cfe6632] auto: refresh 2026-07-24
+ 2 files changed, 37 insertions(+), 4 deletions(-)
+To https://github.com/shoppafund/shoppafund.github.io.git
+   170af26..cfe6632  main -> main
+> python commodity_cockpit.py --last 2026-07-24
+> python cockpit_alerts.py
+> git add -A
+> git push origin main
+
+Live: https://shoppafund.github.io/  (refreshed 2026-07-24)
+Traceback (most recent call last):
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+TimeoutError: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise ConnectTimeoutError(
+    ...<2 lines>...
+    ) from e
+urllib3.exceptions.ConnectTimeoutError: (<HTTPSConnection(host='api.massive.com', port=443) at 0x1efeeca30e0>, 'Connection to api.massive.com timed out. (connect timeout=30)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\util\retry.py", line 535, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.massive.com', port=443): Max retries exceeded with url: /v2/aggs/ticker/XLE/range/1/day/2025-05-30/2026-07-24?adjusted=true&sort=asc&limit=50000 (Caused by ConnectTimeoutError(<HTTPSConnection(host='api.massive.com', port=443) at 0x1efeeca30e0>, 'Connection to api.massive.com timed out. (connect timeout=30)'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\SHOPPA\Liquidity Print Map\commodity_cockpit.py", line 218, in <module>
+    main()
+    ~~~~^^
+  File "C:\SHOPPA\Liquidity Print Map\commodity_cockpit.py", line 74, in main
+    bars = {n: daily_bars(sess, t, start, end_s) for n, t in allt.items()}
+               ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\SHOPPA\Liquidity Print Map\commodity_cockpit.py", line 43, in daily_bars
+    r = sess.get(url, params={"adjusted": "true", "sort": "asc", "limit": 50000}, timeout=30)
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\requests\adapters.py", line 665, in send
+    raise ConnectTimeout(e, request=request)
+requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='api.massive.com', port=443): Max retries exceeded with url: /v2/aggs/ticker/XLE/range/1/day/2025-05-30/2026-07-24?adjusted=true&sort=asc&limit=50000 (Caused by ConnectTimeoutError(<HTTPSConnection(host='api.massive.com', port=443) at 0x1efeeca30e0>, 'Connection to api.massive.com timed out. (connect timeout=30)'))
+> python commodity_cockpit.py --last 2026-07-24
+Traceback (most recent call last):
+  File "C:\SHOPPA\shoppafund-site\deploy.py", line 59, in <module>
+    main()
+    ~~~~^^
+  File "C:\SHOPPA\shoppafund-site\deploy.py", line 37, in main
+    run(["python", "commodity_cockpit.py", "--last", last], LP)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\SHOPPA\shoppafund-site\deploy.py", line 31, in run
+    return subprocess.run(cmd, cwd=cwd, check=check)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['python', 'commodity_cockpit.py', '--last', '2026-07-24']' returned non-zero exit status 1.
+Traceback (most recent call last):
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+TimeoutError: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise ConnectTimeoutError(
+    ...<2 lines>...
+    ) from e
+urllib3.exceptions.ConnectTimeoutError: (<HTTPSConnection(host='api.massive.com', port=443) at 0x11acfab30e0>, 'Connection to api.massive.com timed out. (connect timeout=30)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\util\retry.py", line 535, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.massive.com', port=443): Max retries exceeded with url: /v2/aggs/ticker/XLE/range/1/day/2025-06-02/2026-07-27?adjusted=true&sort=asc&limit=50000 (Caused by ConnectTimeoutError(<HTTPSConnection(host='api.massive.com', port=443) at 0x11acfab30e0>, 'Connection to api.massive.com timed out. (connect timeout=30)'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\SHOPPA\Liquidity Print Map\commodity_cockpit.py", line 218, in <module>
+    main()
+    ~~~~^^
+  File "C:\SHOPPA\Liquidity Print Map\commodity_cockpit.py", line 74, in main
+    bars = {n: daily_bars(sess, t, start, end_s) for n, t in allt.items()}
+               ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\SHOPPA\Liquidity Print Map\commodity_cockpit.py", line 43, in daily_bars
+    r = sess.get(url, params={"adjusted": "true", "sort": "asc", "limit": 50000}, timeout=30)
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\requests\adapters.py", line 665, in send
+    raise ConnectTimeout(e, request=request)
+requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='api.massive.com', port=443): Max retries exceeded with url: /v2/aggs/ticker/XLE/range/1/day/2025-06-02/2026-07-27?adjusted=true&sort=asc&limit=50000 (Caused by ConnectTimeoutError(<HTTPSConnection(host='api.massive.com', port=443) at 0x11acfab30e0>, 'Connection to api.massive.com timed out. (connect timeout=30)'))
+> python commodity_cockpit.py --last 2026-07-27
+Traceback (most recent call last):
+  File "C:\SHOPPA\shoppafund-site\deploy.py", line 59, in <module>
+    main()
+    ~~~~^^
+  File "C:\SHOPPA\shoppafund-site\deploy.py", line 37, in main
+    run(["python", "commodity_cockpit.py", "--last", last], LP)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\SHOPPA\shoppafund-site\deploy.py", line 31, in run
+    return subprocess.run(cmd, cwd=cwd, check=check)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['python', 'commodity_cockpit.py', '--last', '2026-07-27']' returned non-zero exit status 1.
