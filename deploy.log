@@ -2829,3 +2829,129 @@ Traceback (most recent call last):
     raise CalledProcessError(retcode, process.args,
                              output=stdout, stderr=stderr)
 subprocess.CalledProcessError: Command '['python', 'commodity_cockpit.py', '--last', '2026-09-24']' returned non-zero exit status 1.
+  Broad commodities   DBC   up  +17.0%RS  dec-0.56  flow$  +1.6M  vol  21%  wt   8%
+  Gold miners        GDXJ  mix  +14.9%RS  dec-0.26  flow$ -11.5M  vol  52%  wt   3%
+  Potash/Fertilizer   NTR  mix  +12.6%RS  dec-0.53  flow$ -10.2M  vol  30%  wt   5%
+  Oil E&P             XOP  mix  +11.5%RS  dec-0.10  flow$ -17.9M  vol  28%  wt   6%
+  Energy (broad)      XLE   up   +9.4%RS  dec-0.08  flow$ +20.6M  vol  22%  wt   8%
+  Copper             COPX   up   +8.0%RS  dec-0.40  flow$  -6.3M  vol  42%  wt   4%
+  Silver miners      SILJ  mix   +6.1%RS  dec-0.28  flow$  +1.4M  vol  51%  wt   3%
+  Platinum           PPLT  mix   +3.1%RS  dec-0.14  flow$  +1.4M  vol  36%  wt   5%
+  Coal                BTU   dn   +2.4%RS  dec-0.29  flow$  +3.2M  vol  50%  wt   3%
+  Agriculture         DBA   up   +0.7%RS  dec-0.08  flow$  -5.9M  vol  14%  wt  12%
+  Steel               SLX  mix   -0.1%RS  dec-0.18  flow$  -1.8M  vol  20%  wt   8%
+  Palladium          PALL   dn   -1.5%RS  dec-0.12  flow$  -0.2M  vol  41%  wt   4%
+  Metals & mining     XME   dn   -5.5%RS  dec-0.21  flow$ -53.4M  vol  36%  wt   5%
+  Uranium             URA   dn  -12.0%RS  dec-0.25  flow$  +3.0M  vol  44%  wt   4%
+  Nat Gas             UNG  mix  -12.0%RS  dec-0.20  flow$ -38.6M  vol  35%  wt   5%
+  Lithium             LIT   dn  -14.9%RS  dec-0.31  flow$  -2.6M  vol  26%  wt   6%
+  Aluminum             AA   dn  -26.6%RS  dec-0.04  flow$  -3.5M  vol  47%  wt   4%
+  Solar/transition    TAN   dn  -28.3%RS  dec-0.09  flow$  -7.8M  vol  36%  wt   5%
+  Rare earth         REMX   dn  -28.8%RS  dec-0.37  flow$  -5.4M  vol  39%  wt   4%
+-> wrote commodity_cockpit.html
+📊 Commodity cockpit 2026-06-12: leaders Steel, Lithium, Solar/transition | regime decoupled (-0.20)
+  (no changes since last run)
+warning: in the working copy of 'deploy.log', LF will be replaced by CRLF the next time Git touches it
+[main 23c59cb] auto: refresh 2026-09-25
+ 2 files changed, 130 insertions(+), 4 deletions(-)
+To https://github.com/shoppafund/shoppafund.github.io.git
+   795b534..23c59cb  main -> main
+> python commodity_cockpit.py --last 2026-09-25
+> python cockpit_alerts.py
+> git add -A
+> git push origin main
+
+Live: https://shoppafund.github.io/  (refreshed 2026-09-25)
+Traceback (most recent call last):
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\util\connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connection.py", line 211, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: HTTPSConnection(host='api.massive.com', port=443): Failed to resolve 'api.massive.com' ([Errno 11001] getaddrinfo failed)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\util\retry.py", line 535, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.massive.com', port=443): Max retries exceeded with url: /v2/aggs/ticker/XLE/range/1/day/2025-08-01/2026-09-25?adjusted=true&sort=asc&limit=50000 (Caused by NameResolutionError("HTTPSConnection(host='api.massive.com', port=443): Failed to resolve 'api.massive.com' ([Errno 11001] getaddrinfo failed)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\SHOPPA\Liquidity Print Map\commodity_cockpit.py", line 218, in <module>
+    main()
+    ~~~~^^
+  File "C:\SHOPPA\Liquidity Print Map\commodity_cockpit.py", line 74, in main
+    bars = {n: daily_bars(sess, t, start, end_s) for n, t in allt.items()}
+               ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\SHOPPA\Liquidity Print Map\commodity_cockpit.py", line 43, in daily_bars
+    r = sess.get(url, params={"adjusted": "true", "sort": "asc", "limit": 50000}, timeout=30)
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\site-packages\requests\adapters.py", line 677, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.massive.com', port=443): Max retries exceeded with url: /v2/aggs/ticker/XLE/range/1/day/2025-08-01/2026-09-25?adjusted=true&sort=asc&limit=50000 (Caused by NameResolutionError("HTTPSConnection(host='api.massive.com', port=443): Failed to resolve 'api.massive.com' ([Errno 11001] getaddrinfo failed)"))
+> python commodity_cockpit.py --last 2026-09-25
+Traceback (most recent call last):
+  File "C:\SHOPPA\shoppafund-site\deploy.py", line 59, in <module>
+    main()
+    ~~~~^^
+  File "C:\SHOPPA\shoppafund-site\deploy.py", line 37, in main
+    run(["python", "commodity_cockpit.py", "--last", last], LP)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\SHOPPA\shoppafund-site\deploy.py", line 31, in run
+    return subprocess.run(cmd, cwd=cwd, check=check)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dptay\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['python', 'commodity_cockpit.py', '--last', '2026-09-25']' returned non-zero exit status 1.
