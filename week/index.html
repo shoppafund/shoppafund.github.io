@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Our Week</title>
+<meta name="theme-color" content="#0d1117">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Our Week">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#0d1117; --card:#161b22; --card2:#1c232d; --line:#2a323d;
+  --text:#e6edf3; --muted:#9aa7b4; --accent:#4fd1c5; --mufu:#f6a6c1; --mofo:#7cb7ff;
+  --both:#c9b6ff; --warn:#f2c14e;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);
+  font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+body{padding:calc(env(safe-area-inset-top) + 12px) 16px calc(env(safe-area-inset-bottom) + 32px)}
+.wrap{max-width:1100px;margin:0 auto}
+header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:12px}
+h1{font-size:22px;margin:0;letter-spacing:.3px}
+.today-lbl{color:var(--muted);font-size:13px}
+h2{font-size:16px;margin:0 0 10px;letter-spacing:.3px}
+details.how{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-bottom:14px;color:var(--muted);font-size:14px}
+details.how summary{cursor:pointer;color:var(--text);font-weight:600}
+details.how ul{margin:8px 0 0;padding-left:18px}
+.chips{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;margin-bottom:14px}
+.chip{background:var(--card);border:1px solid var(--line);color:var(--text);border-radius:10px;
+  padding:9px 0;font-size:13px;font-weight:600;text-align:center;cursor:pointer;user-select:none}
+.chip.today{border-color:var(--accent)}
+.chip.on{background:var(--accent);color:#0d1117;border-color:var(--accent)}
+.days{display:grid;gap:12px}
+.days.week{grid-template-columns:1fr}
+@media (min-width:900px){ .days.week{grid-template-columns:repeat(7,1fr)} .days.week .day{font-size:13px} }
+.day{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.day.is-today{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+.day h3{margin:0 0 8px;font-size:16px;display:flex;justify-content:space-between;align-items:center}
+.day h3 .tag{font-size:11px;color:#0d1117;background:var(--accent);border-radius:6px;padding:2px 6px}
+.part{margin-top:8px}
+.part-name{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:4px}
+.item{display:flex;gap:10px;align-items:flex-start;background:var(--card2);border-left:3px solid var(--both);
+  border-radius:8px;padding:7px 10px;margin-bottom:6px}
+.item.mufu{border-left-color:var(--mufu)} .item.mofo{border-left-color:var(--mofo)}
+.item.star{box-shadow:0 0 0 1px var(--warn) inset}
+.t{font-variant-numeric:tabular-nums;color:var(--muted);min-width:44px;font-size:13px;padding-top:1px}
+.what{flex:1}
+.who{font-size:11px;color:var(--muted)}
+.q{display:inline-block;font-size:10px;color:#0d1117;background:var(--warn);border-radius:5px;padding:0 5px;margin-left:4px;vertical-align:1px}
+.empty{color:var(--muted);font-size:13px}
+section.block{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:16px}
+.goals{display:grid;gap:12px;grid-template-columns:1fr}
+@media (min-width:700px){ .goals{grid-template-columns:1fr 1fr} }
+ol{margin:0;padding-left:20px} ol li{margin:6px 0}
+.sub{color:var(--muted);font-size:13px}
+.mufu-h{color:var(--mufu)} .mofo-h{color:var(--mofo)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:-4px 0 12px}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px;background:var(--c)}
+footer{margin-top:18px;color:var(--muted);font-size:12px;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Our Week</h1>
+    <div class="today-lbl" id="todayLbl"></div>
+  </header>
+
+  <details class="how">
+    <summary>How to read this</summary>
+    <ul>
+      <li>Tap a day at the top to see that day. Tap <b>Week</b> to see all seven days at once.</li>
+      <li>Today opens by default and has a teal outline.</li>
+      <li>Colour on the left edge: <b class="mufu-h">pink</b> is Mufu, <b class="mofo-h">blue</b> is Mofo, purple is shared or not assigned on the paper.</li>
+      <li>Times use the 24 hour clock. Items with no time sit in the part of the day they belong to.</li>
+      <li>A yellow outline is something circled on the paper. A yellow <span class="q">?</span> means the handwriting was hard to read.</li>
+      <li>Tasks and both sets of goals are at the bottom. The schedule can be changed.</li>
+    </ul>
+  </details>
+
+  <div class="legend">
+    <span style="--c:var(--mufu)">Mufu</span>
+    <span style="--c:var(--mofo)">Mofo</span>
+    <span style="--c:var(--both)">Both</span>
+  </div>
+
+  <div class="chips" id="chips"></div>
+  <div class="days" id="days"></div>
+
+  <section class="block">
+    <h2>Tasks</h2>
+    <ol>
+      <li>Save $400 a month each into the Italy box.<div class="sub">That builds the down payment by summer.</div></li>
+      <li>Give each other space.</li>
+      <li>The schedule can be changed.</li>
+    </ol>
+  </section>
+
+  <div class="goals">
+    <section class="block">
+      <h2 class="mufu-h">Mufu's goals</h2>
+      <ol>
+        <li>Music album by spring</li>
+        <li>50 meters by spring</li>
+        <li>Down payment by summer</li>
+        <li>Finished script / film by July</li>
+      </ol>
+    </section>
+    <section class="block">
+      <h2 class="mofo-h">Mofo's goals</h2>
+      <ol>
+        <li>Learn AI agents, then teach Mufu</li>
+        <li>Sailing ⚓</li>
+        <li>Refinish the wood trim by summer</li>
+        <li>$200 per check to the house</li>
+        <li>Equalizing with Marco</li>
+      </ol>
+    </section>
+  </div>
+
+  <footer>Updated 2026-11-07</footer>
+</div>
+
+<script>
+// who: "mufu" | "mofo" | "both". part: "Morning" | "Midday" | "Afternoon" | "Evening"
+const WEEK = {
+  Mon: [
+    {t:"08:30", end:"10:30", what:"Mufu learn", who:"mufu", part:"Morning"},
+    {t:"12:00", what:"EQ breathing", who:"both", part:"Midday"},
+    {t:"18:00", what:"Body Pump", who:"both", part:"Evening"},
+  ],
+  Tue: [
+    {t:"08:30", end:"10:30", what:"Mufu learn", who:"mufu", part:"Morning"},
+    {t:"12:00", what:"EQ meditation", who:"both", part:"Midday"},
+    {t:"18:00", what:"Yoga", who:"both", part:"Evening"},
+    {what:"Mufu music", who:"mufu", part:"Evening"},
+  ],
+  Wed: [
+    {t:"08:30", end:"10:30", what:"Mufu learn", who:"mufu", part:"Morning"},
+    {t:"12:00", what:"EQ breathing", who:"both", part:"Midday"},
+    {t:"18:00", what:"Meat", q:true, who:"both", part:"Evening"},
+    {what:"Sailing", who:"mofo", part:"Evening"},
+    {t:"19:00", what:"Tango", who:"both", part:"Evening"},
+  ],
+  Thu: [
+    {t:"08:30", end:"10:30", what:"Mufu learn", who:"mufu", part:"Morning"},
+    {what:"Kaao", q:true, who:"both", part:"Morning"},
+    {t:"12:00", what:"Yoga", who:"both", part:"Midday"},
+    {t:"13:00", what:"Equalizing and breathing", who:"both", part:"Midday"},
+    {t:"18:00", what:"Yoga", who:"both", part:"Evening"},
+    {what:"Music", who:"both", part:"Evening"},
+    {what:"Sailing", who:"both", part:"Evening"},
+  ],
+  Fri: [
+    {t:"06:00", what:"Meat inside", q:true, who:"both", part:"Morning"},
+    {t:"12:00", what:"Swim, equalizing and breathing", who:"both", part:"Midday"},
+    {t:"16:30", end:"17:30", what:"Yoga (free)", who:"both", part:"Afternoon"},
+    {what:"Prosecco", who:"both", part:"Evening"},
+  ],
+  Sat: [
+    {t:"10:30", what:"Body Pump", who:"both", part:"Morning"},
+    {t:"", end:"15:00", what:"Library until 15:00", who:"both", part:"Midday"},
+    {what:"Music", who:"both", part:"Evening"},
+    {what:"Sailing", who:"both", part:"Evening"},
+  ],
+  Sun: [
+    {what:"Free gym", who:"both", part:"Morning"},
+    {t:"13:00", what:"Drums", star:true, who:"both", part:"Midday"},
+    {what:"Music", who:"both", part:"Evening"},
+    {what:"Fix sofa", q:true, who:"both", part:"Evening"},
+  ],
+};
+const ORDER = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+const FULL = {Mon:"Monday",Tue:"Tuesday",Wed:"Wednesday",Thu:"Thursday",Fri:"Friday",Sat:"Saturday",Sun:"Sunday"};
+const PARTS = ["Morning","Midday","Afternoon","Evening"];
+const WHO = {mufu:"Mufu", mofo:"Mofo", both:"Both"};
+
+const now = new Date();
+const todayKey = ORDER[(now.getDay()+6)%7];
+document.getElementById("todayLbl").textContent =
+  FULL[todayKey] + " " + now.getFullYear() + "-" + String(now.getMonth()+1).padStart(2,"0") + "-" + String(now.getDate()).padStart(2,"0");
+
+let view = todayKey;
+try { const v = localStorage.getItem("ourweek.view"); if (v === "Week") view = "Week"; } catch(e) {}
+
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+
+function dayCard(k){
+  const items = WEEK[k];
+  let h = `<div class="day${k===todayKey?" is-today":""}"><h3>${FULL[k]}${k===todayKey?'<span class="tag">TODAY</span>':""}</h3>`;
+  for (const p of PARTS){
+    const list = items.filter(i=>i.part===p);
+    if (!list.length) continue;
+    h += `<div class="part"><div class="part-name">${p}</div>`;
+    for (const i of list){
+      const time = i.t ? (i.end ? `${i.t}<br>${i.end}` : i.t) : "";
+      h += `<div class="item ${i.who}${i.star?" star":""}"><div class="t">${time}</div>`+
+           `<div class="what">${esc(i.what)}${i.q?'<span class="q">?</span>':""}`+
+           `<div class="who">${WHO[i.who]}</div></div></div>`;
+    }
+    h += `</div>`;
+  }
+  return h + `</div>`;
+}
+
+function render(){
+  const chips = document.getElementById("chips");
+  chips.innerHTML = ORDER.map(k=>`<div class="chip${k===todayKey?" today":""}${view===k?" on":""}" data-k="${k}">${k}</div>`).join("")
+    + `<div class="chip${view==="Week"?" on":""}" data-k="Week">Week</div>`;
+  const days = document.getElementById("days");
+  if (view === "Week"){
+    days.className = "days week";
+    days.innerHTML = ORDER.map(dayCard).join("");
+  } else {
+    days.className = "days";
+    days.innerHTML = dayCard(view);
+  }
+}
+document.getElementById("chips").addEventListener("click", e=>{
+  const k = e.target.closest(".chip")?.dataset.k; if (!k) return;
+  view = k;
+  try { localStorage.setItem("ourweek.view", k==="Week" ? "Week" : "Day"); } catch(e) {}
+  render();
+});
+render();
+</script>
+</body>
+</html>
